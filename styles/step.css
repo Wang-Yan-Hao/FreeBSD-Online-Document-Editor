@@ -1,0 +1,20 @@
+h1.title {
+   font-family: "Roboto", sans-serif;
+   text-align: center;
+}
+
+ol li {
+   font-family: "Roboto", sans-serif;
+   padding-top: 10px;
+   font-size: 23px;
+}
+
+.footer {
+   padding-top: 65%;
+}
+
+.footer p {
+   font-family: "Roboto", sans-serif;
+   font-weight: 600;
+   font-size: 15px;
+}

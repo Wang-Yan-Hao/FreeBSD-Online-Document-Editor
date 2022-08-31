@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>FreeBSD Online Document Editor</title>
+   <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+   <h1 class="title"> FreeBSD Online Document Editor</h3>
+
+   <div class="editor-container">
+      <div class="left">
+         <div id="editor"></div>
+      </div>
+      <div class="right">
+         <iframe id="output"></iframe>
+      </div>
+   </div>
+
+   <div class="button-container">
+      <button onclick="generate_html()">Generate HTML</button>
+      <button>Patch Download</button>
+      <button onclick="window.location.href='https://bugs.freebsd.org/bugzilla/';"> FreeBSD Bugzilla</button>
+      <a href="pages/step.html"> 
+         <button>How to change document ?</button>
+      </a>
+   </div>
+
+   <div class="footer">
+      <p>© 1995-2022 The FreeBSD Project All rights reserved.</p>
+      <p>Made with ♥ by the FreeBSD Community</p>
+   </div>
+
+   <script src="node_modules/@asciidoctor/core/dist/browser/asciidoctor.js"></script> <!-- include asciidoctor.js -->
+   <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> <!-- inclued ace.js -->
+   <script src="scripts/index.js"></script>
+</body>
+</html>

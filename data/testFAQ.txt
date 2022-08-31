@@ -1,0 +1,218 @@
+---
+title: Frequently Asked Questions for FreeBSD 12.X and 13.X
+authors: 
+  - author: The FreeBSD Documentation Project
+copyright: 1995-2022 The FreeBSD Documentation Project
+description: Frequently Asked Questions, and answers, covering all aspects of FreeBSD
+trademarks: ["freebsd", "ibm", "ieee", "adobe", "intel", "linux", "microsoft", "opengroup", "sun", "netbsd", "general"] 
+bookOrder: 5
+tags: ["FAQ", "FreeBSD FAQ"]
+---
+
+= Frequently Asked Questions for FreeBSD {rel2-relx} and {rel-relx}
+:doctype: book
+:toc: macro
+:toclevels: 1
+:icons: font
+:sectnums:
+:sectnumlevels: 6
+:partnums:
+:source-highlighter: rouge
+:experimental:
+:images-path: books/faq/
+:rel-numbranch: 4
+:rel-head: 14-CURRENT
+:rel-head-relx: 14.X
+:rel-head-releng: head/
+:rel-relx: 13.X
+:rel-stable: 13-STABLE
+:rel-releng: stable/13/
+:rel-relengdate: December 2018
+:rel2-relx: 12.X
+:rel2-stable: 12-STABLE
+:rel2-releng: stable/12/
+:rel2-relengdate: December 2018
+
+ifdef::env-beastie[]
+ifdef::backend-html5[]
+include::shared/authors.adoc[]
+include::shared/mirrors.adoc[]
+include::shared/releases.adoc[]
+include::shared/attributes/attributes-{{% lang %}}.adoc[]
+include::shared/{{% lang %}}/teams.adoc[]
+include::shared/{{% lang %}}/mailing-lists.adoc[]
+include::shared/{{% lang %}}/urls.adoc[]
+endif::[]
+ifdef::backend-pdf,backend-epub3[]
+include::../../../../../shared/asciidoctor.adoc[]
+endif::[]
+endif::[]
+
+ifndef::env-beastie[]
+include::../../../../../shared/asciidoctor.adoc[]
+endif::[]
+
+[.abstract-title]
+Abstract
+
+This is the Frequently Asked Questions (FAQ) for FreeBSD versions {rel-relx} and {rel2-relx}.
+Every effort has been made to make this FAQ as informative as possible; if you have any suggestions as to how it may be improved, send them to the {freebsd-doc}.
+
+The latest version of this document is always available from the extref:{faq}[FreeBSD website].
+It may also be downloaded as one large link:.[HTML] file with HTTP or as a variety of other formats from the https://download.freebsd.org/doc/[FreeBSD FTP server].
+
+'''
+
+toc::[]
+
+[[introduction]]
+== Introduction
+
+[[what-is-FreeBSD]]
+=== What is FreeBSD?
+
+FreeBSD is a modern operating system for desktops, laptops, servers, and embedded systems with support for a large number of https://www.FreeBSD.org/platforms/[platforms].
+
+It is based on U.C. Berkeley's "4.4BSD-Lite" release, with some "4.4BSD-Lite2" enhancements.
+It is also based indirectly on William Jolitz's port of U.C. Berkeley's "Net/2" to the i386(TM), known as "386BSD",
+though very little of the 386BSD code remains.
+
+FreeBSD is used by companies, Internet Service Providers, researchers, computer professionals, students and home users all over the world in their work, education and recreation.
+
+For more detailed information on FreeBSD, refer to the extref:{handbook}[FreeBSD Handbook].
+
+[[FreeBSD-goals]]
+=== What is the goal of the FreeBSD Project?
+
+The goal of the FreeBSD Project is to provide a stable and fast general purpose operating system that may be used for any purpose without strings attached.
+
+[[bsd-license-restrictions]]
+=== Does the FreeBSD license have any restrictions?
+
+Yes. Those restrictions do not control how the code is used, but how to treat the FreeBSD Project itself.
+The license itself is available at https://www.FreeBSD.org/copyright/freebsd-license/[license] and can be summarized like this:
+
+* Do not claim that you wrote this.
+* Do not sue us if it breaks.
+* Do not remove or modify the license.
+
+Many of us have a significant investment in the project and would certainly not mind a little financial compensation now and then,
+but we definitely do not insist on it.
+We believe that our first and foremost "mission" is to provide code to any and all comers, and for whatever purpose, so that the code gets the widest possible use and provides the widest possible benefit.
+This, we believe, is one of the most fundamental goals of Free Software and one that we enthusiastically support.
+
+Code in our source tree which falls under the https://www.FreeBSD.org/copyright/COPYING[GNU General Public License (GPL)] or https://www.FreeBSD.org/copyright/COPYING.LIB[GNU Library General Public License (LGPL)] comes with slightly more strings attached, though at least on the side of enforced access rather than the usual opposite.
+Due to the additional complexities that can evolve in the commercial use of GPL software, we do, however, endeavor to replace such software with submissions under the more relaxed https://www.FreeBSD.org/copyright/freebsd-license/[FreeBSD license] whenever possible.
+
+[[replace-current-OS]]
+=== Can FreeBSD replace my current operating system?
+
+For most people, yes. But this question is not quite that cut-and-dried.
+
+Most people do not actually use an operating system.
+They use applications.
+The applications are what really use the operating system.
+FreeBSD is designed to provide a robust and full-featured environment for applications.
+It supports a wide variety of web browsers, office suites, email readers, graphics programs, programming environments, network servers, and much more.
+Most of these applications can be managed through the https://www.FreeBSD.org/ports/[Ports Collection].
+
+If an application is only available on one operating system, that operating system cannot just be replaced.
+Chances are, there is a very similar application on FreeBSD, however.
+As a solid office or Internet server or a reliable workstation, FreeBSD will almost certainly do everything you need.
+Many computer users across the world, including both novices and experienced UNIX(R) administrators, use FreeBSD as their only desktop operating system.
+
+Users migrating to FreeBSD from another UNIX(R)-like environment will find FreeBSD to be similar.
+Windows(R) and Mac OS(R) users may be interested in instead using https://www.ghostbsd.org/[GhostBSD], https://www.midnightbsd.org/[MidnightBSD] or  https://www.nomadbsd.org/[NomadBSD] three FreeBSD-based desktop distributions.
+Non-UNIX(R) users should expect to invest some additional time learning the UNIX(R) way of doing things.
+This FAQ and the extref:{handbook}[FreeBSD Handbook] are excellent places to start.
+
+[[why-called-FreeBSD]]
+=== Why is it called FreeBSD?
+
+* It may be used free of charge, even by commercial users.
+* Full source for the operating system is freely available, and the minimum possible restrictions have been placed upon its use, distribution and incorporation into other work (commercial or non-commercial).
+* Anyone who has an improvement or bug fix is free to submit their code and have it added to the source tree (subject to one or two obvious provisions).
+
+It is worth pointing out that the word "free" is being used in two ways here: one meaning "at no cost" and the other meaning "do whatever you like".
+Apart from one or two things you _cannot_ do with the FreeBSD code, for example pretending you wrote it, you can really do whatever you like with it.
+
+[[differences-to-other-bsds]]
+=== What are the differences between FreeBSD and NetBSD, OpenBSD, and other open source BSD operating systems?
+
+James Howard wrote a good explanation of the history and differences between the various projects,
+called https://jameshoward.us/archive/bsd-family-tree/[The BSD Family Tree] which goes a fair way to answering this question.
+Some of the information is out of date, but the history portion in particular remains accurate.
+
+Most of the BSDs share patches and code, even today.
+All of the BSDs have common ancestry.
+
+The design goals of FreeBSD are described in <<FreeBSD-goals>>, above.
+The design goals of the other most popular BSDs may be summarized as follows:
+
+* OpenBSD aims for operating system security above all else. The OpenBSD team wrote man:ssh[1] and man:pf[4], which have both been ported to FreeBSD.
+* NetBSD aims to be easily ported to other hardware platforms.
+* DragonFly BSD is a fork of FreeBSD 4.8 that has since developed many interesting features of its own, including the HAMMER file system and support for user-mode "vkernels".
+
+[[latest-version]]
+=== What is the latest version of FreeBSD?
+
+At any point in the development of FreeBSD, there can be multiple parallel branches.
+{rel-relx} releases are made from the {rel-stable} branch, and {rel2-relx} releases are made from the {rel2-stable} branch.
+
+Up until the release of 12.0, the {rel2-relx} series was the one known as _-STABLE_.
+However, as of {rel-head-relx}, the {rel2-relx} branch will be designated for an "extended support" status and receive only fixes for major problems, such as security-related fixes. 
+
+Releases are made <<release-freq,every few months>>.
+While many people stay more up-to-date with the FreeBSD sources (see the questions on <<current,FreeBSD-CURRENT>> and <<stable,FreeBSD-STABLE>>) than that, doing so is more of a commitment, as the sources are a moving target.
+
+More information on FreeBSD releases can be found on the https://www.FreeBSD.org/releng/#release-build[Release Engineering page] and in man:release[7].
+
+[[current]]
+=== What is _FreeBSD-CURRENT_?
+
+extref:{handbook}[FreeBSD-CURRENT, current] is the development version of the operating system, which will in due course become the new FreeBSD-STABLE branch.
+As such, it is really only of interest to developers working on the system and die-hard hobbyists.
+See the extref:{handbook}[relevant section, current] in the extref:{handbook}[Handbook] for details on running _-CURRENT_.
+
+Users not familiar with FreeBSD should not use FreeBSD-CURRENT.
+This branch sometimes evolves quite quickly and due to mistake can be un-buildable at times.
+People that use FreeBSD-CURRENT are expected to be able to analyze, debug, and report problems.
+
+[[stable]]
+=== What is the FreeBSD-STABLE concept?
+
+_FreeBSD-STABLE_ is the development branch from which major releases are made.
+Changes go into this branch at a slower pace and with the general assumption that they have first been tested in FreeBSD-CURRENT.
+However, at any given time, the sources for FreeBSD-STABLE may or may not be suitable for general use,
+as it may uncover bugs and corner cases that were not yet found in FreeBSD-CURRENT.
+Users who do not have the resources to perform testing should instead run the most recent release of FreeBSD.
+_FreeBSD-CURRENT_, on the other hand, has been one unbroken line since 2.0 was released.
+
+For more detailed information on branches see "extref:{releng}[FreeBSD Release Engineering: Creating the Release Branch, rel-branch]",
+the status of the branches and the upcoming release schedule can be found on the https://www.FreeBSD.org/releng[Release Engineering Information] page.
+
+Version {u-rel123-announce}[{rel123-current}] is the latest release from the {rel2-stable} branch; it was released on {rel123-current-date}.
+Version {u-rel131-announce}[{rel131-current}] is the latest release from the {rel-stable} branch; it was released on {rel131-current-date}.
+
+[[release-freq]]
+=== When are FreeBSD releases made?
+
+The {re} releases a new major version of FreeBSD about every 18 months and a new minor version about every 8 months, on average.
+Release dates are announced well in advance, so that the people working on the system know when their projects need to be finished and tested.
+A testing period precedes each release, to ensure that the addition of new features does not compromise the stability of the release.
+Many users regard this caution as one of the best things about FreeBSD, even though waiting for all the latest goodies to reach _-STABLE_ can be a little frustrating.
+
+More information on the release engineering process (including a schedule of upcoming releases) can be found on the https://www.FreeBSD.org/releng/[release engineering] pages on the FreeBSD Web site.
+
+For people who need or want a little more excitement, binary snapshots are made weekly as discussed above.
+
+[[snapshot-freq]]
+=== When are FreeBSD snapshots made?
+
+FreeBSD link:https://www.FreeBSD.org/snapshots/[snapshot] releases are made based on the current state of the _-CURRENT_ and _-STABLE_ branches.
+The goals behind each snapshot release are:
+
+* To test the latest version of the installation software.
+* To give people who would like to run _-CURRENT_ or _-STABLE_ but who do not have the time or bandwidth to follow it on a day-to-day basis an easy way of bootstrapping it onto their systems.
+* To preserve a fixed reference point for the code in question, just in case we break something really badly later. (Although Subversion normally prevents anything horrible like this happening.)
+* To ensure that all new features and fixes in need of testing have the greatest possible number of potential testers.
