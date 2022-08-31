@@ -1,0 +1,102 @@
+/* Apply the hover effect to all <a> links */
+a:hover {
+   cursor: pointer; /* Change the mouse cursor to a pointer */
+   /* Add any other hover styles you want */
+ }
+
+.title-container {
+   background-color: rgb(64, 62, 62);
+   padding: 8px 12px;
+   flex-direction: row;
+   display: flex;
+   align-items: center;
+}
+
+h1.title {
+   font-family: "Roboto", sans-serif;  
+   color: rgb(244, 242, 242); 
+   font-weight: 600;
+   font-size: 17px;
+   display: inline;
+}
+
+.title-container > a {
+   margin-right: 28px;
+   margin-top: 5px;
+}
+
+a#help_button {
+   margin-right: 10px;
+}
+
+.title-container > a > img  {
+   width: 20px;
+}
+
+.change_adoc {
+   margin-left: auto;
+}
+
+.file-title-container {
+   background-color: #f7f6f6;
+   padding: 9px 12px;
+}
+
+h1.file-title {
+   font-family: "Roboto", sans-serif;  
+   color: black; 
+   font-weight: 600;
+   font-size: 17px;
+}
+
+.editor-container {
+   height: 850px;
+   margin: auto;
+   position: relative;
+   display: flex;
+   flex-direction: row;
+}
+
+#left, #right {
+   height: 100%;
+   width: 50%;
+}
+
+#editor {
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   height: 100%;
+   font-size: 15px;
+}
+
+#output {
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   height: 100%;
+   font-size: 20px;
+   width: 100%;
+   /* pointer-events: none; https://stackoverflow.com/questions/5261328/receive-mousemove-events-from-iframe-too */
+}
+
+#dragLine {
+   width: 7px;
+   height: 100%;
+   background-color: #ccc;
+   cursor: ew-resize;
+}
+
+.footer {
+   margin: 5px auto;
+}
+
+.footer p {
+   font-family: "Roboto", sans-serif;
+   font-weight: 600;
+   font-size: 15px;
+   padding-top: 8px;
+   padding-left: 10px;
+}
