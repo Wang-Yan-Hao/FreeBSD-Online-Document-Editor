@@ -1,0 +1,253 @@
+---
+authors:
+  - 
+    author: 'Chess Griffin'
+    email: chess@chessgriffin.com
+description: 'Cómo instalar y usar CUPS en FreeBSD'
+tags: ["CUPS", "FreeBSD", "Guide", "configuration", "introduction"]
+title: 'CUPS en FreeBSD'
+trademarks: ["freebsd", "general"]
+---
+
+= CUPS en FreeBSD
+:doctype: article
+:toc: macro
+:toclevels: 1
+:icons: font
+:sectnums:
+:source-highlighter: rouge
+:experimental:
+:sectnumlevels: 6
+:images-path: articles/cups/
+
+ifdef::env-beastie[]
+ifdef::backend-html5[]
+include::shared/authors.adoc[]
+include::shared/mirrors.adoc[]
+include::shared/releases.adoc[]
+include::shared/attributes/attributes-{{% lang %}}.adoc[]
+include::shared/{{% lang %}}/teams.adoc[]
+include::shared/{{% lang %}}/mailing-lists.adoc[]
+include::shared/{{% lang %}}/urls.adoc[]
+:imagesdir: ../../../images/{images-path}
+endif::[]
+ifdef::backend-pdf,backend-epub3[]
+include::../../../../shared/asciidoctor.adoc[]
+endif::[]
+endif::[]
+
+ifndef::env-beastie[]
+include::../../../../../shared/asciidoctor.adoc[]
+endif::[]
+
+[.abstract-title]
+Resumen
+
+Un artículo sobre la configuración de CUPS en FreeBSD.
+
+'''
+
+toc::[]
+
+[[printing-cups]]
+== Una introducción al sistema de impresión común de Unix (CUPS)
+
+CUPS, Common UNIX Printing System, proporciona una capa portable de impresión para sistemas operativos basados en UNIX(R). Ha sido desarrollado por Easy Software Products para promover una solución de impresión estándar para todos los fabricantes y usuarios de UNIX(R).
+
+CUPS utiliza el Internet Printing Protocol (IPP) como base para gestionar trabajos de impresión y colas. Los protocolos Line Printer Daemon (LPD), Server Message Block (SMB) y AppSocket (también conocido como JetDirect) también están soportados con funcionalidad reducida. CUPS añade navegación de impresoras de red y opciones de impresión basadas en PostScript Printer Description (PPD) para soportar impresión en el mundo real bajo UNIX(R). Como resultado, CUPS encaja perfectamente para compartir y acceder a impresoras en entornos mixtos de FreeBSD, Linux(R), Mac OS(R) o Windows(R).
+
+El sitio principal para CUPS es http://www.cups.org/[http://www.cups.org/].
+
+[[printing-cups-install]]
+== Instalación del servidor de impresión CUPS
+
+Para instalar CUPS utilizando un binario precompilado, ejecuta el siguiente comando desde un terminal root:
+
+[source, shell]
+....
+# pkg install cups
+....
+
+Otros paquetes opcionales, pero recomendados, son package:print/gutenprint[] y package:print/hplip[] que añaden controladores y utilidades para varias impresoras. Una vez instalado, los ficheros de configuración de CUPS se pueden encontrar en el directorio [.filename]#/usr/local/etc/cups#.
+
+[[printing-cups-configuring-server]]
+== Configurando el servidor de impresión CUPS
+
+Después de la instalación, se tienen que editar unos pocos ficheros para configurar el servidor CUPS. Primero, crea o modifica, según el caso, el fichero [.filename]#/etc/devfs.rules# y añade la siguiente información para establecer los permisos apropiados en todos los dispositivos de impresión y asociar impresoras con el grupo de usuarios `cups`:
+
+[.programlisting]
+....
+[system=10]
+add path 'unlpt*' mode 0660 group cups
+add path 'ulpt*' mode 0660 group cups
+add path 'lpt*' mode 0660 group cups
+add path 'usb/X.Y.Z' mode 0660 group cups
+....
+
+[NOTE]
+====
+Date cuenta de que _X_, _Y_ y _Z_ deberían ser reemplazados con el dispositivo USB listado en el directorio [.filename]#/dev/usb# y que corresponde a la impresora. Para encontrar el dispositivo correcto, examina la salida de man:dmesg[8], donde [.filename]#ugenX.Y# lista el dispositivo de impresión, que es un enlace simbólico a un dispositivo USB en [.filename]#/dev/usb#.
+====
+
+Después, añade dos líneas a [.filename]#/etc/rc.conf# como sigue:
+
+[.programlisting]
+....
+cupsd_enable="YES"
+devfs_system_ruleset="system"
+....
+
+Estas dos entradas levantarán el servidor de impresión de CUPS en el arranque e invocarán las reglas locales de devfs creadas arriba, respectivamente.
+
+Para activar la impresión CUPS bajo ciertos clientes Microsoft(R) Windows(R), se debe descomentar la línea de abajo en [.filename]#/usr/local/etc/cups/mime.types# y [.filename]#/usr/local/etc/cups/mime.convs#:
+
+[.programlisting]
+....
+application/octet-stream
+....
+
+Una vez hechos estos cambios, se deben reiniciar los sistemas man:devfs[8] y CUPS, bien reiniciando el ordenador o ejecutando los siguientes dos comandos en una terminal root:
+
+[source, shell]
+....
+# /etc/rc.d/devfs restart
+# /usr/local/etc/rc.d/cupsd restart
+....
+
+[[printing-cups-configuring-printers]]
+== Configuración de impresoras en el servidor de impresión CUPS
+
+Después de que el sistema CUPS haya sido instalado y configurado, el administrador puede empezar a configurar las impresoras locales asociadas al servidor de impresión CUPS. Esta parte del proceso es muy similar, si no idéntica, a configurar impresoras CUPS en otros sistemas operativos basados en UNIX(R), como una distribución Linux(R).
+
+El medio principal para gestionar y administrar el servidor CUPS es mediante la interfaz basada en web, que se puede encontrar abriendo un navegador web y tecleando http://localhost:631[http://localhost:631] en la barra de direcciones del navegador. Se el servidor CUPS está en otra máquina de la red, sustituye `localhost` por la IP local del servidor. El interfaz web de CUPS es bastante auto explicativo, ya que hay secciones para gestionar impresores y trabajos de impresión, autorizar usuarios y más. Además, en el lado derecho de la pantalla de Administración hay varios check-boxes que permiten acceso sencillo a ajustes que cambian habitualmente, como si hay que compartir impresoras publicadas conectadas al sistema, si hay que permitir la administración remota del servidor CUPS y si hay que conceder a los usuarios acceso y privilegios adicionales para las impresoras y trabajos de impresión.
+
+Por lo general, añadir una impresora es tan fácil como hacer clic en "Add Printer" en la pantalla de Administración de la interfaz web de CUPS, o haciendo clic en uno de los botones "New Printers Found" también en la pantalla de Administración. Cuando se muestre el cuadro desplegable "Device", simplemente seleccione la impresora local deseada y continúe con el proceso. Si has agregado los ports o paquetes mencionados anteriormente package:print/gutenprint-cups[] o package:print/hplip[], entonces, los controladores de impresión adicionales estarán disponibles en las siguientes pantallas pudiendo proporcionar más estabilidad o características.
+
+[[printing-cups-clients]]
+== Configurando clientes de CUPS
+
+Una vez haya sido configurado el servidor CUPS y se hayan agregado y publicado impresoras en la red, el siguiente paso es configurar los clientes o las máquinas que van a acceder al servidor CUPS. Si uno tiene una sola máquina de escritorio que actúa como servidor y como cliente, es posible que gran parte de esta información no sea necesaria.
+
+[[printing-cups-clients-unix]]
+=== Clientes UNIX(R)
+
+CUPS necesitará estar instalado también en tus clientes UNIX(R). Una vez que CUPS esté instalado en los clientes, las impresoras CUPS que estén compartidas en la red se descubren automáticamente por los gestores de impresión de los diferentes entornos de escritorio como GNOME o KDE. De forma alternativa, uno puede acceder al interfaz local de CUPS en la máquina cliente en http://localhost:631[http://localhost:631] y pinchar en "Add Printer" en la sección de Administración. Cuando aparezca la caja de selección "Device", simplemente selecciona la impresora de red de CUPS, si fue automáticamente descubierta o selecciona `ipp` o `http`e introducir la IPP o la URI HTTP de la impresora de red CUPS, habitualmente con alguna de las dos sintaxis siguientes:
+
+[.programlisting]
+....
+ipp://server-name-or-ip/printers/printername
+....
+
+[.programlisting]
+....
+http://server-name-or-ip:631/printers/printername
+....
+
+Si los clientes CUPS tienen dificultades encontrando otras impresoras CUPS compartidas en la red, a veces es útil añadir o crear un fichero [.filename]#/usr/local/etc/cups/client.conf# con una sola línea como la que sigue:
+
+[.programlisting]
+....
+ServerName server-ip
+....
+
+En este caso, _server-ip_ sería reemplazado por la dirección IP local del servidor CUPS en la red.
+
+[[printing-cups-clients-windows]]
+=== Clientes Windows(R)
+
+Versiones de Windows(R) anteriores a XP no tenían la posibilidad de interactuar en red con impresoras basadas en IPP. Sin embargo, Windows(R) XP y posteriores tienen esta capacidad. Por lo tanto, añadir una impresora CUPS a estas versiones de Windows(R) es bastante fácil. Generalmente, el administrador de Windows(R) ejecutará el asistente `Add Printer` de Windows(R), seleccionará `Network Printer`e introducirá la URI con la siguiente sintaxis:
+
+[.programlisting]
+....
+http://server-name-or-ip:631/printers/printername
+....
+
+Si se tiene una versión más antigua de Windows(R) sin soporte nativo para impresión IPP, entonces la forma general de conectar a una impresora CUPS es utilizar el paquete package:net/samba413[] junto con CUPS, que es un tema que excede el ámbito de este capítulo.
+
+[[printing-cups-troubleshooting]]
+== Solución de problemas en CUPS
+
+Las dificultades con CUPS habitualmente tienen que ver con permisos. Primero, comprueba los permisos de man:devfs[8] como se ha mencionado arriba. Seguido, comprueba los permisos reales de los dispositivos creados en el sistema de ficheros. También ayuda asegurarse de que tu usuario es miembro del grupo `cups`. Si los check boxes de permisos en la sección de Administración del interfaz web de CUPS parece que no están funcionando, otro arreglo podría ser hacer una copia de seguridad manual del fichero de configuración de CUPS que se encuentra en [.filename]#/usr/local/etc/cups/cupsd.conf# y editar las distintas opciones de configuración e intentar distintas combinaciones de opciones de configuración.
+
+[.programlisting]
+....
+# Log general information in error_log - change "info" to "debug" for
+# troubleshooting...
+LogLevel info
+
+# Administrator user group...
+SystemGroup wheel
+
+# Listen for connections on Port 631.
+Port 631
+#Listen localhost:631
+Listen /var/run/cups.sock
+
+# Show shared printers on the local network.
+Browsing On
+BrowseOrder allow,deny
+#BrowseAllow @LOCAL
+BrowseAllow 192.168.1.* # change to local LAN settings
+BrowseAddress 192.168.1.* # change to local LAN settings
+
+# Default authentication type, when authentication is required...
+DefaultAuthType Basic
+DefaultEncryption Never # comment this line to allow encryption
+
+# Allow access to the server from any machine on the LAN
+<Location />
+  Order allow,deny
+  #Allow localhost
+  Allow 192.168.1.* # change to local LAN settings
+</Location>
+
+# Allow access to the admin pages from any machine on the LAN
+<Location /admin>
+  #Encryption Required
+  Order allow,deny
+  #Allow localhost
+  Allow 192.168.1.* # change to local LAN settings
+</Location>
+
+# Allow access to configuration files from any machine on the LAN
+<Location /admin/conf>
+  AuthType Basic
+  Require user @SYSTEM
+  Order allow,deny
+  #Allow localhost
+  Allow 192.168.1.* # change to local LAN settings
+</Location>
+
+# Set the default printer/job policies...
+<Policy default>
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs \
+Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription \
+Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job \
+CUPS-Move-Job>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit Pause-Printer Resume-Printer Set-Printer-Attributes Enable-Printer \
+Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs \
+Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer \
+Promote-Job Schedule-Job-After CUPS-Add-Printer CUPS-Delete-Printer CUPS-Add-Class \
+CUPS-Delete-Class CUPS-Accept-Jobs CUPS-Reject-Jobs CUPS-Set-Default>
+    AuthType Basic
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+....

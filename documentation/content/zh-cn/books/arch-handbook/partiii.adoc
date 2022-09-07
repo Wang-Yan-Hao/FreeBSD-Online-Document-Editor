@@ -1,0 +1,11 @@
+---
+title: Part III. 附录
+prev: books/arch-handbook/pccard
+next: books/arch-handbook/bibliography
+showBookMenu: true
+weight: 19
+path: "/books/arch-handbook/"
+---
+
+[[appendices]]
+= 附录

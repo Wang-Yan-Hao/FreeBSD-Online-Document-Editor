@@ -1,0 +1,11 @@
+---
+title: Partie V. Annexes
+prev: books/handbook/advanced-networking
+next: books/handbook/mirrors
+showBookMenu: true
+weight: 38
+path: "/books/handbook/"
+---
+
+[[appendices]]
+= Annexes

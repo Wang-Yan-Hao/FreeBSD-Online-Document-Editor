@@ -1,0 +1,452 @@
+---
+authors:
+  - 
+    author: 'Jordan Hubbard'
+  - 
+    author: 'Sam Lawrance'
+  - 
+    author: 'Mark Linimon'
+description: 'Cómo contribuir al Proyecto FreeBSD'
+tags: ["Contributing", "FreeBSD", "Non-Programmer Tasks", "Programmer Tasks"]
+title: 'Contribuir a FreeBSD'
+trademarks: ["freebsd", "ieee", "general"]
+weight: 15
+---
+
+= Contribuir a FreeBSD
+:doctype: article
+:toc: macro
+:toclevels: 1
+:icons: font
+:sectnums:
+:sectnumlevels: 6
+:source-highlighter: rouge
+:experimental:
+:images-path: articles/contributing/
+
+ifdef::env-beastie[]
+ifdef::backend-html5[]
+include::shared/authors.adoc[]
+include::shared/mirrors.adoc[]
+include::shared/releases.adoc[]
+include::shared/attributes/attributes-{{% lang %}}.adoc[]
+include::shared/{{% lang %}}/teams.adoc[]
+include::shared/{{% lang %}}/mailing-lists.adoc[]
+include::shared/{{% lang %}}/urls.adoc[]
+:imagesdir: ../../../images/{images-path}
+endif::[]
+ifdef::backend-pdf,backend-epub3[]
+include::../../../../shared/asciidoctor.adoc[]
+endif::[]
+endif::[]
+
+ifndef::env-beastie[]
+include::../../../../../shared/asciidoctor.adoc[]
+endif::[]
+
+[.abstract-title]
+Resumen
+
+Este artículo describe las diferentes formas en que una persona u organización puede contribuir al proyecto FreeBSD.
+
+'''
+
+toc::[]
+
+¿Así que quieres contribuir a FreeBSD? ¡Eso es fantástico! FreeBSD _depende_ de las contribuciones de su base de usuarios para sobrevivir. Tus contribuciones no sólo son apreciadas, son vitales para el crecimiento continuo de FreeBSD.
+
+El grupo de desarrolladores de FreeBSD lo componen un grupo grande y siempre creciente de gente de todas partes del mundo, de edades y áreas de experiencia técnica muy diversas. Siempre hay más trabajo pendiente que manos disponibles y siempre se agradece ayuda adicional.
+
+El único límite que ponemos a los voluntarios es el que su disponibilidad misma dicte. Por otra parte le pedimos que esté al tanto de lo que otros miembros de la comunidad de FreeBSD esperan de ti. Tener esto en cuenta es importante antes de decidir ser voluntario.
+
+El proyecto FreeBSD es responsable de mantener un sistema operativo completo, en lugar de un solo kernel o unas pocas utilidades sueltas. Por lo tanto nuestra lista de tareas pendientes [.filename]#TODO# incluye una gran variedad de tareas: desde la documentación, realización de pruebas en las versiones beta, hasta el desarrollo del instalador del sistema y tareas de desarrollo del kernel altamente especializadas. Todo el mundo puede ayudar, independientemente del nivel de habilidad, en un área u otra del proyecto.
+
+Invitamos a las empresas que tengan proyectos relacionados con FreeBSD a que se pongan en contacto con nosotros. ¿Necesitan de un desarrollo concreto para hacer que su producto funcione? Estaremos encantados de escuchar sus peticiones, siempre y cuando no sean demasiado raras. ¿Está trabajando en un producto de alto valor añadido? ¡Por favor, háganoslo saber! Podemos trabajar conjuntamente en algunos aspectos del mismo. El mundo del software libre está desafiando muchas de las suposiciones existentes sobre cómo se desarrolla, vende y mantiene el software y le instamos encarecidamente a que al menos considere seriamente su uso.
+
+[[contrib-what]]
+== Qué se necesita
+
+La lista de tareas y subproyectos que se muestra a continuación es una amalgama de varias listas de [.filename]#TODO# y solicitudes de los usuarios.
+
+[[non-programmer-tasks]]
+=== Tareas en curso para personas que no son programadores
+
+Muchas de las personas que están involucradas en FreeBSD no son programadores. El proyecto incluye a escritores de documentación, diseñadores web y personas que dan soporte. Todo lo que estas personas necesitan para contribuir es invertir tiempo y la voluntad de aprender.
+
+. Lee cada cierto tiempo las FAQ y el Handbook. Si algo está mal explicado, es ambiguo, está desactualizado o es incorrecto, avísenos. Aún mejor, envíenos una solución (AsciiDoc no es difícil de aprender, pero no hay ningún problema si lo envía en texto plano).
+. Ayuda a traducir la documentación de FreeBSD a tu idioma nativo. Si la documentación para tu idioma ya existe, puedes ayudar en la traducción de documentos adicionales o verificar que las traducciones están actualizadas y son correctas. Primero echa un vistazo a extref:{fdp-primer}[Translations FAQ, translations FAQ] en la Introducción a la Documentación del Proyecto FreeBSD. No te estás comprometiendo a traducir tú mismo cada uno de los documentos de FreeBSD - como voluntario, puedes hacer tanto o tan poca traducción como quieras. Una vez que alguien empieza a traducir, otros casi siempre se unen a la causa. Si sólo tienes tiempo o energía para traducir una parte de la documentación, por favor traduce las instrucciones de instalación.
+. Lee de vez en cuando (o regularmente) {freebsd-questions}. Puede ser muy satisfactorio compartir tu experiencia y ayudar a la gente a resolver sus problemas; de vez en cuanto ¡podrías aprender algo nuevo tú mismo¡ Estos foros pueden ser también una fuente de ideas sobre cosas que hay que mejorar.
+
+[[ongoing-programmer-tasks]]
+=== Tareas en curso para personas que son programadores
+
+La mayoría de las tareas aquí expuestas requieren de una considerable cantidad de tiempo, o un conocimiento profundo del kernel de FreeBSD, o ambas cosas. Sin embargo, también hay muchas tareas útiles que son ideales para "hackers de fin de semana".
+
+. Si utilizas FreeBSD-CURRENT y tienes una buena conexión a Internet, hay una máquina `current.FreeBSD.org` que construye una versión completa una vez al día de vez en cuando, intenta instalar la última versión y reportar cualquier fallo en el proceso.
+. Lee la {freebsd-bugs}. Podría haber un problema sobre el que podrías comentar de forma constructiva o parches que puedes probar. O podrías incluso intentar arreglar tú mismo alguno de los problemas.
+. Si sabes de alguna corrección que ha sido aplicada con éxito en -CURRENT y cuya solución no ha sido aplicada aun en -STABLE después de un período de tiempo razonable (normalmente, un par de semanas) envía, de forma educada, un mensaje al committer responsable del cambio.
+. Mueva el software de terceros a [.filename]#src/contrib# en el árbol del código fuente.
+. Asegúrate de que el código en [.filename]#src/contrib# está actualizado.
+. Construye el árbol de fuentes (o sólo una parte) con los avisos extra activados y límpialos. Una lista de avisos de compilación se puede encontrar también en nuestro https://ci.freebsd.org[CI] seleccionando "LLVM/Clang Warnings".
+. Arregla warnings para ports que no marcan como obsoleto el uso de cosas como `gets()` o incluir [.filename]#malloc.h#.
+. Si has contribuido con algún port y tuviste que hacer cambios específicos para FreeBSD, envía tus parches a los autores originales (esto les hará la vida más fácil cuando lancen la próxima versión).
+. Obtén copias de estándares formales como POSIX(R). Compara el comportamiento de FreeBSD con el requerido por el estándar. Si el comportamiento difiere, en particular en casos esquina y sutiles de la especificación, envía un PR acerca de ello. Si puedes, intenta averiguar cómo arreglarlo e incluye un parche en el PR. Si crees que el estándar está equivocado, pregunta al comité del estándar para que consideren la cuestión.
+. ¡Sugiere nuevas tareas para esta lista!
+
+=== Trabaja en la base de datos de PR
+
+La https://bugs.FreeBSD.org/search/[lista de PR de FreeBSD] muestra todos los informes de problemas activos y las solicitudes de mejora que los usuarios de FreeBSD han enviado. La base de datos de PR incluye tanto tareas para programadores como para no programadores. Echa un vistazo a los PR abiertos y mire si alguno de ellos le interesa. Algunos pueden ser tareas muy sencillas que solo necesitan una revisión adicional para confirmar que la solución adjunta al PR es la adecuada. Otros pueden ser mucho más complejos, o incluso no incluir una solución.
+
+Comienza con los PRs que no han sido asignados a nadie. Si el PR ya ha sido asignado a otra persona, pero crees que puedes ayudar, envía un correo electrónico a la persona que lo tiene asignado y pregúntale si puedes colaborar; quizás ya tenga un parche listo para pruebas, o ideas adicionales que proponer.
+
+=== Tareas en curso relacionadas con la colección de ports
+
+La colección de ports es un trabajo que está siempre activo. Queremos ofrecer a nuestros usuarios un repositorio de software de terceros fácil de usar, actualizado y de gran calidad. Necesitamos que las personas den parte de su tiempo y esfuerzo para ayudarnos a lograr este objetivo.
+
+Cualquiera puede participar y hay muchas formas diferentes de hacerlo. Contribuir a la colección de ports es una forma excelente de "devolver" algo al proyecto. Si estás buscando un trabajo para realizar de forma continua o un desafío divertido para un día lluvioso ¡estaríamos encantados de que nos ayudes!
+
+Existen varias formas de ayudar a mantener la colección de ports actualizada y en buen funcionamiento:
+
+* Encuentra algún software útil y chulo y extref:{porters-handbook}[crea un port] para él.
+* Hay muchos ports que no tienen mantenedor. Conviértete en mantenedor y <<adopt-port>>.
+* Si has creado o adoptado un port, considera <<maintain-port>>.
+* Cuando busques un desafío rápido piensa en <<fix-broken>>.
+
+=== Escoge uno de los elementos de la página de ideas
+
+La https://wiki.freebsd.org/IdeasPage[lista de proyectos e ideas de FreeBSD para voluntarios] también está disponible para las personas que deseen contribuir al proyecto FreeBSD. Esta lista se actualiza regularmente y contiene elementos para programadores y no programadores, así como información sobre cada proyecto.
+
+[[contrib-how]]
+== Cómo colaborar
+
+Las contribuciones al sistema generalmente pueden catalogarse en las siguientes 5 categorías:
+
+[[contrib-general]]
+=== Informes de errores y comentarios generales
+
+Una idea o sugerencia técnica de interés _general_ se debería enviar a {freebsd-hackers}. Igualmente, gente con interés en esas cosas (¡y tolerancia para _altos_ volúmenes de correo!) pueden suscribirse a {freebsd-hackers}. Mira See extref:{handbook}[The FreeBSD Handbook, eresources-mail] para más información acerca de ésta y otras listas de correo.
+
+Si encuentras un fallo estás enviando un cambio específico, por favor repórtalo utilizando el https://bugs.FreeBSD.org/submit/[formulario de envío de errores]. Intenta rellenar cada uno de los campos del informe de error. A menos que excedan 65KB, incluye cualquier parche directamente en el reporte. Si el parche puede ser aplicado sobre el árbol de fuentes, pon `[PATCH]`en la sinopsis del informe. Cuando incluyas parches, _no_ utilices copiar y pegar porque copiar y pegar convierte tabuladores en espacios y los hace inutilizables. Cuando los parches son mucho mayores que 20KB, considera comprimirlos (ej. con man:gzip[1] o man:bzip2[1]) antes de subirlos.
+
+Tras rellenar el informe debería recibir un mensaje de confirmación junto con un número de seguimiento. Conserve este número de seguimiento para que pueda informarnos con nuevos detalles sobre el problema.
+
+Ver también extref:{problem-reports}[este artículo] sobre cómo escribir buenos informes de error.
+
+=== Cambios en la documentación
+
+Los cambios en la documentación son revisados por {freebsd-doc}. Por favor, mira extref:{fdp-primer}[FreeBSD Documentation Project Primer] para las instrucciones completas. Envía cambios (¡incluso los pequeños son bienvenidos!) utilizando el mismo método que para cualquier otro informe de error.
+
+=== Cambios en el código fuente ya existente
+
+Cambios y añadidos al código fuente existente es un asunto un poco más delicado y depende mucho de cómo de desactualizado te encuentres respecto al desarrollo actual de FreeBSD. Hay una versión especial de FreeBSD en curso denominada "FreeBSD-CURRENT" que está disponible de diversas formas para la conveniencia de los desarrolladores que trabajan activamente en el sistema. Ver See extref:{handbook}[The FreeBSD Handbook, current-stable] para más información acerca de cómo obtener y utilizar FreeBSD-CURRENT.
+
+Trabajar con fuentes antiguas significa desafortunadamente que tus cambios podrían estar obsoletos o ser demasiado divergentes como para reintegrarlos fácilmente en FreeBSD. Las posibilidades de que esto suceda se pueden minimizar algo suscribiéndose a las listas freebsd-announce} y {freebsd-current}, donde tienen lugar las discusiones sobre el estado actual del sistema.
+
+Asumiendo que puedes asegurarte unas fuentes actualizadas sobre la que basar tus cambios, el siguiente paso es producir un conjunto de diffs para enviárselos a los maintainers de FreeBSD. Esto se hace con el comando man:diff[1].
+
+El formato man:diff[1] preferido para enviar parches es el formato de salida unificada generado por `diff -u`.
+
+[source, shell]
+....
+% diff -u oldfile newfile
+....
+
+o
+
+[source, shell]
+....
+% diff -u -r -N olddir newdir
+....
+
+debería generar un conjunto de diffs unificados para el archivo de origen o la jerarquía de directorios.
+
+Ver man:diff[1] para más información.
+
+Una vez que tienes un conjunto de diffs (los cuales puedes probar con el comando man:patch[1]), deberías enviarlos como un informe de error para su inclusión en FreeBSD. ¡_No envíes simplemente_ los diffs a {freebsd-hackers} o se perderán! Apreciamos enormemente tu envío (¡este es un proyecto voluntario!); debido a que estamos ocupados, quizás no podamos encargarnos de él inmediatamente pero permanecerá en la base de datos de PR hasta que lo hagamos. Señala tu envío incluyendo `[PATCH]` en la sinopsis del informe.
+
+Si crees que es apropiado (ej: has añadido, borrado o renombrado ficheros), empaqueta tus cambios en un fichero `tar`. Los archivos creados con man:shar[1] también son bienvenidos.
+
+Si sus cambios son delicados, por ejemplo, si no está seguro acerca de los problemas de derechos de autor que regirán su distribución en el futuro, envíelos directamente a {core-email} en lugar de enviarlo como un informe de error. El {core-email} es un grupo mucho más pequeño de gente que se encarga de muchas de las tareas diarias de administración del proyecto FreeBSD. Tenga en cuenta que este grupo también está _muy ocupado_ y, por lo tanto, solo debe enviarles correos cuando realmente sea necesario.
+
+Por favor consulta man:intro[9] y man:style[9] para más información sobre el estilo del código. Agradeceríamos si al menos fueras consciente de esta información antes de enviar código.
+
+=== Código nuevo o paquetes de gran valor añadido
+
+En el caso de una contribución significativa o de gran impacto, o si se trata de añadir una nueva característica importante a FreeBSD es necesario enviar los cambios comprimidos en un archivo tar o subirlos a un sitio web o FTP para que otras personas puedan acceder a ellos. Si no tiene acceso a un sitio web o FTP solicítelo en la lista de correo de FreeBSD más adecuada para que alguien busque un sitio para alojar los cambios.
+
+Cuando se trabaja con grandes cantidades de código, indefectiblemente surge el espinoso asunto de los copyrights. FreeBSD prefiere licencias de software libre como BSD o ISC. Licencias copyleft como GPLv2 a veces también se permiten. La lista completa se puede encontrar en la página link:https://www.FreeBSD.org/internal/software-license/[core team licensing policy].
+
+=== Dinero o hardware
+
+Estamos encantados de aceptar donaciones económicas para ayudar a impulsar el proyecto FreeBSD y, como en cualquier proyecto mantenido por voluntarios, ¡un poco puede significar mucho! También son importantes las donaciones de hardware para poder ampliar nuestra lista de hardware soportado, ya que generalmente no podemos permitirnos comprar estos artículos nosotros mismos.
+
+[[donations]]
+==== Donar dinero
+
+La https://www.freebsdfoundation.org[FreeBSD Foundation] es una fundación sin ánimo de lucro, exenta de impuestos creada para impulsar los objetivos del Proyecto FreeBSD. Como entidad 501(c)3, la Fundación está generalmente exenta de pagar impuestos federales en EE.UU. así como en el Estado de Colorado. Las donaciones a una entidad exenta de pagar impuestos normalmente se pueden deducir de la declaración de impuestos federal.
+
+Las donaciones se pueden enviar en forma de cheque a:
+
+[.address]
+****
+The FreeBSD Foundation +
+3980 Broadway Street +
+STE #103-107 +
+Boulder CO 80304 +
+USA
+****
+
+La FreeBSD Foundation también acepta https://www.freebsdfoundation.org/donate/[donaciones online] mediante diversas opciones de pago.
+
+Se puede encontrar más información acerca de la FreeBSD Foundation en https://people.FreeBSD.org/~jdp/foundation/announcement.html[The FreeBSD Foundation -- an Introduction]. Para contactar con la Fundación por email, escribe a mailto:info@FreeBSDFoundation.org[info@FreeBSDFoundation.org].
+
+==== Donar hardware
+
+El Proyecto FreeBSD acepta felizmente las donaciones de hardware al que se le puede encontrar un buen uso. Si estás interesado en donar hardware, por favor contacta con la link:https://www.FreeBSD.org/donations/[Oficina del Enlace de Donaciones].
+
+[[ports-contributing]]
+== Contribuyendo a la colección de ports
+
+[[adopt-port]]
+=== Adopta un port que no está mantenido
+
+==== Elegir un port que no esté mantenido
+
+Asumir el mantenimiento de ports que no están mantenidos es una forma excelente de involucrarse. Los ports que no están mantenidos solo se actualizan y arreglan cuando alguien se ofrece como voluntario para trabajar en ellos. Hay una gran cantidad de ports sin mantenimiento. Es una buena idea empezar adoptando un port que use de forma regular.
+
+Los ports sin mantener tienen su variable `MAINTAINER` establecida a `ports@FreeBSD.org`. Muchos ports no mantenidos pueden tener actualizaciones pendientes, esto se puede ver en el https://portscout.freebsd.org/ports@freebsd.org.html[FreeBSD Ports distfile scanner].
+
+En https://portsfallout.com/fallout?port=&maintainer=ports%40FreeBSD.org[PortsFallout] se puede ver una lista de ports no mantenidos con errores.
+
+Algunos ports afectan a muchos otros debido a las dependencias y las relaciones con los ports que dependan de ellos. En general, esperamos que las personas tengan algo de experiencia antes de ofrecerse voluntariamente para mantener dichos ports.
+
+Puede comprobar si un port tiene o no dependencias o si otros puertos depende de él consultando el índice maestro de ports, [.filename]#INDEX#.. (El nombre del archivo varía según la versión de FreeBSD; por ejemplo, [.filename]#INDEX#. Algunos ports tienen dependencias condicionales que no están incluidas en la compilación predeterminada de [.filename]#INDEX#. Esperamos que pueda reconocer dichos ports analizando el archivo [.filename]#Makefile# de otros ports.
+
+==== Cómo adoptar un port
+
+Primero asegúrate de que entiendes tu <<maintain-port>>. También lee el extref:{porters-handbook}[Porter's Handbook]. _Por favor no te comprometas a más de lo que te sientes cómodo de manejar._
+
+Puede solicitar el mantenimiento de cualquier port que esté sin mantenimiento cuando lo desee. Simplemente configure el parámetro `MAINTAINER` con su propia dirección de correo electrónico y envíe un PR (informe de problemas) con el cambio. Si el port tiene errores de compilación o necesita actualizarse, es posible que desee aprovechar la oportunidad para incluir cualquier otro cambio que se requiera en ese mismo PR. Esto acelerará el proceso, ya que muchos committers no están dispuestos a asignar la responsabilidad del mantenimiento del port a alguien que no tenga un historial de trabajo con FreeBSD. La mejor forma de crear un historial de trabajo es enviando PRs corrigiendo errores de compilación o actualizando ports.
+
+Envíe su PR a la categoría `ports`y utilice la clase `change-request`. Un committer revisará su PR, commiteará los cambios y finalmente cerrará el PR. En algunas ocasiones, este proceso puede llevar cierto tiempo (los committers también son voluntarios :).
+
+[[maintain-port]]
+=== El desafío para los maintainers de un port
+
+Esta sección le dará una visión general de por qué los ports deben mantenerse y describirá las responsabilidades de un maintainer de port.
+
+[[why-maintenance]]
+==== Por qué los ports requieren mantenimiento
+
+Crear un port es una tarea que se realiza una vez. Pero asegurar que un port esté siempre actualizado y continúe compilándose y ejecutándose correctamente requiere de un esfuerzo de mantenimiento continuo. Los Maintainers son las personas que dedican parte de su tiempo a cumplir estos objetivos.
+
+La razón principal por la que los ports necesitan mantenimiento es para disponga de las versiones más actualizadas y mejor software de terceros a la comunidad de FreeBSD. Un desafío adicional es mantener los ports para que continúen funcionando dentro del framework de la colección de ports a medida que este evoluciona.
+
+Como maintainer deberá enfrentarse a los siguientes desafíos:
+
+* *Nuevas versiones de software y actualizaciones.* Las nuevas versiones y actualizaciones de software están disponibles todo el tiempo para las aplicaciones que ya han sido portadas y deben incorporarse a la colección de ports para proporcionar un software actualizado.
+
+* *Cambios en las dependencias.* Si se realizan cambios significativos en las dependencias de tu port es posible que debas actualizarlas para que continúe funcionando correctamente.
+
+* *Cambios que afectan a los ports dependientes.* Si otros ports dependen de un port que tú mantienes, cambios en tu port podrían requerir coordinación con otros maintainers.
+
+* *Interacción con otros usuarios, maintainers y desarrolladores.* Una parte de ser maintainer implica tener u rol de apoyo. No se espera de ti que proporciones suporte general (pero damos la bienvenida y escoges hacerlo). Lo que deberías proporcionar es un punto de coordinación para problemas específicos de FreeBSD que atañen a tus ports.
+
+* *Cazar bugs.* Un port puede verse afectado por errores específicos de FreeBSD. Deberá investigar, encontrar y corregir estos errores cuando sean reportados. Es mucho mejor probar meticulosamente un port para identificar todos sus potenciales problemas antes de añadirlo a la Colección de Ports.
+
+* *Cambios en la política y la infraestructura de ports.* Ocasionalmente, los sistemas que se utilizan para compilar los ports y paquetes se actualizan o se hace una nueva recomendación que afecta a la infraestructura. Debes tener en cuenta estos cambios en caso de que tus ports se vean afectados y requieran de una actualización.
+
+* *Cambios en el sistema base.* FreeBSD está constantemente bajo desarrollo. Cambios en el software, librerías, el kernel o incluso cambios en las políticas pueden derivar en cambios en los requisitos de los ports.
+
+==== Responsabilidades del maintainer
+
+===== Mantén sus ports actualizados
+
+Esta sección describe el proceso a seguir para mantener sus ports actualizados.
+
+Esto es un resumen. Hay más información disponible acerca de cómo actualizar un port en el extref:{porters-handbook}[Porter's Handbook].
+
+[.procedure]
+====
+. Mantente atento a las actualizaciones
++
+Monitoriza el desarrollo para estar al tanto de nuevas versiones, actualizaciones y correcciones de seguridad. Las listas de correo de anuncios o las páginas web de noticias son útiles para este propósito. En ocasiones los usuarios se pondrán en contacto contigo para preguntarte cuándo se actualizará tu port. Si estás ocupado con otras cosas o simplemente no puedes actualizarlo por alguna razón pregunta al usuario si puede ayudarte enviándote una actualización.
++
+También puede recibir un correo electrónico automatizado de `FreeBSD Ports Version Check` informándole que ya hay una nueva versión disponible del distfile de su port. En el mensaje se incluirá más información (incluido el cómo dejar de recibir los correos electrónicos en el futuro).
+. Incorporar cambios
++
+Una vez que estén disponibles incorpora los cambios en el port. Es necesario generar un parche con las diferencias entre el port original y el port actualizado.
+. Revisar y probar
++
+Revisa y prueba a fondo sus cambios:
+
+** Compila, instala y prueba tu port en tantas plataformas y arquitecturas como puedas. Es común que un port funcione en una rama o plataforma y falle en otra.
+** Asegúrate de que las dependencias de tu port están completas. El método recomendado para hacer esto es instalando tu propio tinderbox. Ver <<resources>> para más información.
+** Compruebe que la lista de componentes del paquete esté actualizada. Esto implica añadir nuevos archivos y directorios, así como eliminar entradas no utilizadas.
+** Verifica tu port utilizando man:portlint[1] como guía. Ver <<resources>> para información importante acerca del uso de portlint.
+** Considera si cambios en tu port pueden provocar que otros ports se rompan. Si es el caso, coordina los cambios con los maintainers de esos ports. Esto es especialmente importante si tus cambios actualizan la versión de una librería compartida; en este caso, como mínimo, los ports dependientes necesitan incrementar su `PORTREVISION`para que sean actualizados automáticamente por las herramientas de automatización como portmaster o man:portupgrade[1].
+
+. Enviar los cambios
++
+Envía tu actualización mediante un PR con una explicación de los cambios y un parche que contenga las diferencias entre el port original y el actualizado. Por favor, consulta extref:{problem-reports}[Writing FreeBSD Problem Reports] para más información sobre cómo escribir un PR realmente bueno.
++
+[NOTE]
+======
+Por favor no envíes un archivo man:shar[1] de todo el port; en su lugar, utiliza man:diff[1] `-ruN`. De este modo, los committers pueden ver mucho más fácilmente qué cambios se están haciendo exactamente. La sección extref:{porters-handbook}[Upgrading, port-upgrading] del Porter's Handbook tiene más información.
+======
+. Esperar
++
+En algún momento un committer tratará tu PR. Podría llevar minutos, o podría llevar una o dos semanas - así que por favor, sé paciente. Si transcurre más tiempo, por favor busca ayuda en las listas de correo ({freebsd-ports}), IRC: #bsdports en EFNet o #freebsd-ports en Libera por ejemplo.
+. Proporciona feedback
++
+Si un committer encuentra algún problema en tus cambios lo más probable es que se los devuelva. Una respuesta rápida ayudará a que se haga más rápido el commit. Es muy importante mantener abierto el canal de comunicación para acelerar la resolución de cualquier problema.
+. Y para concluir
++
+Se hará el commit con tus cambios y el port habrá sido actualizado. Después se cerrará el PR. ¡Eso es todo!
+====
+
+===== Asegúrate de que tus ports continúan compilando correctamente
+
+Esta sección trata sobre descubrir y solucionar problemas que impiden que tus ports se compilen correctamente.
+
+El proyecto FreeBSD solo garantiza que la colección de ports funcione en la rama `-STABLE`. En teoría debería poder ejecutarse la última versión de cada rama estable (ya que se espera que las ABIs no cambien) pero si funciona también en las demás ramas es aun mejor.
+
+Dado que la mayor parte de las instalaciones de FreeBSD se ejecutan en ordenadores comunes (arquitectura `i386`), esperamos que mantenga el port funcionando en esta arquitectura. También preferimos que los ports funcionen de forma nativa en la arquitectura `amd64`. No dude en pedir ayuda si no dispone de una de estas máquinas.
+
+[NOTE]
+====
+Los fallos habituales para ordenadores que no son `x86` se producen porque los programadores originales asumieron que, por ejemplo, los punteros son `int`s, o que se utilizaría una versión mas antigua del compilador gcc. Cada vez más, los autores de las aplicaciones están reescribiendo su código para eliminar estos fallos — pero si el autor no mantiene activamente su código, es posible que debas hacerlo tú mismo.
+====
+
+Estas son las tareas que debe realizar para garantizar que su port pueda compilarse:
+
+[.procedure]
+====
+. Mantente atento a los fallos en la compilación
++
+Comprueba tu correo para mensajes de `pkg-fallout@FreeBSD.org` y el http://portscout.FreeBSD.org[distfiles scanner] para ver alguno de los ports que están fallando están desactualizados.
+. Recopila información
++
+Cuando encuentres algún problema recopila información para ayudar a solucionarlo. Los errores de compilación reportados por `pkg-fallout` incluyen registros que te mostrarán dónde falló la compilación. Si un usuario te informó sobre el fallo pídele que te envíe información que puedas ayudar a identificar el problema, como por ejemplo:
+
+** Logs de la compilación
+** Los comandos y opciones utilizados para compilar el port (incluidas las opciones establecidas en [.filename]#/etc/make.conf#)
+** Una lista de paquetes instalados en su sistema tal como los muestra man:pkg-info[8]
+** La versión de FreeBSD que están corriendo como la muestra man:uname[1] `-a`
+** Cuándo se actualizó por última vez su colección de ports
+** Cuándo han sido actualizados por última vez su árbol de ports y su [.filename]#INDEX#
+
+. Investiga y encuentra una solución
++
+Desgraciadamente no hay un método directo que seguir para hacer esto. De todos modos, recuerda: si te atascas, ¡pide ayuda! La {freebsd-ports} es un buen lugar para empezar, y los desarrolladores del proyecto original suelen ser de mucha ayuda.
+. Enviar los cambios
++
+Al igual que con la actualización de un port, ahora debes incorporar los cambios, revisar, probar y enviar tus cambios en eun PR y proporcionar feedback si es necesario.
+. Enviar parches a los autores originales
++
+En algunos casos necesitarás aplicar parches un port para que se ejecute en FreeBSD. Algunos autores originales (aunque no todos) aceptarán incorporar dichos parches en su código en la próxima versión. Si lo hacen esto podría ayudar a los usuarios de otros sistemas BSD y tal vez evitar duplicar esfuerzos. Como cortesía, recomendamos enviar los parches de este tipo a los autores originales.
+====
+
+===== Investiga los informes de errores y PRs relacionados con tu port
+
+Esta sección trata sobre encontrar y corregir errores.
+
+Los errores específicos de FreeBSD son causados generalmente por suposiciones sobre los entornos de compilación y ejecución que no afectan a FreeBSD. Es poco probable que encuentres este tipo de problemas, pero pueden ser sutiles y difíciles de diagnosticar.
+
+Estas son las tareas que debe realizar para garantizar que su port continúe funcionando según lo previsto:
+
+[.procedure]
+====
+. Responde a los informes de errores
++
+Los errores se te pueden reportar a través de email vía la https://bugs.FreeBSD.org/search/[Base de datos de Informes de Error]. Los errores también se te pueden reportar directamente por los usuarios.
++
+Debes responder a los PRs y otros reportes en máximo 14 días, pero trata de no demorarte tanto. Intenta responder lo antes posible, incluso si es solo para decir que necesitas más tiempo antes de empezar a trabajar en el PR.
++
+Si no has respondido en 14 días, cualquier committer mediante un `maintainer-timeout` puede hacer commit desde un PR al que no hayas respondido.
+. Recopila información
++
+Si la persona que informó del error no ha proporcionado una solución es tu obligación recopilar la suficiente información para proporcionar una.
++
+Si puedes reproducir el error podrás recoger la mayor parte de la información que necesitas. Si esto no es posible solicita a la persona que reportó el error que te proporcione la siguiente información:
+
+** Una descripción detallada de sus acciones, comportamiento esperado del programa y comportamiento real
+** Una copia de los datos de entrada que producen el error
+** Información acerca de su entorno de ejecución y compilación - por ejemplo, una lista de paquetes instalados y la salida de man:env[1]
+** Core dumps
+** Stack traces
+
+. Eliminar informes incorrectos
++
+Algunos informes de error pueden ser incorrectos. Por ejemplo el usuario podría simplemente haber usado mal el programa, o los paquetes que tiene instalados pueden estar desactualizados y necesitan actualizarse. Algunas veces un error reportado no es específico de FreeBSD. En este caso informa del error a los desarrolladores originales del software. Si puedes corregir el error también puedes aplicar el parche al port para que se aplique antes de la próxima versión original.
+. Encontrar una solución
++
+Al igual que sucede con los errores de compilación tu tarea es encontrar una solución al problema. Una vez más, ¡recuerda preguntar si te atascas!
+. Enviar o aprobar cambios
++
+Al igual que sucede con la actualización de un port debes incorporar los cambios, revisar, probar y enviar tus cambios en un PR (o hacer un seguimiento si ya existe un PR para el problema). Si otro usuario ha enviado cambios en el PR también puedes enviar un seguimiento diciendo si apruebas o no los cambios.
+====
+
+===== Proporcionar ayuda
+
+Parte de las funciones de un maintainer es proporcionar soporte, no para el software en general sino para el port y las peculiaridades y problemas específicos de FreeBSD. Los usuarios pueden contactarte con preguntas, sugerencias, problemas y parches. La mayoría de las veces serán para asuntos específicos de FreeBSD.
+
+Puede que ocasionalmente tenga que usar sus habilidades diplomáticas y dirigir amablemente a los usuarios que buscan asistencia técnica hacia los recursos apropiados. Alguna que otra vez te encontrarás con que alguien te preguntará que por qué los `RPM`s no están actualizados o qué hay que hacer para ejecutar tal software en tal o cual distribución de Linux. Aprovecha la oportunidad para decirle que tu port está actualizado (si ese es el caso, claro). Y sugiérele que pruebe FreeBSD.
+
+A veces, los usuarios y desarrolladores decidirán que eres una persona ocupada cuyo tiempo es valioso y harán parte del trabajo por ti. Por ejemplo, podrían:
+
+* enviar un PR o enviarle parches para actualizar tu port
+* investigar y tal vez proporcionar una solución a un PR o
+* incluso enviar cambios para tu port.
+
+En estos casos tu obligación principal es responder rápidamente. Una vez más, el tiempo de espera para los maintainers es de 14 días. Después de este período se puede realizar el commit sin aprobación. Se han tomado la molestia de hacerlo por ti, así que por lo menos intenta responder lo más rápido posible. Hecho esto, revisa, aprueba, modifica o discute los cambios con ellos lo antes posible.
+
+Si puede hacerles saber que su contribución no cae en saco roto (y así debería ser) será posible que le ayuden en otras ocasiones más adelante :-).
+
+[[fix-broken]]
+=== Encontrar y arreglar un port roto
+
+Hay algunos lugares realmente buenos para encontrar un port que necesite atención.
+
+Puedes utilizar el https://bugs.freebsd.org/search[interfaz web] de la base de datos de Informes de Error para buscar y ver PRs sin resolver. La mayoría de los PRs de ports son actualizaciones, pero con una pequeña búsqueda y echando un vistazo a las sinopsis deberías ser capaz de encontrar algo interesante en lo que trabajar (la clase `sw-bug` es un buen sitio para empezar).
+
+https://portsfallout.com/[PortsFallout] muestra problemas con los ports recogidos de la construcción de paquetes de FreeBSD.
+
+Está bien mandar cambios para un port que está mantenido, pero recuerda preguntar al mantainer en caso de que ya esté trabajando en el problema.
+
+Una vez que hayas encontrado un error o problema recopila información, investiga y arréglalo. Si ya existe un PR haz seguimiento del PR. Si no existe un PR créalo. Tus cambios serán revisados. Si son correctos serán aceptados y se hará el commit.
+
+[[mortal-coil]]
+=== Cuándo dejarlo
+
+Conforme tus intereses y compromisos cambian, podrías encontrar que ya no tienes tiempo para continuar con algunas (o todas) de tus contribuciones a los ports. ¡Está bien! Por favor haznos saber si ya no utilizas un port o si ya no tienes tiempo o has perdido el interés en ser maintainer. De este modo podemos avanzar y permitir que otra gente trabaje en los problemas que existan con el port sin esperar a tu respuesta. Recuerda, FreeBSD es un proyecto voluntario, así que si mantener un port ya no es divertido, ¡probablemente es hora de permitir que otros lo hagan!
+
+En cualquier caso, el Ports Management Team (`portmgr`) se reserva el derecho a revocar tu estatus de maintainer si no has mantenido activamente su port durante un cierto periodo de tiempo. (Actualmente, este periodo se establece en 3 meses). Con esto, queremos decir que haya problemas no resueltos o actualizaciones pendientes que no hayan sido abordadas durante este periodo.
+
+[[resources]]
+=== Recursos para maintainers y colaboradores de los ports
+
+El extref:{porters-handbook}[Porter's Handbook] es tu guía del autoestopista para el sistema de ports. ¡Mantenlo a mano!
+
+extref:{problem-reports}[Writing FreeBSD Problem Reports] describe como formular y enviar PRs de la mejor forma. ¡En 2005 se enviaron más de once mil PRs de ports! Seguir este artículo nos ayudará a reducir el tiempo necesario para tratar tus PRs.
+
+La https://bugs.freebsd.org/bugzilla/query.cgi[base de datos de Informes de Error].
+
+El http://portscout.FreeBSD.org[Escáner de distfiles de ports de FreeBSD (portscout)] puede mostrarte tus puertos cuyos distfiles no se pueden conseguir. Puedes comprobar tus propios puertos o utilizarlo para encontrar otros ports que necesitan actualizar sus `MASTER_SITES`.
+
+package:ports-mgmt/poudriere[] es la forma más rigurosa de probar un port a través del ciclo completo de instalación, empaquetado y desinstalación. La documentación se encuentra en el https://github.com/freebsd/poudriere[repositorio GitHub de poudriere]
+
+man:portlint[1] es una aplicación que puede ser utilizada para verificar que tu port cumple con muchas de las importantes directrices funcionales y de estilo. portlint es una aplicación con una heurística simple, así que deberías utilizarla __sólo como una guía__. Si portlint sugiere cambios que no parecen razonables, consulta el extref:{porters-handbook}[Porter's Handbook] o busca consejo.
+
+{freebsd-ports} es para discusiones generales relacionadas con ports. Es un buen sitio para pedir ayuda. Puedes link:https://lists.freebsd.org/[suscribirte, o leer y buscar en el archivo de la lista]. Leer los archivos de {freebsd-ports-bugs} y {svn-ports-head} también podría ser de interés.
+
+https://portsfallout.com/[PortsFallout] es un sitio para ayudar en la búsqueda del https://lists.freebsd.org/archives/freebsd-pkg-fallout/[archivo de package-fallout de FreeBSD].
+
+[[ideas-contributing]]
+== Empezar en otras áreas
+
+¿Buscas algo interesante para empezar que no haya sido mencionado en el artículo? El proyecto FreeBSD tiene varias páginas en la wiki que contienen áreas dentro de las cuales las nuevas personas que tengan interés en contribuir pueden obtener ideas sobre cómo empezar.
+
+La página https://wiki.freebsd.org/JuniorJobs[Junior Jobs] tiene una lista de proyectos que podrían ser de interés para gente que está empezando con FreeBSD y quiere trabajar en cosas interesantes para introducirse.
+
+La página https://wiki.freebsd.org/IdeasPage[Ideas Page] contiene varias cosas que "sería bueno tener" o "interesantes" para trabajar en el Proyecto.

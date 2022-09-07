@@ -4,6 +4,16 @@ It is a online website editor for FreeBSD documentation. The purpose of FreeBSD 
 
 It is still developing.
 
+## Develop branch progress
+### target
+1. {{% lang %}} problem in include section.
+2. There is some macro in FreeBSD (ex: extref). It need be set in this website
+3. Once you click the url in right html section, the website would be broken
+4. CSS need to apply
+
+### matters for discussion
+1. I read .adoc file in local. Once FreeBSD update doc tree, the local file need to be updated. Is there other way to read file or we can update local file automatically.
+
 ## Directory
 
 data: put some fake data(.adoc) fot the test.

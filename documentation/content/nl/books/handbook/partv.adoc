@@ -1,0 +1,11 @@
+---
+title: Deel V. Appendix
+prev: books/handbook/advanced-networking
+next: books/handbook/mirrors
+showBookMenu: true
+weight: 37
+path: "/books/handbook/"
+---
+
+[[appendices]]
+= Appendix
