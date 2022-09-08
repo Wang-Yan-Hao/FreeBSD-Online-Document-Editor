@@ -1,9 +1,0 @@
-:toc-title: Spis treści
-ifdef::book[]
-:part-signifier: Część
-:chapter-signifier: Rozdział
-endif::[]
-:appendix-caption: Dodatek
-:table-caption: Tabela
-:figure-caption: Rysunek
-:example-caption: Przykład

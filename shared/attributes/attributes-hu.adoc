@@ -1,9 +1,0 @@
-:toc-title: Tartalomjegyzék
-ifdef::book[]
-:part-signifier: Part
-:chapter-signifier: Chapter
-endif::[]
-:appendix-caption: Függelék
-:table-caption: Táblázat
-:figure-caption: Ábra
-:example-caption: Példa

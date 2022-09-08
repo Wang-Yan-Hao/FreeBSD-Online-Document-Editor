@@ -1,9 +1,0 @@
-:toc-title: Indice
-ifdef::book[]
-:part-signifier: Parte
-:chapter-signifier: Capitolo
-endif::[]
-:appendix-caption: Appendice
-:table-caption: Tabella
-:figure-caption: Figura
-:example-caption: Esempio

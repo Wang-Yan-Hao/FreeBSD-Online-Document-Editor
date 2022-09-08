@@ -2,27 +2,30 @@
 
 It is a online website editor for FreeBSD documentation. The purpose of FreeBSD Online Document Editor is to simplify the edit process in FreeBSD documentation.
 
+It use simple HTML, CSS, JS, Ace editor and asciidoctor.js(use npm to install). 
+
 It is still developing.
+
+Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/ .
 
 ## Develop branch progress
 ### target
-1. {{% lang %}} problem in include section.
-2. There is some macro in FreeBSD (ex: extref). It need be set in this website
-3. Once you click the url in right html section, the website would be broken
-4. CSS need to apply
-
-### matters for discussion
-1. I read .adoc file in local. Once FreeBSD update doc tree, the local file need to be updated. Is there other way to read file or we can update local file automatically.
+1. There is some macro in FreeBSD (ex: extref). It need be set in this website.
+2. {{% lang %}} problem in .adoc include section.
+3. Once you click the url in right HTML section, the website would be broken.
+4. Patch Download button hasn't complete.
+5. Other language .adoc hasn't be tested.
+7. CSS need to apply.
 
 ## Directory
 
-data: put some fake data(.adoc) fot the test.
+freebsd-doc-main: FreeBSD official doc-tree repo. Use git-submodule to clone the repo.
 
-scripts: put js file.
+website: Website file.
 
-styles: put css file.
+website/src-noconflict: Ace editor setting file.
 
-pages: put html file.
+website/scripts: Put website JS file.
 
 ## Installation
 

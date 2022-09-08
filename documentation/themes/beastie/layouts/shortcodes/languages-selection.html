@@ -1,7 +1,0 @@
-<ul class="language-list">
-  {{ range $.Site.Home.AllTranslations }}
-    <li>
-      <a href="{{ .RelPermalink }}" lang="{{ .Language.Params.languageCode }}">{{.Language.LanguageName }}</a>
-    </li>
-  {{ end }}
-</ul>
