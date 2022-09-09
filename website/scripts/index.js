@@ -15,7 +15,7 @@ document.querySelector("#editor").addEventListener("keyup", generate_html)
 
 // Check what link the user came from, and send some value to ace editor
 var before_url = "https://docs.freebsd.org/en/books/faq/#introduction" // the url user come
-before_url = 'documentation/content' + before_url.split('#')[0].substring(24,) + '_index.adoc' // process url
+before_url = '../freebsd-doc-main/documentation/content' + before_url.split('#')[0].substring(24,) + '_index.adoc' // process url
 
 file = before_url
 var rawFile = new XMLHttpRequest();
@@ -25,7 +25,6 @@ rawFile.onreadystatechange = function () {
       if (rawFile.status === 200 || rawFile.status == 0) {
          var allText = rawFile.responseText;  // the .adoc text according the url you came from
          console.log("allText")
-
          console.log(allText)
          editor.session.insert(editor.getCursorPosition(), allText)
          generate_html()

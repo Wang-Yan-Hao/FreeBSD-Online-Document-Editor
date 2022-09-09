@@ -1,0 +1,154 @@
+---
+title: "FreeBSD 4.9 Open Issues"
+sidenav: download
+---
+
+++++
+
+
+<h1>Open Issues</h1>
+
+<p>This is a list of open issues that need to be resolved for FreeBSD
+  4.9.  If you have any updates for this list, please e-mail
+  re@FreeBSD.org.</p>
+
+<p>As many of these open issues involve merging bus_dma driver changes
+  from -CURRENT, the <a href="../../../projects/busdma/index.html" shape="rect">busdma</a> project page is
+  also useful.</p>
+
+<h3>Must Resolve Issues for 4.9-RC3</h3>
+
+<table class="tblbasic">
+  <tr><th rowspan="1" colspan="1">Issue</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Responsible</th><th rowspan="1" colspan="1">Description</th>
+      </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">FireWire load failure bug.</td>
+    <td rowspan="1" colspan="1">Done</td>
+    <td rowspan="1" colspan="1">matusita@</td>
+    <td rowspan="1" colspan="1">Reported on <tt>stable@</tt>.  Did this ever work after the initial firewire commit to drivers.conf in April?  If not, is there any reason to not just back out that commit and not have firewire supported during the install?</td>
+  </tr>
+
+</table>
+
+
+<h3>Must Resolve Issues for 4.9-RELEASE</h3>
+
+<table class="tblbasic">
+  <tr><th rowspan="1" colspan="1">Issue</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Responsible</th><th rowspan="1" colspan="1">Description</th>
+      </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">if_dc tested/merged to work with PAE in 4.x</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">luoqi</td>
+    <td rowspan="1" colspan="1"></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">busdma infrastructure merges</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">scottl</td>
+    <td rowspan="1" colspan="1">It's unclear if further bus_dma infrastructure changes need to be merged?</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">if_xl</td>
+    <td rowspan="1" colspan="1">Done</td>
+    <td rowspan="1" colspan="1">silby</td>
+    <td rowspan="1" colspan="1"></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">RAID drivers tested/merged to work with PAE in 4.x</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">scottl</td>
+    <td rowspan="1" colspan="1"></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">ACPI merged as optional component</td>
+    <td rowspan="1" colspan="1">In progress</td>
+    <td rowspan="1" colspan="1">John Baldwin</td>
+    <td rowspan="1" colspan="1">ACPI will be provided as an optional component, turned off by
+      default.</td>
+  </tr>
+
+</table>
+
+<h3>Desired Features for 4.9-RELEASE</h3>
+
+<table class="tblbasic">
+  <tr><th rowspan="1" colspan="1">Issue</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Responsible</th><th rowspan="1" colspan="1">Description</th>
+      </tr>
+  <tr>
+    <td rowspan="1" colspan="1">USB updated to work with PAE</td>
+    <td rowspan="1" colspan="1">In progress</td>
+    <td rowspan="1" colspan="1">jmg, joe, luoqi</td>
+    <td rowspan="1" colspan="1">USB does not currently work with PAE enabled.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>twe</tt> updated for bus_dma/PAE</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">ps</td>
+    <td rowspan="1" colspan="1">The 3ware <tt>twe</tt> driver needs to be updated for use with PAE in 4.X.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>ciss</tt> updated for bus_dma/PAE</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">ps</td>
+    <td rowspan="1" colspan="1">The <tt>ciss</tt> driver needs to be updated for use with PAE in 4.X.</td>
+  </tr>
+
+</table>
+
+<h3>Documentation items that must be resolved for 4.9</h3>
+
+<table class="tblbasic">
+  <tr><th rowspan="1" colspan="1">Issue</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Responsible</th><th rowspan="1" colspan="1">Description</th>
+      </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">ACPI</td>
+    <td rowspan="1" colspan="1">Done</td>
+    <td rowspan="1" colspan="1">Murray</td>
+    <td rowspan="1" colspan="1">Handbook should be updated to note that ACPI can be enabled on
+      4.9 systems.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">PAE</td>
+    <td rowspan="1" colspan="1">Done</td>
+    <td rowspan="1" colspan="1">Murray</td>
+    <td rowspan="1" colspan="1">Handbook should be updated to explain the basic PAE functionality.</td>
+  </tr>
+
+</table>
+
+<h3>Testing focuses for 4.9</h3>
+
+<table class="tblbasic">
+  <tr><th rowspan="1" colspan="1">Issue</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Responsible</th><th rowspan="1" colspan="1">Description</th>
+      </tr>
+  <tr>
+    <td rowspan="1" colspan="1">PAE testing</td>
+    <td rowspan="1" colspan="1">--</td>
+    <td rowspan="1" colspan="1">More testing should be done with PAE systems to test device
+      compatibility and performance.  In particular, active systems
+      with 12 gig of ram or more should be thoroughly tested to make
+      sure the various memory allocation algorithms in the kernel
+      still scale properly.  There were reports of users running out of
+      KVA space in -CURRENT with large memory machines.</td>
+  </tr>
+
+</table>
+
+
+  </div>
+          <br class="clearboth" />
+        </div>
+        
+++++
+

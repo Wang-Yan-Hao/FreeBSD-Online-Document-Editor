@@ -1,0 +1,206 @@
+---
+title: "FreeBSD 5.0 Release Process"
+sidenav: download
+---
+
+++++
+
+
+<h1>Introduction</h1>
+
+<p>This is a specific schedule for the release of FreeBSD 5.0.  For
+  more general information about the release engineering process,
+  please see the <a href="../../../releng/index.html" shape="rect">Release
+  Engineering</a> section of the web site.</p>
+
+<p>General discussions about the release engineering process or
+  quality assurance issues should be sent to the public <a href="mailto:freebsd-qa@FreeBSD.org" shape="rect">freebsd-qa</a> mailing list.
+  <a href="../../../doc/en_US.ISO8859-1/books/faq/misc.html#DEFINE-MFC" shape="rect">MFC</a>
+  requests should be sent to <a href="mailto:re@FreeBSD.org" shape="rect">re@FreeBSD.org</a>.</p>
+
+<p>One of the major new features of FreeBSD 5.0 will be completely
+  re-worked SMP support.</p>
+
+<p>The current release engineering <a href="../../../releases/5.0R/todo.html" shape="rect">TODO list</a> is also available.
+  This list is updated periodically through the release cycle.</p>
+
+<h1>Schedule</h1>
+
+<table class="tblbasic">
+  <tr><td rowspan="1" colspan="1">Action</td><td rowspan="1" colspan="1">Expected</td><td rowspan="1" colspan="1">Actual</td><td rowspan="1" colspan="1">Description</td>
+      </tr>
+  <tr>
+    <td rowspan="1" colspan="1"><tt>releng_5_dp1</tt> branch (Perforce)</td><td rowspan="1" colspan="1">15 Mar
+      2002</td><td rowspan="1" colspan="1">15 Mar 2002</td><td rowspan="1" colspan="1">Branch created, commits require re@
+      approval.  The branch will be used to allow us time to QA the
+      release, synchronize the release notes with the translation
+      teams, synchronize sysinstall and the package set, etc without
+      disrupting the normal flow of development on <tt>-CURRENT</tt>.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Ports Freeze</td><td rowspan="1" colspan="1">2 Apr
+      2002</td><td rowspan="1" colspan="1">2 Apr 2002</td><td rowspan="1" colspan="1">The ports tree is frozen and tagged for
+      the developer preview.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Final i386 package build completes</td><td rowspan="1" colspan="1">3 Apr
+      2002</td><td rowspan="1" colspan="1">4 Apr 2002</td><td rowspan="1" colspan="1">The final package build for the
+      i386 architecture is complete.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Final Alpha package build completes</td><td rowspan="1" colspan="1">3 Apr
+      2002</td><td rowspan="1" colspan="1">5 Apr 2002</td><td rowspan="1" colspan="1">The final package build for the
+      Alpha architecture is complete.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Final sparc64 package build completes</td><td rowspan="1" colspan="1">3 Apr
+      2002</td><td rowspan="1" colspan="1">7 Apr 2002</td><td rowspan="1" colspan="1">The final package build for the
+      sparc64 architecture is complete.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Package Split</td><td rowspan="1" colspan="1">3 Apr
+      2002</td><td rowspan="1" colspan="1">7 Apr 2002</td><td rowspan="1" colspan="1">The packages for the installation CDROM
+      are selected from the results of the final package build.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">FreeBSD 5.0 Developer Preview 1</td><td rowspan="1" colspan="1">5 Apr
+      2002</td><td rowspan="1" colspan="1">8 Apr 2002</td><td rowspan="1" colspan="1">A full release for the i386, Alpha, and
+      sparc64 architectures.  The i386 and Alpha releases at least
+      will contain a full package set and a disc1 ISO image will be
+      made available.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">5.0 Feature List finalized</td><td rowspan="1" colspan="1">16 Jun
+      2002</td><td rowspan="1" colspan="1">--</td><td rowspan="1" colspan="1">At the FreeBSD Developer Summit at
+      Usenix, we will need to finalize the list of features that will
+      be included with FreeBSD 5.0.  Some features will just have to
+      wait for 5.1 to give us ample time to QA the many features that
+      are ready.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>RELENG_5_0_DP2</tt> branch</td><td rowspan="1" colspan="1">17 Jul
+      2002</td><td rowspan="1" colspan="1">17 Aug 2002</td><td rowspan="1" colspan="1">Branch created in Perforce, commits require re@
+      approval.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">FreeBSD 5.0 Developer Preview 2</td><td rowspan="1" colspan="1">25 Jul
+      2002</td><td rowspan="1" colspan="1">18 Nov 2002</td><td rowspan="1" colspan="1">A full release for the i386, Alpha, and
+      sparc64 architectures.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>-CURRENT</tt> feature freeze</td><td rowspan="1" colspan="1">1 Oct
+    2002</td><td rowspan="1" colspan="1">16 Oct 2002</td><td rowspan="1" colspan="1">After this date, significant new features
+    should be discussed with <tt>re@</tt> before consideration for
+    5.0-RELEASE.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>-CURRENT</tt> code freeze</td><td rowspan="1" colspan="1">20 Oct
+      2002</td><td rowspan="1" colspan="1">18 Nov 2002</td><td rowspan="1" colspan="1">The code freeze for 5.0.  Commits to
+      HEAD require re@ approval.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">First release candidate</td><td rowspan="1" colspan="1">2 Dec 2002</td><td rowspan="1" colspan="1">9 Dec 2002</td>
+      <td rowspan="1" colspan="1">x86, alpha, sparc64, and ia64 images released and uploaded to
+      ftp-master.FreeBSD.org.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1"><tt>RELENG_5_0</tt> branched</td><td rowspan="1" colspan="1">12 Dec 2002</td><td rowspan="1" colspan="1">12 Dec 2002</td>
+      <td rowspan="1" colspan="1">Branch from <tt>HEAD</tt> for the release.  Note: no branch for
+      <tt>RELENG_5</tt> will happen a this time.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">src unfrozen</td><td rowspan="1" colspan="1">12 Dec 2002</td><td rowspan="1" colspan="1">12 Dec 2002</td>
+      <td rowspan="1" colspan="1">Unfreeze <tt>HEAD</tt> src. Continue to coordinate significant
+      check-ins with re@FreeBSD.org in order to work towards
+      <tt>5-STABLE</tt>.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Second release candidate</td><td rowspan="1" colspan="1">17 Dec 2002</td><td rowspan="1" colspan="1">21 Dec 2002</td>
+      <td rowspan="1" colspan="1">--</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Ports tree tagged</td><td rowspan="1" colspan="1">3 Jan 2003</td><td rowspan="1" colspan="1">1 Jan 2003</td>
+      <td rowspan="1" colspan="1">Tentative date of <tt>RELEASE_5_0_0</tt> tag for ports.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Start RC3 builds</td><td rowspan="1" colspan="1">7 Jan 2003</td><td rowspan="1" colspan="1">9 Jan 2003</td>
+      <td rowspan="1" colspan="1">Set timestamp and start i386, pc98, sparc64, alpha, and ia64
+      builds.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Third release candidate released</td><td rowspan="1" colspan="1">10 Jan 2003</td>
+      <td rowspan="1" colspan="1">12 Jan 2003</td><td rowspan="1" colspan="1">--</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Version numbers bumped</td><td rowspan="1" colspan="1">15 Jan 2003</td><td rowspan="1" colspan="1">15 Jan 2003</td>
+      <td rowspan="1" colspan="1">The files listed <a href="../../../doc/en_US.ISO8859-1/articles/releng/article.html#VERSIONBUMP" shape="rect">here</a>
+        are updated to reflect FreeBSD 5.0.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">src tree tagged</td><td rowspan="1" colspan="1">15 Jan 2003</td><td rowspan="1" colspan="1">16 Jan 2003</td>
+      <td rowspan="1" colspan="1">Tag the RELENG_5_0 branch with RELENG_5_0_0_RELEASE</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">doc tree tagged</td><td rowspan="1" colspan="1">15 Jan 2003</td><td rowspan="1" colspan="1">15 Jan 2003</td>
+      <td rowspan="1" colspan="1">Tag the doc/ branch with RELEASE_5_0_0</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Final builds</td><td rowspan="1" colspan="1">15 Jan 2003</td><td rowspan="1" colspan="1">16 Jan 2003</td>
+      <td rowspan="1" colspan="1">Start x86, alpha, sparc64, ia64, and pc98 builds.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">Warn hubs@FreeBSD.org</td><td rowspan="1" colspan="1">15 Jan 2003</td><td rowspan="1" colspan="1">17 Jan 2003</td>
+      <td rowspan="1" colspan="1">Heads up email to hubs@FreeBSD.org to give admins time to prepare
+        for the load spike to come. The site administrators have frequently
+        requested advance notice for new ISOs.</td>
+  </tr>
+
+  <tr>
+     <td rowspan="1" colspan="1">Upload to <tt>ftp-master</tt></td><td rowspan="1" colspan="1">17 Jan 2003</td><td rowspan="1" colspan="1">17 Jan 2003</td>
+       <td rowspan="1" colspan="1">Release and packages uploaded to <tt>ftp-master.FreeBSD.org</tt></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">FreeBSD 5.0 Released</td><td rowspan="1" colspan="1">19 Jan 2003</td><td rowspan="1" colspan="1">19 Jan 2003</td>
+      <td rowspan="1" colspan="1">FreeBSD 5.0 is announced to the mailing lists.</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1" colspan="1">FreeBSD 5.0 Press Release</td><td rowspan="1" colspan="1">19 Jan 2003</td><td rowspan="1" colspan="1">--</td>
+      <td rowspan="1" colspan="1">A formal press release statement is in the works and should be
+      released at this time to the www.FreeBSD.org website and various
+      tech publications.</td>
+  </tr>
+
+</table>
+
+
+  </div>
+          <br class="clearboth" />
+        </div>
+        
+++++
+

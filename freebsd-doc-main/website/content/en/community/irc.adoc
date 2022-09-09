@@ -1,0 +1,12 @@
+---
+title: "IRC"
+sidenav: community
+---
+
+include::shared/en/urls.adoc[]
+
+= IRC
+
+FreeBSD officially maintains an IRC presence with many channels covering subjects and topics ranging from general support to contribution and development.
+Many project teams have dedicated channels where they plan and coordinate, so if you have a particular area of interest or just want to hang out and learn, check out our https://wiki.freebsd.org/IRC/Channels[wiki] for more information on our https://wiki.freebsd.org/IRC[FreeBSD IRC Channels].
+

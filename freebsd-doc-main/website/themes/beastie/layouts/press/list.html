@@ -1,0 +1,88 @@
+{{ define "main" }}
+  <div id="content">
+    <div id="sidewrap">
+      <div id="sidenav">
+        {{ partial "sidenav.html" (dict "sidenavType" .Params.sidenav "data" .Site.Data "language" $.Site.Language.Lang ) }}
+      </div>
+      <div id="feedlinks">
+        <ul>
+          <li>
+            <a href="{{ absLangURL ($.Site.BaseURL) }}press/feed.xml" title="FreeBSD RSS 2.0 Feed">RSS 2.0 Feed</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="contentwrap">
+      <h1>{{ .Title }}</h1>
+      {{- .Content -}}
+
+      {{ if .Params.loadPress }}
+        {{ $pressPath := (printf "data/%s/press/press.toml" $.Language.Lang) }}
+
+        {{ $pressData := "" }}
+        {{ if (fileExists $pressPath) -}}
+          {{ $data := index .Site.Data $.Language.Lang }}
+          {{ $pressData = $data.press }}
+        {{ else }}
+          {{ $dataDefaultLanguage := index .Site.Data .Sites.First.Language.Lang }}
+          {{ $pressData = $dataDefaultLanguage.press }}
+        {{ end }}
+
+        <!-- First load all year-month to the array -->
+        {{ $yearsMonths := slice }}
+        {{ with $pressData.press }}
+          {{ range (sort .press "date" "desc") }}
+            {{ $yearsMonths = $yearsMonths | append (dateFormat "2006-1" .date) }}
+          {{ end }}
+        {{ end }}
+
+        <!-- Remove duplicates -->
+        {{ $yearsMonths = $yearsMonths | uniq }}
+
+        {{ $pressMonthCounter := 1 }}
+        {{ $pressMonthPrev := false }}
+        {{ range $year := seq now.Year 2010 }}
+          {{ range $month := seq 12 1 }}
+            {{ $yearMonth := (printf "%d-%d" $year $month) }}
+            {{ if in $yearsMonths $yearMonth }}
+              <h2>{{ i18n $month }} {{ $year }}</h2>
+              <ul>
+                {{ with $pressData.press }}
+                  {{ range (sort .press "date" "desc") }}
+                    {{ if eq (dateFormat "2006-1" .date) $yearMonth }}
+                      {{ $pressMonthCur := dateFormat "2006-01" .date }}
+                      {{ if eq $pressMonthCur $pressMonthPrev }}
+                        {{ $pressMonthCounter = add $pressMonthCounter 1 }}
+                      {{ else }}
+                        {{ $pressMonthCounter = 1 }}
+                      {{ end }}
+                      <li>
+                        <p>
+                          <a id="{{ dateFormat "2006-01" .date }}:{{ $pressMonthCounter }}"></a>
+                          <a href="{{ .url }}">
+                            <strong>{{ .name }}</strong>
+                          </a>
+                          <br />
+                          <a href="{{ .siteUrl }}">{{ .siteName }}</a>, {{ .author }}
+                          <br />
+                          {{ .description | safeHTML}}
+                        </p>
+                      </li>
+                      {{ $pressMonthPrev = $pressMonthCur }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+              </ul>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if .GitInfo }}
+      <hr />
+      <div class="last-modified">
+        <p><strong>{{ i18n "last-modified" }}</strong>: {{ .GitInfo.AuthorDate | time.Format ":date_long" }} {{ i18n "by" }} <a href="https://cgit.freebsd.org/doc/commit/?id={{ .GitInfo.AbbreviatedHash }}" target="_blank">{{ .GitInfo.AuthorName }}</a></p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

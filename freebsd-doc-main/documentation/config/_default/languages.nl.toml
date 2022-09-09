@@ -1,0 +1,4 @@
+title = "FreeBSD Documentation Portal"
+contentDir = "content/nl"
+languageName = "Dutch"
+weight = 16

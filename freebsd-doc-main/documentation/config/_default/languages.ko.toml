@@ -1,0 +1,4 @@
+title = "FreeBSD Documentation Portal"
+contentDir = "content/ko"
+languageName = "한국어"
+weight = 9

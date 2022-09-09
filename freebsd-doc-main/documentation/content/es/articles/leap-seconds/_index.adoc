@@ -1,0 +1,92 @@
+---
+description: 'Una breve descripción sobre cómo se maneja el segundo bisiesto en FreeBSD'
+tags: ["Leap Seconds", "Support", "Verification", "FreeBSD"]
+title: 'Soporte Para Segundos Bisiestos en FreeBSD'
+---
+
+= Soporte Para Segundos Bisiestos en FreeBSD
+:doctype: article
+:toc: macro
+:toclevels: 1
+:icons: font
+:sectnums:
+:sectnumlevels: 6
+:source-highlighter: rouge
+:experimental:
+:images-path: articles/leap-seconds/
+
+ifdef::env-beastie[]
+ifdef::backend-html5[]
+include::shared/authors.adoc[]
+include::shared/mirrors.adoc[]
+include::shared/releases.adoc[]
+include::shared/attributes/attributes-{{% lang %}}.adoc[]
+include::shared/{{% lang %}}/teams.adoc[]
+include::shared/{{% lang %}}/mailing-lists.adoc[]
+include::shared/{{% lang %}}/urls.adoc[]
+:imagesdir: ../../../images/{images-path}
+endif::[]
+ifdef::backend-pdf,backend-epub3[]
+include::../../../../shared/asciidoctor.adoc[]
+endif::[]
+endif::[]
+
+ifndef::env-beastie[]
+include::../../../../../shared/asciidoctor.adoc[]
+endif::[]
+
+'''
+
+toc::[]
+
+[[leapseconds-definition]]
+== Introducción
+
+Un _segundo bisiesto_ (también llamado segundo intercalar o segundo adicional) es un ajuste de un segundo realizado a UTC en momentos específicos del año para sincronizar escalas de tiempo atómicas con variaciones en la rotación de la Tierra. Este artículo describe cómo interactúa FreeBSD con segundos bisiestos.
+
+En el momento de escribir estas líneas, el próximo segundo bisiesto ocurrirá el 30 de junio del 2015 a las 23:59:60 UTC. Este segundo bisiesto ocurrirá durante un dí­a laboral para América del Norte y del Sur y la región Asia/Pací­fico.
+
+Los segundos bisiestos son anunciados por https://www.iers.org/IERS/EN/Home/home_node.html[IERS] en https://datacenter.iers.org/data/latestVersion/16_BULLETIN_C16.txt[Bulletin C].
+
+El comportamiento estándar del segundo bisiesto se describe en https://datatracker.ietf.org/doc/html/rfc7164#section-3[RFC 7164]. Lee también man:time2posix[3].
+
+[[leapseconds-posix]]
+== Manejo por Defecto de los Segundos Bisiestos en FreeBSD
+
+La forma más fácil de manejar los segundos bisiestos es con las reglas de tiempo POSIX que FreeBSD usa por defecto, combinadas con extref:{handbook}[NTP, network-ntp]. Cuando man:ntpd[8] se está ejecutando y la hora se sincroniza con los servidores NTP que gestionan los segundos bisiestos correctamente, el segundo bisiesto hará que el tiempo del sistema repita automáticamente el último segundo del día. No se necesita ningún otro ajuste adicional.
+
+Si los servidores de NTP no gestionan los segundos bisiestos correctamente, man:ntpd[8] avanzará la hora en un segundo después de que el servidor errante se haya dado cuenta y lo haya avanzado él mismo.
+
+Si no se usa NTP, se necesitará un ajuste manual del reloj del sistema después de que haya pasado el segundo bisiesto.
+
+[[leapseconds-cautions]]
+== Precauciones
+
+Los segundos bisiestos se insertan en todo el mundo en el mismo instante: La medianoche UTC. En Japón es media mañana, en el Pacífico mitad del día, en el continente americano pasado el mediodía, y en Europa por la noche.
+
+Creemos y esperamos que FreeBSD, si se le proporciona un servicio de NTP correcto y estable, funcionará como se ha diseñado durante este segundo bisiesto, del mismo modo que hizo con los anteriores.
+
+De todas formas, asumimos que prácticamente ninguna aplicación ha requerido información del kernel acerca del segundo bisiesto. Nuestra experiencia es que, tal como está diseñado, el segundo bisiesto es esencialmente una repetición del segundo antes del segundo bisiesto, y esto es una sorpresa para la mayoría de los programadores.
+
+Otros sistemas operativos y otras máquinas podrían o no manejar el segundo bisiesto del mismo modo en que lo hace FreeBSD y sistemas sin un servicio correcto y estable de NTP no sabrán nada en absoluto acerca de segundos bisiestos.
+
+No es extraño que las máquinas fallen a causa del segundo bisiesto, y la experiencia ha demostrado que una gran parte de los servidores públicos de NTP pueden manejar y anunciar incorrectamente el segundo bisiesto.
+
+Por favor, intenta asegurarte de que nada horrible suceda debido al segundo bisiesto.
+
+[[leapseconds-testing]]
+== Pruebas
+
+Es posible probar si un segundo bisiesto será usado. Debido a la naturaleza de NTP, la prueba puede funcionar hasta 24 horas antes del segundo bisiesto. Algunas fuentes importantes de referencia de tiempo solo anuncian el segundo bisiesto una hora antes del acontecimiento. Realiza una consulta al demonio de NTP:
+
+[source, shell]
+....
+% ntpq -c 'rv 0 leap'
+....
+
+Una salida que incluya `leap_add_sec` indica soporte adecuado para el segundo bisiesto. Cuando falten más de 24 horas para el segundo bisiesto, o cuando este haya pasado, se mostrará `leap_none`.
+
+[[leapseconds-conclusion]]
+== Conclusión
+
+En la práctica, los segundos bisiestos no suelen ser un problema en FreeBSD. Esperamos que esta breve reseña ayude a clarificar qué esperar y cómo hacer que el segundo bisiesto pase sin contratiempos.

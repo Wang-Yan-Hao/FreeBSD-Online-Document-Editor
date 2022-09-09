@@ -1,0 +1,305 @@
+# ---------------------------------------------------
+# Global
+# ---------------------------------------------------
+[freebsd]
+other = "FreeBSD"
+
+[freebsd-project]
+other = "The FreeBSD Project"
+
+[freebsd-foundation]
+other = "The FreeBSD Foundation"
+
+[freebsd-documentation]
+other = "FreeBSD Documentation"
+
+[freebsd-documentation-main-desc]
+other = "FreeBSD is an operating system used to power modern servers, desktops, and embedded platforms."
+
+[global-search-placeholder]
+other = "Search in the articles, books and guides."
+
+[toc]
+other = "Table of Contents"
+
+[resources]
+other = "Resources"
+
+[download-pdf]
+other = "Download PDF"
+
+[edit-page]
+other = "Edit this page"
+
+[trademarks]
+other = "trademarks"
+
+[books]
+other = "Books"
+
+[articles]
+other = "Articles"
+
+[choose-language]
+other = "Choose language"
+
+[last-modified]
+other = "Last modified on"
+
+[by]
+other = "by"
+
+[search]
+other = "Search"
+
+# ---------------------------------------------------
+# Header
+# ---------------------------------------------------
+[documentation]
+other = "Documentation"
+
+[community]
+other = "Community"
+
+# ---------------------------------------------------
+# Main page
+# ---------------------------------------------------
+[getting-started]
+other = "Getting started"
+
+[learn-basics]
+other = "Learn about FreeBSD basics"
+
+[download]
+other = "Download"
+
+[download-freebsd]
+other = "Download FreeBSD"
+
+[handbook]
+other = "FreeBSD Handbook"
+
+[handbook-desc]
+other = "A constantly evolving, comprehensive resource for FreeBSD users"
+
+[porters-handbook]
+other = "FreeBSD Porter's Handbook"
+
+[porters-handbook-desc]
+other = "A complete reference about the FreeBSD ports system"
+
+[faq]
+other = "FreeBSD FAQ"
+
+[faq-desc]
+other = "FreeBSD frequently Asked Questions (FAQ) for 13.X and 12.X"
+
+[fdp]
+other = "Documentation Project Primer"
+
+[fdp-desc]
+other = "A complete guide about how to start contributing to the documentation"
+
+[books-list]
+other = "List of FreeBSD books"
+
+[articles-list]
+other = "List of FreeBSD articles"
+
+[manual-pages]
+other = "Manual pages"
+
+[manual-pages-desc]
+other = "FreeBSD Manual Pages"
+
+# ---------------------------------------------------
+# Footer
+# ---------------------------------------------------
+[light]
+other = "Light"
+
+[dark]
+other = "Dark"
+
+[high-contrast]
+other = "High contrast"
+
+[previous-versions]
+other = "Previous versions"
+
+[4-4bsd-documents]
+other = "4.4BSD Documents"
+
+[about]
+other = "About"
+
+[legal]
+other = "Legal"
+
+[donations]
+other = "Donations"
+
+[legal-notices]
+other = "Legal notices"
+
+[made-with]
+other = "Made with"
+
+[by-freebsd-community]
+other = "by the FreeBSD Community"
+
+[copyright]
+other = "All rights reserved."
+
+# ---------------------------------------------------
+# Articles page
+# ---------------------------------------------------
+[list-desc-articles]
+other = "Explore a comprehensive list of FreeBSD articles."
+
+# ---------------------------------------------------
+# Books page
+# ---------------------------------------------------
+[prev]
+other = "Prev"
+
+[next]
+other = "Next"
+
+[home]
+other = "Home"
+
+[split-html]
+other = "Split HTML"
+
+[single-html]
+other = "Single HTML"
+
+[book-chapters]
+other = "Book chapters"
+
+[book-menu]
+other = "Book menu"
+
+[list-desc-books]
+other = "Explore a comprehensive list of FreeBSD books."
+
+# ---------------------------------------------------
+# Languages page
+# ---------------------------------------------------
+[select-language]
+other = "Select a language"
+
+[current-selection]
+other = "Current selection:"
+
+# ---------------------------------------------------
+# Copyright
+# ---------------------------------------------------
+[freebsd-copyright]
+other = "FreeBSD нь FreeBSD Сангийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[pam]
+other = "This article was written for the FreeBSD Project by ThinkSec AS and Network Associates Laboratories, the Security Research Division of Network Associates, Inc. under DARPA/SPAWAR contract N66001-01-C-8035 (“CBOSS”), as part of the DARPA CHATS research program."
+
+[coverity]
+other = "Coverity нь бүртгэгдсэн худалдааны тэмдэг бөгөөд Coverity Extend, Coverity Prevent болон Coverity Prevent SQS нь Coverity Inc-ийн худалдааны тэмдэгнүүд юм."
+
+[ibm]
+other = "IBM, AIX, OS/2, PowerPC, PS/2, S/390, болон ThinkPad нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь International Business Machines корпорацийн худалдааны тэмдэгнүүд юм."
+
+[ieee]
+other = "IEEE, POSIX, болон 802 нь Америкийн Нэгдсэн Улс дахь Institute of Electrical and Electronics Engineers буюу Цахилгаан ба Электроны Инженерүүдийн Сургуулийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[redhat]
+other = "Red Hat, RPM, нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь Red Hat, Inc-ийн худалдааны тэмдэгнүүд эсвэл бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[3com]
+other = "3Com болон HomeConnect нь 3Com Корпорацийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[amd]
+other = "AMD, AMD Athlon, AMD Opteron, Athlon, &Eacute;lan, Opteron, болон PCnet нь Advanced Micro Devices, Inc-ийн худалдааны тэмдэгнүүд юм."
+
+[adobe]
+other = "Adobe, Acrobat, Acrobat Reader, болон PostScript нь бүртгэгдсэн худалдааны тэмдэгнүүд эсвэл Adobe Systems Incorporated-ийн Америкийн Нэгдсэн Улс ба/эсвэл бусад улсууд дахь худалдааны тэмдэгнүүд юм."
+
+[apple]
+other = "Apple, AirPort, FireWire, Mac, Macintosh, Mac OS, Quicktime, болон TrueType нь Америкийн Нэгдсэн Улс ба/эсвэл бусад улсуудад бүртгэгдсэн Apple Computer, Inc.-ийн худалдааны тэмдэгнүүд юм."
+
+[intel]
+other = "Intel, Celeron, EtherExpress, i386, i486, Itanium, Pentium, болон Xeon нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь Intel корпораци эсвэл түүний салбаруудын худалдааны тэмдэгнүүд эсвэл бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[linux]
+other = "Линукс нь Линус Торвалдсын бүртгэгдсэн худалдааны тэмдэг юм."
+
+[microsoft]
+other = "Microsoft, IntelliMouse, MS-DOS, Outlook, Windows, Windows Media болон Windows NT нь Америкийн Нэгдсэн Улс ба/эсвэл бусад улсууд дахь Microsoft корпорацийн бүртгэгдсэн худалдааны тэмдэгнүүд эсвэл худалдааны тэмдэгнүүд юм."
+
+[opengroup]
+other = "Motif, OSF/1, болон UNIX нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь The Open Group-ийн бүртгэгдсэн худалдааны тэмдэгнүүд бөгөөд IT DialTone ба The Open Group нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь The Open Group-ийн худалдааны тэмдэгнүүд юм."
+
+[qualcomm]
+other = "QUALCOMM болон Eudora нь QUALCOMM Incorporated-ийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[sparc]
+other = "Sparc, Sparc64, болон UltraSPARC нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь SPARC International, Inc-ийн худалдааны тэмдэгнүүд юм. SPARC худалдааны тэмдэгнүүдийг зүүсэн бүтээгдэхүүнүүд нь Sun Microsystems, Inc-ийн хөгжүүлсэн архитектур дээр суурилсан байдаг."
+
+[sun]
+other = "Sun, Sun Microsystems, Java, Java Virtual Machine, JDK, JRE, JSP, JVM, Netra, Solaris, StarOffice, SunOS болон VirtualBox нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь Sun Microsystems, Inc-ийн худалдааны тэмдэгнүүд эсвэл бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[unix]
+other = "UNIX нь АНУ болон бусад улсууд дахь The Open Group-ийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[netbsd]
+other = "NetBSD нь NetBSD сангийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[realnetworks]
+other = "RealNetworks, RealPlayer, болон RealAudio нь RealNetworks, Inc.-ийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[oracle]
+other = "Oracle нь Oracle корпорацийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[3ware]
+other = "3ware болон Escalade нь 3ware Inc-ийн бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[arm]
+other = "ARM нь ARM Limited-ийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[adaptec]
+other = "Adaptec нь Adaptec, Inc-ийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[google]
+other = "Android is a trademark of Google Inc."
+
+[heidelberger]
+other = "Heidelberg, Helvetica, Palatino, болон Times Roman нь АНУ болон бусад улсууд дахь Heidelberger Druckmaschinen AG-ийн бүртгэгдсэн худалдааны тэмдэгнүүд, аль эсвэл худалдааны тэмдэгнүүд юм."
+
+[intuit]
+other = "Intuit болон Quicken нь Америкийн Нэгдсэн Улс болон бусад улсууд дахь Intuit Inc. эсвэл түүний аль нэг салбаруудын бүртгэгдсэн тэмдэгнүүд ба/эсвэл бүртгэгдсэн үйлчилгээний тэмдэгнүүд юм."
+
+[lsilogic]
+other = "LSI Logic, AcceleRAID, eXtremeRAID, MegaRAID болон Mylex нь LSI Logic Corp-ийн худалдааны тэмдэгнүүд эсвэл бүртгэгдсэн худалдааны тэмдэгнүүд юм."
+
+[themathworks]
+other = "MATLAB нь The MathWorks, Inc-ийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[thomson]
+other = "SpeedTouch нь Thomson-ий худалдааны тэмдэг юм."
+
+[vmware]
+other = "VMware нь VMware, Inc-ийн худалдааны тэмдэг юм."
+
+[wolframresearch]
+other = "Mathematica нь Wolfram Research, Inc-ийн бүртгэгдсэн худалдааны тэмдэг юм."
+
+[xiph]
+other = "Ogg Vorbis болон Xiph.Org нь Xiph.Org-ийн худалдааны тэмдэгнүүд юм."
+
+[xfree86]
+other = "XFree86 нь XFree86 Project, Inc-ийн худалдааны тэмдэг юм."
+
+[daemon-news]
+other = "This article was originally published in the January 2000 issue of <a class=\"link\" href=\"http://www.daemonnews.org/\">DaemonNews</a>. This version of the article may include updates from Matt and other authors to reflect changes in FreeBSD's VM implementation."
+
+[general]
+other = "Үйлдвэрлэгчид болон худалдаалагчдын өөрийнхөө бүтээгдэхүүнүүддээ ашигладаг тэмдэгнүүдийн олонхи нь худалдааны тэмдэг гэж хэлэгддэг. Тийм худалдааны тэмдэгнүүд энэ баримтад гарч байх үед, FreeBSD төсөлд худалдааны тэмдэг мэдэгдэж байвал тэмдэгнүүд дээр “™” эсвэл “®” тэмдэгт нэмэгддэг."

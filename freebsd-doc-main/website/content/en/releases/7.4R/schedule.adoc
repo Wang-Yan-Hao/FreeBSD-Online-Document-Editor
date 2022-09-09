@@ -1,0 +1,136 @@
+---
+title: "FreeBSD 7.4 Release Process"
+sidenav: download
+---
+
+++++
+
+
+  <h1>Introduction</h1>
+
+  <p>This is the release schedule for FreeBSD 7.4.  For more
+    information about the release engineering process, please see the <a href="../../../releng/index.html" shape="rect">Release Engineering</a> section of the
+    web site.</p>
+
+  <p>General discussions about the pending release and known issues should be
+    sent to the public
+    <a href="mailto:FreeBSD-stable@FreeBSD.org" shape="rect">freebsd-stable</a> mailing list.
+    <a href="../../../doc/en_US.ISO8859-1/books/handbook/freebsd-glossary.html#mfc-glossary" shape="rect">MFC</a>
+    requests should be sent to
+    <a href="mailto:re@FreeBSD.org" shape="rect">re@FreeBSD.org</a>.</p>
+
+  <h1>Schedule</h1>
+
+  <table class="tblbasic">
+    <tr class="heading">
+      <td rowspan="1" colspan="1">Action</td>
+      <td rowspan="1" colspan="1">Expected</td>
+      <td rowspan="1" colspan="1">Actual</td>
+      <td rowspan="1" colspan="1">Description</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">Initial release schedule announcement</td>
+      <td rowspan="1" colspan="1">-</td>
+      <td rowspan="1" colspan="1">08&nbsp;October&nbsp;2010</td>
+      <td rowspan="1" colspan="1">Release Engineers send announcement email to developers with a
+	rough schedule.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">Release schedule reminder</td>
+      <td rowspan="1" colspan="1">-</td>
+      <td rowspan="1" colspan="1">Weekly</td>
+      <td rowspan="1" colspan="1">Release Engineers send reminder announcement e-mail to developers
+	with updated schedule.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">Code freeze begins</td>
+      <td rowspan="1" colspan="1">28&nbsp;November&nbsp;2010</td>
+      <td rowspan="1" colspan="1">29&nbsp;November&nbsp;2010</td>
+      <td rowspan="1" colspan="1">Release Engineers announce that all further commits to the
+	stable/7 branch will require explicit approval.
+	Certain blanket approvals will be granted for narrow areas of
+	development, documentation improvements, etc.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">BETA1</td>
+      <td rowspan="1" colspan="1">03&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">10&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">First beta test snapshot.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">releng/7.4 branch</td>
+      <td rowspan="1" colspan="1">15&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">21&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">Subversion branch created, propagated to CVS; future
+        release engineering proceeds on this branch.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">RC1</td>
+      <td rowspan="1" colspan="1">17&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">26&nbsp;December&nbsp;2010</td>
+      <td rowspan="1" colspan="1">First release candidate.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">RC2</td>
+      <td rowspan="1" colspan="1">07&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">22&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">Second release candidate.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">RC3</td>
+      <td rowspan="1" colspan="1">28&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">03&nbsp;February&nbsp;2011</td>
+      <td rowspan="1" colspan="1">Third release candidate.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">RELEASE build</td>
+      <td rowspan="1" colspan="1">21&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">-</td>
+      <td rowspan="1" colspan="1">7.4-RELEASE built.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">RELEASE announcement</td>
+      <td rowspan="1" colspan="1">24&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">-</td>
+      <td rowspan="1" colspan="1">7.4-RELEASE press release.</td>
+    </tr>
+
+    <tr>
+      <td rowspan="1" colspan="1">Turn over to the secteam</td>
+      <td rowspan="1" colspan="1">31&nbsp;January&nbsp;2011</td>
+      <td rowspan="1" colspan="1">-</td>
+      <td rowspan="1" colspan="1">RELENG_7_4 branch is handed over to
+	the FreeBSD Security Officer Team in one or two weeks after the
+	announcement.</td>
+    </tr>
+  </table>
+
+  <h1>Status / TODO</h1>
+  <a href="http://wiki.freebsd.org/Releng/7.4TODO" shape="rect">http://wiki.freebsd.org/Releng/7.4TODO</a>
+
+  <h1>Additional Information</h1>
+
+  <ul>
+    <li><a href="http://wiki.freebsd.org/Releng/7.4TODO/" shape="rect">FreeBSD 7.4 release
+      engineering wiki page</a>, which includes todo lists, scheduling
+      information, binary compatibility information, and more.</li>
+    <li><a href="../../../releng/index.html" shape="rect">FreeBSD Release Engineering website</a></li>
+  </ul>
+
+
+  </div>
+          <br class="clearboth" />
+        </div>
+        
+++++
+

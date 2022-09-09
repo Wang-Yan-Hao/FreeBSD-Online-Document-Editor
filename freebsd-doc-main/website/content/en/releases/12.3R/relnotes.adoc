@@ -1,0 +1,415 @@
+---
+title: "FreeBSD 12.3-RELEASE Release Notes"
+sidenav: download
+---
+
+:releaseCurrent: 12.3-RELEASE
+:releaseBranch: 12-STABLE
+:releasePrev: 12.2-RELEASE
+:releaseNext: 12.4-RELEASE
+:releaseType: release
+
+include::shared/en/urls.adoc[]
+
+= FreeBSD {releaseCurrent} Release Notes
+:doctype: article
+:toc: macro
+:toclevels: 1
+:icons: font
+
+== Abstract
+
+[.abstract-title]
+The release notes for FreeBSD {releaseCurrent} contain a summary of the changes made to the FreeBSD base system on the {releaseBranch} development line. This document lists applicable security advisories that were issued since the last release, as well as significant changes to the FreeBSD kernel and userland. Some brief remarks on upgrading are also presented.
+
+[[intro]]
+== Introduction
+
+This document contains the release notes for FreeBSD {releaseCurrent}. It describes recently added, changed, or deleted features of FreeBSD. It also provides some notes on upgrading from previous versions of FreeBSD.
+
+The {releaseType} distribution to which these release notes apply represents the latest point along the {releaseBranch} development branch since {releaseBranch} was created. Information regarding pre-built, binary {releaseType} distributions along this branch can be found at https://www.FreeBSD.org/releases/[https://www.FreeBSD.org/releases/].
+
+The {releaseType} distribution to which these release notes apply represents a point along the {releaseBranch} development branch between {releasePrev} and the future {releaseNext}. Information regarding pre-built, binary {releaseType} distributions along this branch can be found at https://www.FreeBSD.org/releases/[https://www.FreeBSD.org/releases/].
+
+This distribution of FreeBSD {releaseCurrent} is a {releaseType} distribution. It can be found at https://www.FreeBSD.org/releases/[https://www.FreeBSD.org/releases/] or any of its mirrors. More information on obtaining this (or other) {releaseType} distributions of FreeBSD can be found in the link:{handbook}/mirrors[Obtaining FreeBSD appendix] to the link:{handbook}/[FreeBSD Handbook].
+
+All users are encouraged to consult the release errata before installing FreeBSD. The errata document is updated with "late-breaking" information discovered late in the release cycle or after the release. Typically, it contains information on known bugs, security advisories, and corrections to documentation. An up-to-date copy of the errata for FreeBSD {releaseCurrent} can be found on the FreeBSD Web site.
+
+This document describes the most user-visible new or changed features in FreeBSD since {releasePrev}. In general, changes described here are unique to the {releaseBranch} branch unless specifically marked as MERGED features.
+
+Typical release note items document recent security advisories issued after {releasePrev}, new drivers or hardware support, new commands or options, major bug fixes, or contributed software upgrades. They may also list changes to major ports/packages or release engineering practices. Clearly the release notes cannot list every single change made to FreeBSD between releases; this document focuses primarily on security advisories, user-visible changes, and major architectural improvements.
+
+[[upgrade]]
+== Upgrading from Previous Releases of FreeBSD
+
+Binary upgrades between RELEASE versions (and snapshots of the various security branches) are supported using the man:freebsd-update[8] utility. The binary upgrade procedure will update unmodified userland utilities, as well as unmodified GENERIC kernels distributed as a part of an official FreeBSD release. The man:freebsd-update[8] utility requires that the host being upgraded have Internet connectivity.
+
+Source-based upgrades (those based on recompiling the FreeBSD base system from source code) from previous versions are supported, according to the instructions in [.filename]#/usr/src/UPDATING#.
+
+[IMPORTANT]
+====
+Upgrading FreeBSD should only be attempted after backing up _all_ data and configuration files.
+====
+
+[[security-errata]]
+== Security and Errata
+
+This section lists the various Security Advisories and Errata Notices since {releasePrev}.
+
+[[security]]
+=== Security Advisories
+
+[width="100%",cols="40%,30%,30%",options="header",]
+|===
+|Advisory |Date |Topic
+|link:https://www.freebsd.org/security/advisories/FreeBSD-SA-20:31.icmp6.asc[FreeBSD-SA-20:31.icmp6] |1 December 2020 |Use-after-free in error message handling
+|link:https://www.freebsd.org/security/advisories/FreeBSD-SA-20:32.rtsold.asc[FreeBSD-SA-20:32.rtsold] |1 December 2020 |Multiple vulnerabilities
+|link:https://www.freebsd.org/security/advisories/FreeBSD-SA-20:33.openssl.asc[FreeBSD-SA-20:33.openssl] |8 December 2020 |NULL pointer de-reference
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:01.fsdisclosure.asc[FreeBSD-SA-21:01.fsdisclosure] |29 January 2021 |Kernel stack disclosure
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:02.xenoom.asc[FreeBSD-SA-21:02.xenoom] |29 January 2021 |Kernel panic
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:03.pam_login_access.asc[FreeBSD-SA-21:03.pam_login_access] |24 February 2021 |Privilege escalation
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:04.jail_remove.asc[FreeBSD-SA-21:04.jail_remove] |24 February 2021 |Privilege escalation
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:05.jail_chdir.asc[FreeBSD-SA-21:05.jail_chdir] |24 February 2021 |Privilege escalation
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:06.xen.asc[FreeBSD-SA-21:06.xen] |24 February 2021 |Resource leaks
+|link:https://www.freebsd.org/security/advisories/FreeBSD-SA-21:07.openssl.asc[FreeBSD-SA-21:07.openssl] |25 March 2021 |Multiple vulnerabilities
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:08.vm.asc[FreeBSD-SA-21:08.vm] |6 April 2021 |Kernel memory disclosure
+|link:https://www.freebsd.org/security/advisories/FreeBSD-SA-21:09.accept_filter.asc[FreeBSD-SA-21:09.accept_filter] |6 April 2021 |Privilege escalation or memory disclosure
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:10.jail_mount.asc[FreeBSD-SA-21:10.jail_mount] |6 April 2021 |Privilege escalation
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:11.smap.asc[FreeBSD-SA-21:11.smap] |26 May 2021 |Mitigation bypass
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:12.libradius.asc[FreeBSD-SA-21:12.libradius] |26 May 2021 |Denial of service
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:13.bhyve.asc[FreeBSD-SA-21:13.bhyve] |24 August 2021 |Missing error handling in bhyve(8) device models
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:14.ggatec.asc[FreeBSD-SA-21:14.ggatec] |24 August 2021 |Remote code execution in ggatec(8)
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:15.libfetch.asc[FreeBSD-SA-21:15.libfetch] |24 August 2021 |libfetch out of bounds read
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:16.openssl.asc[FreeBSD-SA-21:16.openssl] |24 August 2021 |Multiple vulnerabilities in OpenSSL
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-SA-21:17.openssl.asc[FreeBSD-SA-21:17.openssl] |24 August 2021 |Multiple vulnerabilities in OpenSSL
+|===
+
+[[errata]]
+=== Errata Notices
+
+[width="100%",cols="40%,30%,30%",options="header",]
+|===
+|Errata |Date |Topic
+|link:https://www.freebsd.org/security/advisories/FreeBSD-EN-20:19.audit.asc[FreeBSD-EN-20:19.audit] |1 December 2020 |execve/fexecve system call auditing
+|link:https://www.freebsd.org/security/advisories/FreeBSD-EN-20:20.tzdata.asc[FreeBSD-EN-20:20.tzdata] |1 December 2020 |Timezone database information update
+|link:https://www.freebsd.org/security/advisories/FreeBSD-EN-20:21.ipfw.asc[FreeBSD-EN-20:21.ipfw] |1 December 2020 |Uninitialized variable
+|link:https://www.freebsd.org/security/advisories/FreeBSD-EN-20:22.callout.asc[FreeBSD-EN-20:22.callout] |1 December 2020 |Race condition in callout CPU migration
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:01.tzdata.asc[FreeBSD-EN-21:01.tzdata] |29 January 2021 |Timezone database information update
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:03.vnet.asc[FreeBSD-EN-21:03.vnet] |29 January 2021 |Panic when destroying VNET and epair simultaneously
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:04.zfs.asc[FreeBSD-EN-21:04.zfs] |29 January 2021 |zfs recv fails to propagate snapshot deletion
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:06.microcode.asc[FreeBSD-EN-21:06.microcode] |24 February 2021 |Boot-time microcode loading causes a boot hang
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:07.caroot.asc[FreeBSD-EN-21:07.caroot] |24 February 2021 |Root certificate bundle update
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:08.freebsd-update.asc[FreeBSD-EN-21:08.freebsd-update] |24 February 2021 |freebsd-update passwd regeneration
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:09.pf.asc[FreeBSD-EN-21:09.pf] |6 April 2021 |net.pf.request_maxcount not settable from loader.conf(5)
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:10.lldb.asc[FreeBSD-EN-21:10.lldb] |6 April 2021 |lldb abort on print command
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:11.aesni.asc[FreeBSD-EN-21:11.aesni] |26 May 2021 |Race condition in aesni(4) encrypt-then-auth operations
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:12.divert.asc[FreeBSD-EN-21:12.divert] |26 May 2021 |Kernel double free when transmitting on a divert socket
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:14.pms.asc[FreeBSD-EN-21:14.pms] |26 May 2021 |pms(4) data corruption
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:16.bc.asc[FreeBSD-EN-21:16.bc] |26 May 2021 |dc update
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:17.libradius.asc[FreeBSD-EN-21:17.libradius] |1 June 2021 |Incorrect validation in rad_get_attr(3)
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:19.libcasper.asc[FreeBSD-EN-21:19.libcasper] |30 June 2021 |libcasper assertion failure
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:22.linux_futex.asc[FreeBSD-EN-21:22.linux_futex] |30 June 2021 |Linux compatibility layer futex(2) system call vulnerability
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:24.libcrypto.asc[FreeBSD-EN-21:24.libcrypto] |24 August 2021 |OpenSSL 1.1.1e API functions not exported
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:25.bhyve.asc[FreeBSD-EN-21:25.bhyve] |24 August 2021 |Fix NVMe iovec construction for large IOs
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:27.caroot.asc[FreeBSD-EN-21:27.caroot] |4 November 2021 |Root certificate bundle update
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:28.vmci.asc[FreeBSD-EN-21:28.vmci] |4 November 2021 |Fix kernel panic in vmci driver initialization
+|link:https://www.FreeBSD.org/security/advisories/FreeBSD-EN-21:29.tzdata.asc[FreeBSD-EN-21:29.tzdata] |4 November 2021 |Timezone database information update
+|===
+
+[[userland]]
+== Userland
+
+This section covers changes and additions to userland applications, contributed software, and system utilities.
+
+[[userland-config]]
+=== Userland Configuration Changes
+
+// SAMPLE ENTRY:
+// A new man:rc.conf[5] variable has been added, `linux_mounts_enable`, which controls if Linux(R)-specific filesystems are mounted in [.filename]#/compat/linux# if `linux_enable` is set to `YES`. {{< revision "364883" >}} (Sponsored by The FreeBSD Foundation)
+
+//XXXTR: The following is my interpretation of MFC: 0ef0442fcf63392502e4d2a645807a723562de0f
+An update to the `caroot` CA bundle processor to support certificates marked with a DISTRUST_AFTER entry.
+
+The [.filename]#/etc/rc.final# man:rc[8] script will now be run after all user processes have terminated.
+
+[[userland-programs]]
+=== Userland Application Changes
+
+The man:automount[8] utility will now explicitly set the root path to `/` before performing an automatic mount.
+
+The man:bectl[8] utility will now throw an error to prevent the creation of a boot environment with spaces.
+
+The man:bhyve[8] utility had support for large IOs fixed in man:nvme[4] emulation.
+
+The man:cmp[1] utility received `-b`, `--print-bytes` flags to be compatible with GNU man:cmp[1].
+
+The man:cmp[1] utility received the `-i`, `--ignore-initial` flags as an alternative to skip1/skip2.
+
+The man:cmp[1] utility now accepts SI suffixes for skip1/skip2.
+
+The man:cmp[1] utility received the `-n`, `--bytes` flags to limit number of bytes to compare.
+
+//24a8ea4df3426dfce2896e265eb3e0206aa33a21
+The man:cpuset[1] utility can now be used by a jail to modify the roots of a child jail.
+
+The man:cron[8] utility will now pull in the user or login class environment variables.
+
+The man:daemon[8] utility now has a `-H` flag allowing it to catch a `SIGHUP` and re-open output file. This was added to support man:newsyslog[8] operations.
+
+The man:diff[1] utility will now honor other flags, such as `-w` when `-q` is specified.
+
+The man:elfctl[1] utility has received a `-l` flag to ignore unknown variables, allowing it to work across multiple versions of FreeBSD by ignoring features which are not implemented.
+
+The man:etcupdate[8] utility now supports a revert mode to restore one or more files.
+
+The man:etcupdate[8] utility has received a `-D` flag to specify a destination directory.
+
+The man:etcupdate[8] will now always extract to a temporary tree and gracefully handle a `SIGINT`.
+
+The man:freebsd-update[8] utility received a `-j` flag to support jails.
+
+The man:freebsd-version[1] utility received `-j` flag to support jails.
+
+The man:fstyp[8] utility will now detect and show exFAT filesystems with the `-l` flag.
+
+The man:geli[8] utility will no longer report an error when performing a `resize` to the same size.
+
+The man:grep[1] utility will now disable `-w` if `-x` is also specified.
+
+The man:growfs[8] utility will now function on `RW` mounted filesystems.
+
+The man:kldxref[8] utility will no longer error out if the directory specified with the `-d` flag is not actually a directory.
+
+The man:mergemaster[8] utility will now handle symbolic links during the update process.
+
+The man:mksnap_ffs[8] utility received a fix for a crash which triggered a `Panic: snapacct_ufs2: bad block` panic.
+
+The man:mount[8] utility will now properly show `with quotas` when quotas are enabled.
+
+The man:mountd[8] utility will now generate a man:syslog[3] message when the `V4:` line is missing from [.filename]#/etc/exports#.
+
+The man:newsyslog[8] utility received a new `E` flag to prevent rotation of empty log files.
+
+The man:pkg[7] utility received a `-r` flag used to specify a `reponame` for bootstrap and `add`.
+
+The man:pkg[7] utility will now use environment variables specified in [.filename]#pkg.conf#.
+
+The [.filename]#rc.d/jail# man:rc[8] script had a keyword change to fix jails within jails support.
+
+The man:rtsold[8] daemon will now work on if_vlan (see: man:vlan[4]) interfaces.
+
+The man:service[8] utility will now set the environment of the `daemon` class before invoking.
+
+The man:tcpdump[8] utility will now decode packets on pfsync interfaces.
+
+The man:top[1] command received the `/` filter on command option for displaying processes or arguments that match a specified string (imported from OpenBSD).
+
+A segmentation fault in man:unzip[1] has been fixed when a target archive contains a buggy name.
+
+The man:unzip[1] utility now supports password protected archives.
+
+The man:zgrep[1] utility will now properly print version information when the `--version` parameter is specified.
+
+The man:wpl_cli[8] utility now has an action file event where an event may be passed to a file.
+
+[[userland-contrib]]
+=== Contributed Software
+
+The man:awk[1] `metamode` fixes have been merged in addition to a code synchronization with upstream (to version 20210221).
+
+Fixes for `SHA256` were merged into apr (Apache Portable Runtime) from upstream (see r1889604, r1807975 upstream).
+
+The man:bc[1] contributed software has been updated to 5.0.0.
+
+The man:less[1] utility was updated to version v581.2.
+
+The man:libarchive[3] library had a bugfix for symlink processing imported.
+
+Libarchive version 3.5.1 was imported.
+
+OpenPAM was upgraded to OpenPAM Tabebuia.
+
+OpenSSL 1.1.1l was imported into the tree.
+
+SQLite3 3.35.5 was imported into the tree.
+
+TCSH 6.22.04 was imported into the tree.
+
+Subversion was updated to version 1.14.1 LTS.
+
+The man:vi[1] utility was updated to nvi 2.2.0-3bbdfe4.
+
+The contrib/tzdata information was updated to correct DST (Daylight Savings Time) in Jordan and Samoa.
+
+The tzdata 2021a was imported into the tree.
+
+The man:unzip[1] utility was synced with the upstream NetBSD version.
+
+[[userland-libraries]]
+=== Runtime Libraries and API
+
+The internal KAPI between the krpc and nfsd modules was updated (see [.filename]#UPDATING#).
+
+//cedb8de26ccc46a9b8215dad58f411b93d101db5:
+The man:powf[3] library received a fix to prevent an incorrect result with x near 1 and |y| much larger than 1 and a test kit imported from NetBSD.
+
+[[kernel]]
+== Kernel
+
+This section covers changes to kernel configurations, system tuning, and system control parameters that are not otherwise categorized.
+
+[[kernel-general]]
+=== General Kernel Changes
+
+The man:ipfw[8] firewall was provided a man:dnctl[8] to manage man:dummynet[4] configurations.
+
+An opencrypto `kern.crypto` man:sysctl[8] node was added.
+
+A new man:sysctl[8], `debug.uma_reclaim`, was added.
+
+The `kern.timecounter.hardware` `OID` was converted into a tuneable.
+
+New `PCI` `ID` information was added for ASMedia(R) ASM116x PCIe 3.0 AHCI controllers and Intel(R) Gemini Lake I2C controllers.
+
+The `GENERIC` kernel for `amd64` now includes `options COMPAT_LINUXKPI` and the man:mlx5en[4] device driver.
+
+[[drivers]]
+== Devices and Drivers
+
+This section covers changes and additions to devices and device drivers since {releasePrev}.
+
+[[drivers-device]]
+=== Device Drivers
+
+The man:alc[4] device driver now supports the Mikrotik(R) 10/25G Network device.
+
+The man:amdtemp[4] device driver has learned about family 17h models: M20h (Dali, Zen1), M60H (Renoir, Zen2), and M90H (Van Gogh, Zen2).
+
+The man:amdtemp[4] device driver received support for Zen 3 "Vermeer" and Ryzen(R) 4000 APU (Zen 2, "Renoir").
+
+The man:amdsmn[4] device driver received support for Zen 3 "Vermeer" and Ryzen(R) 4000 APU (Zen 2, "Renoir").
+
+The man:cam[4] driver had quick unplug and replug SCSI fixed.
+
+The man:bnxt[4] device driver will now report if `WOL` (Wake On Lan) support is supported on the hardware and show an enabled status if a filter was applied on system initialization.
+
+The man:em[4] device driver now supports the flashless i211 PBA.
+
+The man:em[4] device driver received several updates to shared code.
+
+The man:ena[4] device driver was updated to 2.4.1.
+
+The man:ice[4] device driver was updated to 0.28.1-k with an updated ice_ddp package file of version 1.3.19.0.
+
+A new driver, man:igc[4] was added to support the Intel(R) I225 Ethernet controller and supports 2.5G/1G/100MB/10MB.
+
+The man:ixgbe[4] device driver received a shared code update.
+
+The man:ixgbe[4] device driver received a fix for the x550em 10G NIC link status where the auto-negotiation feature was not reported correctly.
+
+The man:ixl[4] device driver was given the hw.ix.flow_control tuneable.
+
+The man:ixl[4] device driver had an update in shared code and fixes for 2.5G and 5G speeds.
+
+The man:iwm[4] device driver now supports the Intel(R) Killer(R) Wireless-AC 1550i.
+
+The man:msdosfs[5] filesystem driver received a fix for msdosfs suspension.
+
+The man:ng_bridge[4] netgraph node is now `SMP` aware.
+
+The man:ng_nat[4] netgraph node received support for `RFC` 6598/Carrier Grade `NAT` support.
+
+The man:ng_source[4] netgraph node may now be injected into any netgraph network.
+
+The man:nvdimm[4] `ACPI` driver will now export health information via a man:sysctl[8].
+
+The man:nvme[4] device driver received support for MSI and single MSI-X support.
+
+The man:nvme[4] device driver received several merged bugfixes.
+
+The man:pf[4] firewall has received several bugfixes and updates.
+
+The man:rctl[4] resource limits driver now supports throttling resource usage to 0 for rate-based resources that support throttling. These resources will respect the duration set by the `kern.racct.rctl.throttle_max` man:sysctl[8].
+
+The man:rsu[4] device driver now supports the ASUS(R) WL-167G V3 device.
+
+The man:rtwn_usb[4] device driver now supports the Mercusys(R) MW150US (N150 Nano), TP-Link(R) Archer T2U v3, and D-Link(R) DWA-121 (N150 Nano) devices.
+
+The man:run[4] device driver now supports the D-Link(R) DWA-130 rev F1 wireless adapter and the ASUS(R) USB-N14 wireless adapter.
+
+The man:tcp[4] protocol will now tolerate the missing of timestamps (RFC 1323/RFC 7323) via the use of the `net.inet.tcp.tolerate_missing_ts` man:sysctl[8].
+
+The man:uart[4] device driver now supports the Intel(R) 100 Series/C230 Series AMT.
+
+The man:vlan[4] interface can now support `ALTQ`.
+
+[[storage]]
+== Storage
+
+This section covers changes and additions to file systems and other storage subsystems, both local and networked.
+
+[[storage-general]]
+=== General Storage
+
+A fix for handling of embedded symbolic links in `UFS/FFS` was merged.
+
+A fix for NFSv4.1 Linux client mount getting stuck in `CLOSE_WAIT` status was merged.
+
+A fix for NFSv4.1/4.2 mount recovery from an expired lease was merged.
+
+[[boot]]
+== Boot Loader Changes
+
+This section covers the boot loader, boot menu, and other boot-related changes.
+
+[[boot-loader]]
+=== Boot Loader Changes
+
+The boot loader will now support booting an OS from a memory disk.
+
+The boot loader will now support pools without features.
+
+The boot loader will now accept the zfs features `com.delphix:bookmark_written` and `com.datto:bookmark_v2`.
+
+A new OID, `hint.dev.X.disabled` was added to lua loader prevent device attachment during boot.
+
+[[network]]
+== Networking
+
+This section describes changes that affect networking in FreeBSD.
+
+[[network-general]]
+=== General Network
+
+Several fixes for NFSv4 were merged.
+
+A segmentation fault during `wpa` EAP/PEAP MSCHAPv2 authentication was fixed.
+
+The man:fetch[3] library now supports proxying `FTP` over `HTTPS`.
+
+[[future-releases]]
+== General Notes Regarding Future FreeBSD Releases
+
+=== FreeBSD EC2 AMI Ids
+// This was a Relnotes by cperciva in: bfe72296190cca25815be1823e98d560fdede061
+Support for recording EC2 AMI Ids in SSM was added to [.filename]#release/Makefile.ec2# to allow SSM Parameter names to look like `/aws/service/freebsd/amd64/base/ufs/12.3/RELEASE` using the public prefix `/aws/service/freebsd`.
+
+[[future-releases-cputype]]
+=== Default `CPUTYPE` Change
+
+Starting with FreeBSD-13.0, the default `CPUTYPE` for the i386 architecture will change from `486` to `686`.
+
+This means that, by default, binaries produced will require a 686-class CPU, including but not limited to binaries provided by the FreeBSD Release Engineering team. FreeBSD 13.0 will continue to support older CPUs, however users needing this functionality will need to build their own releases for official support.
+
+As the primary use for i486 and i586 CPUs is generally in the embedded market, the general end-user impact is expected to be minimal, as new hardware with these CPU types has long faded, and much of the deployed base of such systems is nearing retirement age, statistically.
+
+There were several factors taken into account for this change. For example, i486 does not have 64-bit atomics, and while they can be emulated in the kernel, they cannot be emulated in the userland. Additionally, the 32-bit amd64 libraries have been i686 since their inception.
+
+As the majority of 32-bit testing is done by developers using the lib32 libraries on 64-bit hardware with the `COMPAT_FREEBSD32` option in the kernel, this change ensures better coverage and user experience. This also aligns with what the majority of Linux(R) distributions have been doing for quite some time.
+
+This is expected to be the final bump of the default `CPUTYPE` in i386.
+
+[IMPORTANT]
+====
+This change does not affect the FreeBSD 12.x series of releases.
+====

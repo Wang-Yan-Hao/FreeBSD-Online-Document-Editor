@@ -8,24 +8,17 @@ It is still developing.
 
 Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/ .
 
-## Develop branch progress
-### target
-1. There is some macro in FreeBSD (ex: extref). It need be set in this website.
-2. {{% lang %}} problem in .adoc include section.
-3. Once you click the url in right HTML section, the website would be broken.
-4. Patch Download button hasn't complete.
-5. Other language .adoc hasn't be tested.
-7. CSS need to apply.
-
 ## Directory
 
-freebsd-doc-main: FreeBSD official doc-tree repo. Use git-submodule to clone the repo.
+freebsd-doc-main: FreeBSD official doc-tree repo. Currently copy manually by me.
 
 website: Website file.
 
 website/src-noconflict: Ace editor setting file.
 
 website/scripts: Put website JS file.
+
+website/config: Website setting file.
 
 ## Installation
 
@@ -39,7 +32,7 @@ npm install
 
 ## Usage
 
-Use [Live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to open the index.html.
+Use [Live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to open the website/index.html.
 
 ## Contributing
 
@@ -48,3 +41,17 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+# Debelop Note
+## Develop branch progress
+### target
+1. There is some macro in FreeBSD (ex: extref). It need be set in this website.
+2. {{% lang %}} problem in .adoc include section.
+3. Once you click the url in right HTML section, the website would be broken.
+4. Patch Download button hasn't complete.
+5. Other language .adoc hasn't be tested.
+7. CSS need to apply.
+
+## Some problems I meet
+
+1. freebsd-doc-main file name has some illegle character that I can't use git-submodule or npm to manage this.
