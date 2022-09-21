@@ -45,12 +45,10 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 # Debelop Note
 ## Develop branch progress
 ### target
-1. There is some macro in FreeBSD (ex: extref). It need be set in this website.
-2. {{% lang %}} problem in .adoc include section.
-3. Once you click the url in right HTML section, the website would be broken.
-4. Patch Download button hasn't complete.
-5. Other language .adoc hasn't be tested.
-7. CSS need to apply.
+1. There is some macro in FreeBSD (ex: extref). It need be set in this website. {{% lang %}} problem in .adoc include section is also macro problem.
+2. Patch Download button hasn't complete.
+3. Other language .adoc hasn't be tested.
+4. CSS need to apply.
 
 ## Some problems I meet
 

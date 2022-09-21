@@ -9,27 +9,36 @@ var options = { 'safe': 'unsafe', 'doctype': 'book', 'attributes': { 'lang': 'en
 function generate_html() {
    let editor_content = editor.getValue();  // editor content
    let html_content = asciidoctor.convert(editor_content, options); // conver content to html
+   html_content = '<base target="_blank"/>\n' + html_content // let any link in iframe open in a new window
    output.contentDocument.body.innerHTML = html_content; // html render to output window
 }
 document.querySelector("#editor").addEventListener("keyup", generate_html)
 
+// 2. Online version
 // Check what link the user came from, and send some value to ace editor
 var before_url = "https://docs.freebsd.org/en/books/faq/#introduction" // the url user come
-before_url = '../freebsd-doc-main/documentation/content' + before_url.split('#')[0].substring(24,) + '_index.adoc' // process url
+var configFile = new XMLHttpRequest();
+configFile.open("GET", "./config.json", false); // get config.json
 
-file = before_url
-var rawFile = new XMLHttpRequest();
-rawFile.open("GET", file, false);
-rawFile.onreadystatechange = function () {
-   if (rawFile.readyState === 4) {
-      if (rawFile.status === 200 || rawFile.status == 0) {
-         var allText = rawFile.responseText;  // the .adoc text according the url you came from
-         console.log("allText")
-         console.log(allText)
-         editor.session.insert(editor.getCursorPosition(), allText)
+configFile.onreadystatechange = function () {
+   if (configFile.readyState === 4) {
+      if (configFile.status === 200 || configFile.status == 0) {
+         var configText = configFile.responseText; // get text from config.json
+         configText_json = JSON.parse(configText) // chagne config.json to json object
+         github_url = configText_json['freebsd-doc-github-api-url'] + '/documentation/content' +  before_url.split('#')[0].substring(24,) + '_index.adoc' // github api url to get .adoc file
+         
+         console.log(github_url)
+         var request = new XMLHttpRequest(); // Use git
+         request.open("GET", github_url, false);
+         request.send(null);
+         adoc_json = JSON.parse(request.responseText)
+         adoc_content_base64_encode = adoc_json['content'] // the content return use base64 encode
+         adoc_content = window.atob(adoc_content_base64_encode) // decode
+
+         editor.session.insert(editor.getCursorPosition(), adoc_content) // insert .adoc content to online editor
          generate_html()
       }
    }
 }
 
-rawFile.send(null);
+configFile.send(null);
