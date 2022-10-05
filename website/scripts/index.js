@@ -1,6 +1,6 @@
 // ace setting
-var editor = ace.edit("editor"); // set ace editor to id=editor
-editor.session.setMode("ace/mode/asciidoc")
+var editor = ace.edit('editor'); // set ace editor to id=editor
+editor.session.setMode('ace/mode/asciidoc')
 
 // Asciidoctor setting
 let output = document.querySelector("#output");
@@ -8,7 +8,9 @@ var asciidoctor = Asciidoctor() // Asciidoctor
 var options = { 'safe': 'unsafe', 'doctype': 'book', 'attributes': { 'lang': 'en', 'skip-front-matter': '', 'isoline': '1', 'env-beastie': '1', 'pdf-theme': 'default-with-fallback-font' } } // Asciidoctor convert options
 function generate_html() {
    let editor_content = editor.getValue();  // editor content
+   window.editor_content = editor_content
    let html_content = asciidoctor.convert(editor_content, options); // conver content to html
+   console.log(html_content)
    html_content = '<base target="_blank"/>\n' + html_content // let any link in iframe open in a new window
    output.contentDocument.body.innerHTML = html_content; // html render to output window
 }
@@ -27,15 +29,15 @@ configFile.onreadystatechange = function () {
          configText_json = JSON.parse(configText) // chagne config.json to json object
          github_url = configText_json['freebsd-doc-github-api-url'] + '/documentation/content' +  before_url.split('#')[0].substring(24,) + '_index.adoc' // github api url to get .adoc file
          
-         console.log(github_url)
          var request = new XMLHttpRequest(); // Use git
          request.open("GET", github_url, false);
          request.send(null);
          adoc_json = JSON.parse(request.responseText)
          adoc_content_base64_encode = adoc_json['content'] // the content return use base64 encode
          adoc_content = window.atob(adoc_content_base64_encode) // decode
-
+         
          editor.session.insert(editor.getCursorPosition(), adoc_content) // insert .adoc content to online editor
+         window.origin_content = adoc_content
          generate_html()
       }
    }
