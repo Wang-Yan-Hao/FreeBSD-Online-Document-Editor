@@ -1,10 +1,20 @@
 // Ace editor setting
 var editor = ace.edit("editor"); // set editor to id="editor" tag in HTML
+editor.setOption("wrap", "free");
 editor.session.setMode("ace/mode/asciidoc"); // set editor syntax to asciidoc
 
 // Asciidoctor setting
 var asciidoctor = Asciidoctor(); // asciidoctor object in asciidcotor.js
 let output_session = document.querySelector("#output"); // output sesstion set to id="output" tag in HTML
+// config.json
+var configFile = new XMLHttpRequest();
+configFile.open("GET", "./config.json", false); // use http.get to get config.json in website
+var configText_json ="";
+var configText="";
+
+// Check what link the user came from, and send actual .adoc content into ace editor
+var before_url = "https://docs.freebsd.org/en/books/faq/#introduction"; // the url user came from
+var before_language = before_url.split("org/")[1].split("/")[0];
 
 /* 
 asciidoctor translate options
@@ -23,25 +33,41 @@ var translate_options = { "safe": "safe", "doctype": "book",
                                           "isoline": "1", "env-beastie": "1", 
                                           "pdf-theme": "default-with-fallback-font", 
                                           "allow-uri-read": "" } };
-                                          // generate htmlbottom
 
+// change include syntax in editor content to include url not include .adoc file
+// ex: include::shared/authors.adoc[] -> translate to include::https://raw.githubusercontent.com/freebsd/freebsd-doc/main/shared/authors.adoc[]
+function handle_include_syntax(){
+   return_content = editor_content;
+   var lines = return_content.split("\n"); // to read editor content line by line
+   var lines_len = lines.length; // total lines number of editor_content
+   for(var i = 0; i < lines_len; i++){
+      if(lines[i].substring(0,9) == "include::"){
+         a = lines[i]; // origin one line in editor content
+         b = a.split("::")[1];
+         b = b.replaceAll("{{% lang %}}", before_language);
+         b = b.replaceAll("../", "");
+         b = "include::" + configText_json["freebsd-doc-github-raw-url"] + b;
+         return_content = return_content.replaceAll(a, b);
+      }
+      else if(lines[i].substring(0,2) == "=="){ // loop to the first header, because first header mean all include syntax is read
+         break;
+      }
+   }
+   return return_content;
+}
 
-
-function generate_html() {
+// generate htmlbottom
+function generate_html(){
    let editor_content = editor.getValue();  // editor content
-   let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    window.editor_content = editor_content; // use global window object to store current content
+   editor_content = handle_include_syntax();
+   let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // let any link in iframe open in a new window
    output_session.contentDocument.body.innerHTML = html_content; // html render to output window
 }
 
 // Online version
-// Check what link the user came from, and send actual .adoc content into ace editor
-var before_url = "https://docs.freebsd.org/en/books/faq/#introduction"; // the url user came from
-var configFile = new XMLHttpRequest();
-configFile.open("GET", "./config.json", false); // use http.get to get config.json in website
-
-configFile.onreadystatechange = function () {
+configFile.onreadystatechange = function(){
    if (configFile.readyState === 4) { // 4 mean requeset has finished and has response
       if (configFile.status === 200 || configFile.status == 0) {
          var configText = configFile.responseText; // get text from config.json

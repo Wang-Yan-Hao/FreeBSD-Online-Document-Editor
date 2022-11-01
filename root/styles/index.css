@@ -1,11 +1,35 @@
+.title-container {
+   background-color: rgb(64, 62, 62);
+   padding: 14px;
+   padding-top: 16px;
+   padding-bottom: 16px;
+}
+
 h1.title {
-   font-family: "Roboto", sans-serif;
-   text-align: center;
+   font-family: "Roboto", sans-serif;  
+   color: rgb(244, 242, 242); 
+   font-weight: 600;
+   font-size: 18px;
+}
+
+.file-title-container {
+   background-color: #f7f6f6;
+   padding-left: 14px;
+   padding-top: 13px;
+   padding-bottom: 13px;
+
+}
+
+h1.file-title {
+   font-family: "Roboto", sans-serif;  
+   color: black; 
+   font-weight: 600;
+   font-size: 18px;
 }
 
 .editor-container {
-   height: 840px;
-   margin: 20px auto;
+   height: 800px;
+   margin: auto;
    position: relative;
    display: flex;
    flex-direction: row;
@@ -20,7 +44,7 @@ h1.title {
    bottom: 0;
    height: 100%;
    width: 50%;
-   font-size: 20px;
+   font-size: 16px;
 }
 
 #output {
@@ -44,12 +68,11 @@ h1.title {
 }
 
 .footer {
-   margin: 20px auto;
+   margin: 5px auto;
 }
 
 .button-container button {
-   
-   margin-top: 10px;
+   margin-top: 8px;
    margin-right: 10px;
 	box-shadow:inset 0px 0px 0px 0px #f7c5c0;
 	background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
@@ -62,7 +85,7 @@ h1.title {
 	font-family:Arial;
 	font-size:18px;
 	font-weight:bold;
-	padding:7px 24px;
+	padding:7px 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
 }
@@ -79,11 +102,10 @@ h1.title {
 
 .button-container button a {
    color:#ffffff;
-
 }
 
 .footer {
-   padding-top: 10px;
+   padding-top: 4px;
 }
 
 .footer p {

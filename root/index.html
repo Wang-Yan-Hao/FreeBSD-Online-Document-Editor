@@ -5,12 +5,18 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
    <title>FreeBSD Online Document Editor</title>
+   <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
    <base target="_blank" />
 
 </head>
 <body>
-   <h1 class="title"> FreeBSD Online Document Editor</h3>
+   <div class="title-container">
+      <h1 class="title"> FreeBSD Online Document Editor</h1>
+   </div>
+   <div class="file-title-container">
+      <h1 class="file-title"> test.adoc</h1>
+   </div>
 
    <div class="editor-container">
       <div class="left">
@@ -24,7 +30,7 @@
    <div class="button-container">
       <button onclick="generate_html()">Generate HTML</button>
       <button onclick="patch_download()">Patch Download</button>
-      <button onclick="window.location.href='https://bugs.freebsd.org/bugzilla/';"> FreeBSD Bugzilla</button>
+      <button onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')"> FreeBSD Bugzilla</button>
       <a href="pages/step.html"> 
          <button>How to change document ?</button>
       </a>
