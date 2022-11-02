@@ -1,8 +1,17 @@
 .title-container {
    background-color: rgb(64, 62, 62);
-   padding: 14px;
-   padding-top: 16px;
-   padding-bottom: 16px;
+   padding: 12px;
+   flex-direction: row;
+   display: flex;
+   align-items: center;
+}
+
+.title-container > a > img  {
+   width: 25px;
+}
+
+.title-container > a {
+   margin-right: 25px;
 }
 
 h1.title {
@@ -10,6 +19,11 @@ h1.title {
    color: rgb(244, 242, 242); 
    font-weight: 600;
    font-size: 18px;
+   display: inline;
+}
+
+.generate-html {
+   margin-left: auto;
 }
 
 .file-title-container {
@@ -28,7 +42,7 @@ h1.file-title {
 }
 
 .editor-container {
-   height: 800px;
+   height: 850px;
    margin: auto;
    position: relative;
    display: flex;
@@ -108,8 +122,10 @@ h1.file-title {
    padding-top: 4px;
 }
 
-.footer p {
+.footer p,a {
    font-family: "Roboto", sans-serif;
    font-weight: 600;
    font-size: 15px;
+   padding-top: 8px;
+   padding-left: 10px;
 }

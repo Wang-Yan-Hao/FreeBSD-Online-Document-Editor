@@ -41,7 +41,7 @@ function handle_include_syntax(){
    var lines = return_content.split("\n"); // to read editor content line by line
    var lines_len = lines.length; // total lines number of editor_content
    for(var i = 0; i < lines_len; i++){
-      if(lines[i].substring(0,9) == "include::"){
+      if(lines[i].substring(0,9) == "include::" && lines[i].substring(9,13) != "http"){
          a = lines[i]; // origin one line in editor content
          b = a.split("::")[1];
          b = b.replaceAll("{{% lang %}}", before_language);

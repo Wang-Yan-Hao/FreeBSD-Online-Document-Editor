@@ -4,7 +4,7 @@ It is a online website editor for FreeBSD documentation which is still developin
 
 It use simple HTML, CSS, JS, Ace editor and asciidoctor.js(use npm to manage).
 
-Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/ .
+Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/.
 
 ## Directory
 

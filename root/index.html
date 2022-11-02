@@ -7,12 +7,23 @@
    <title>FreeBSD Online Document Editor</title>
    <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
-   <base target="_blank" />
 
 </head>
 <body>
    <div class="title-container">
       <h1 class="title"> FreeBSD Online Document Editor</h1>
+      <a title="Generate HTML" class="generate-html" href="javascript:null" onclick="generate_html()"> 
+         <img src="./img/html.png">
+      </a>
+      <a title="Download patch" href="javascript:null" onclick="patch_download()">
+         <img src="./img/download.png" >
+      </a>
+      <a title="FreeBSD Bugzilla" href="javascript:null" onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')"> 
+         <img src="./img/web.png">
+      </a>
+      <a title="Help" href="pages/step.html"> 
+         <img src="./img/help.png">
+      </a>
    </div>
    <div class="file-title-container">
       <h1 class="file-title"> test.adoc</h1>
@@ -25,15 +36,6 @@
       <div class="right">
          <iframe id="output"></iframe>
       </div>
-   </div>
-
-   <div class="button-container">
-      <button onclick="generate_html()">Generate HTML</button>
-      <button onclick="patch_download()">Patch Download</button>
-      <button onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')"> FreeBSD Bugzilla</button>
-      <a href="pages/step.html"> 
-         <button>How to change document ?</button>
-      </a>
    </div>
 
    <div class="footer">
