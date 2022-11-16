@@ -8,7 +8,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "asciidoctor": "^2.2.6"
+    "asciidoctor": "^2.2.6",
+    "asciidoctor.js": "^1.5.9",
+    "browserify": "^17.0.0",
+    "opal-compiler": "^2.2.0"
   },
   "description": ""
 }

@@ -5,6 +5,8 @@ editor.session.setMode("ace/mode/asciidoc"); // set editor syntax to asciidoc
 
 // Asciidoctor setting
 var asciidoctor = Asciidoctor(); // asciidoctor object in asciidcotor.js
+// document.write('<script src="./lib/cross-document-references-macro.js"></script>'); //注意,此處須為相對於index.html的絕對路徑
+
 let output_session = document.querySelector("#output"); // output sesstion set to id="output" tag in HTML
 // config.json
 var configFile = new XMLHttpRequest();
@@ -16,6 +18,9 @@ var configText="";
 var before_url = "https://docs.freebsd.org/en/books/faq/#introduction"; // the url user came from
 var before_language = before_url.split("org/")[1].split("/")[0];
 
+// set file title
+var file_title = document.querySelector(".file-title");
+file_title.innerHTML = "doc/documentation/content" +  before_url.split("#")[0].substring(24,) + "_index.adoc";
 /* 
 asciidoctor translate options
 1. "safe": Safe Modes. 
@@ -32,7 +37,8 @@ var translate_options = { "safe": "safe", "doctype": "book",
                           "attributes": { "lang": "en", "skip-front-matter": "", 
                                           "isoline": "1", "env-beastie": "1", 
                                           "pdf-theme": "default-with-fallback-font", 
-                                          "allow-uri-read": "" } };
+                                          "allow-uri-read": "" },
+                        };
 
 // change include syntax in editor content to include url not include .adoc file
 // ex: include::shared/authors.adoc[] -> translate to include::https://raw.githubusercontent.com/freebsd/freebsd-doc/main/shared/authors.adoc[]
@@ -56,6 +62,7 @@ function handle_include_syntax(){
    return return_content;
 }
 
+
 // generate htmlbottom
 function generate_html(){
    let editor_content = editor.getValue();  // editor content
@@ -63,7 +70,19 @@ function generate_html(){
    editor_content = handle_include_syntax();
    let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // let any link in iframe open in a new window
-   output_session.contentDocument.body.innerHTML = html_content; // html render to output window
+   output_session.contentDocument.body.innerHTML = 
+   '<link rel="stylesheet" href="styles/website_css/fixed_large.css">' +
+   '<link rel="stylesheet" href="styles/website_css/fixed.css">' +
+   '<link rel="stylesheet" href="styles/website_css/global.css">' +
+   '<link rel="stylesheet" href="styles/website_css/iefixes.css">' +
+   '<link rel="stylesheet" href="styles/website_css/layout.css">' +
+   '<link rel="stylesheet" href="styles/website_css/navigation.css">' +
+   '<link rel="stylesheet" href="styles/website_css/table.css">' +
+   '<link rel="stylesheet" href="styles/website_css/text.css">' +
+   '<link rel="stylesheet" href="styles/website_css/docbook.css">' +
+   '<link rel="stylesheet" href="styles/documentation_css/main.min.css">' +
+   '<link rel="stylesheet" href="styles/documentation_css/font-awesome-min.css">' 
+   + html_content; // html render to output window
 }
 
 // Online version
