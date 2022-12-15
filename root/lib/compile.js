@@ -4,7 +4,7 @@ require('opal-compiler')
 // Opal object will be available on the global scope
 
 const builder = Builder.create()
-builder.appendPaths('CrossDocumentReferencesMacro') 
+builder.appendPaths('PackagesMacro') 
 
 const result = builder.build('extension.rb') 
 fs.writeFileSync('extension.js', result.toString(), 'utf8') 

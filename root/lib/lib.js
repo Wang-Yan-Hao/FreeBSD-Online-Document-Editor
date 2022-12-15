@@ -1,7 +1,0 @@
-require('./cross-document-references-macro.js')
-require('./git-macro.js')
-require('./inter-document-references-macro.js')
-require('./man-macro.js')
-require('./packages-macro.js')
-require('./sectnumoffset-treeprocessor.js')
-require('./compile.js')
