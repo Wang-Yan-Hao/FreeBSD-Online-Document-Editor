@@ -6,10 +6,7 @@ require('opal-compiler')
 const builder = Builder.create()
 builder.appendPaths('PackagesMacro') 
 
-const result = builder.build('extension.rb') 
-fs.writeFileSync('extension.js', result.toString(), 'utf8') 
-
-const result_7 = builder.build('cross-document-references-macro.rb') 
+const result_1 = builder.build('cross-document-references-macro.rb') 
 fs.writeFileSync('cross-document-references-macro.js', result.toString(), 'utf8') 
 
 const result_2 = builder.build('git-macro.rb') 

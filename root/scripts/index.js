@@ -5,7 +5,6 @@ editor.session.setMode("ace/mode/asciidoc"); // set editor syntax to asciidoc
 
 // Asciidoctor setting
 var asciidoctor = Asciidoctor(); // asciidoctor object in asciidcotor.js
-// document.write('<script src="./lib/cross-document-references-macro.js"></script>'); //注意,此處須為相對於index.html的絕對路徑
 
 
 let output_session = document.querySelector("#output"); // output sesstion set to id="output" tag in HTML
@@ -123,7 +122,7 @@ function generate_html(){
    '<link rel="stylesheet" href="styles/documentation_css/main.min.css">' +
    '<link rel="stylesheet" href="styles/documentation_css/font-awesome-min.css">' 
    + html_content; // html render to output window
-
 }
 
-generate_html();
+
+
