@@ -41,3 +41,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 # Debelop Note
 ## target
 1. test other languages .adoc file.
+2. Http get has some problem,  == Why is my `ipfw` “fwd” rule to redirect a service to another machine not working?

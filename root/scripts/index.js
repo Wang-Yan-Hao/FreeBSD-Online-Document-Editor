@@ -110,18 +110,18 @@ function generate_html(){
    let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // let any link in iframe open in a new window
    output_session.contentDocument.body.innerHTML = 
-/*    '<link rel="stylesheet" href="styles/website_css/fixed_large.css">' +
-   '<link rel="stylesheet" href="styles/website_css/fixed.css">' +
-   '<link rel="stylesheet" href="styles/website_css/global.css">' +
-   '<link rel="stylesheet" href="styles/website_css/iefixes.css">' +
-   '<link rel="stylesheet" href="styles/website_css/layout.css">' +
-   '<link rel="stylesheet" href="styles/website_css/navigation.css">' +
-   '<link rel="stylesheet" href="styles/website_css/table.css">' +
-   '<link rel="stylesheet" href="styles/website_css/text.css">' +
-   '<link rel="stylesheet" href="styles/website_css/docbook.css">' + */
-   '<link rel="stylesheet" href="styles/documentation_css/main.min.css">' +
-   '<link rel="stylesheet" href="styles/documentation_css/font-awesome-min.css">' 
-   + html_content; // html render to output window
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed_large.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/global.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/iefixes.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/layout.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/navigation.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/table.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/text.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/docbook.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/main.min.css">' +
+   '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
+   html_content; // html render to output window
 }
 
 
