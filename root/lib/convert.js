@@ -1,19 +1,19 @@
 const asciidoctor = require('asciidoctor')()
 
 require('./cross-document-references-macro') 
-require('./CrossDocumentReferencesMacro/extension.js') 
+// require('./CrossDocumentReferencesMacro/extension.js') 
 
 require('./git-macro.js')
-require('./GitReferencesMacro/extension.js')
+// require('./GitReferencesMacro/extension.js')
 
 require('./inter-document-references-macro.js')
-require('./InterDocumentReferencesMacro/extension.js') 
+// require('./InterDocumentReferencesMacro/extension.js') 
 
 require('./man-macro.js')
-require('./ManPageMacro/extension.js')
+// require('./ManPageMacro/extension.js')
 
 require('./packages-macro.js')
-require('./PackagesMacro/extension.js')
+// require('./PackagesMacro/extension.js')
 
 require('./sectnumoffset-treeprocessor.js')
 

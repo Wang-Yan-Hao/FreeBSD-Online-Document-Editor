@@ -1,13 +1,3 @@
-require('../lib/cross-document-references-macro.js')
-require('../lib/git-macro.js')
-require('../lib/inter-document-references-macro.js')
-require('../lib/man-macro.js')
-require('../lib/lib.js')
-require('../lib/sectnumoffset-treeprocessor.js')
-require('../lib/packages-macro.js')
-require('../lib/CrossDocumentReferencesMacro/extension.js')
-require('../lib/test/tel-inline-macro.js')
-
 // Ace editor setting
 var editor = ace.edit("editor"); // set editor to id="editor" tag in HTML
 editor.setOption("wrap", "free");
@@ -121,7 +111,7 @@ function generate_html(){
    let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // let any link in iframe open in a new window
    output_session.contentDocument.body.innerHTML = 
-   '<link rel="stylesheet" href="styles/website_css/fixed_large.css">' +
+/*    '<link rel="stylesheet" href="styles/website_css/fixed_large.css">' +
    '<link rel="stylesheet" href="styles/website_css/fixed.css">' +
    '<link rel="stylesheet" href="styles/website_css/global.css">' +
    '<link rel="stylesheet" href="styles/website_css/iefixes.css">' +
@@ -129,13 +119,11 @@ function generate_html(){
    '<link rel="stylesheet" href="styles/website_css/navigation.css">' +
    '<link rel="stylesheet" href="styles/website_css/table.css">' +
    '<link rel="stylesheet" href="styles/website_css/text.css">' +
-   '<link rel="stylesheet" href="styles/website_css/docbook.css">' +
+   '<link rel="stylesheet" href="styles/website_css/docbook.css">' + */
    '<link rel="stylesheet" href="styles/documentation_css/main.min.css">' +
    '<link rel="stylesheet" href="styles/documentation_css/font-awesome-min.css">' 
    + html_content; // html render to output window
 
-   const html = asciidoctor.convert('rwar extref:https://docs.freebsd.org/en/books/faq/[FreeBSD website]. It ', { 'to_file': false }) 
-   console.log(html)
 }
 
 generate_html();

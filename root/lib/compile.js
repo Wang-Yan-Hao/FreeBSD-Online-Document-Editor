@@ -8,8 +8,8 @@ builder.appendPaths('PackagesMacro')
 
 const result = builder.build('extension.rb') 
 fs.writeFileSync('extension.js', result.toString(), 'utf8') 
-/* 
-const result = builder.build('cross-document-references-macro.rb') 
+
+const result_7 = builder.build('cross-document-references-macro.rb') 
 fs.writeFileSync('cross-document-references-macro.js', result.toString(), 'utf8') 
 
 const result_2 = builder.build('git-macro.rb') 
@@ -25,4 +25,4 @@ const result_5 = builder.build('packages-macro.rb')
 fs.writeFileSync('packages-macro.js', result.toString(), 'utf8')
 
 const result_6 = builder.build('sectnumoffset-treeprocessor.rb') 
-fs.writeFileSync('sectnumoffset-treeprocessor.js', result.toString(), 'utf8') */
+fs.writeFileSync('sectnumoffset-treeprocessor.js', result.toString(), 'utf8')
