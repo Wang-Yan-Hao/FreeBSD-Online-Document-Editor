@@ -18,9 +18,9 @@ node.js >= v16.13.1
 npm >= v8.18.0
 
 ```bash 
-cd ./root/
+$ cd ./root/
 
-npm install 
+$ npm install 
 ```
 
 ## Package
@@ -38,7 +38,49 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+## Open in the local server
+
+There are three ways to open the website on the local server that can help you develop. When you change the code, you can see the change on the local server immediately.
+
+### 1. VSC extension
+
+You can easily open a local server through the [liver-server](https://github.com/ritwickdey/vscode-live-server-plus-plus) extenion.
+
+### 2. Node.js
+Use the npm package, "http-server" to open a local server.
+
+```bash
+$ npm install --global http-server
+
+$ http-server /root [options]
+```
+
+Advanced usage of [http-server](https://www.npmjs.com/package/http-server).
+
+### 3. FreeBSD
+We will use apache24 to open loacl server.
+
+```
+$ pkg install apache24 # install
+
+$ vim /usr/local/etc/apache24/httpd.conf
+```
+Change "ServerName" column to your ip and 80 port. "DocumentRoot" and "Directory" tag also need to be set to the root directory.
+
+Please refer [Apache document](https://httpd.apache.org/docs/2.4/configuring.html)
+
+```
+$ service apache24 configtest # See is there something wrong on the httpd.conf file
+
+$ service apache24 start # start apache service
+```
+
 # Debelop Note
 ## target
 1. test other languages .adoc file.
 2. Http get has some problem,  == Why is my `ipfw` “fwd” rule to redirect a service to another machine not working?
+3. change ui of the left top button
+4. chagne to dynamic showing
+5. see other community change step
+6. prepare for the developer summit
+
