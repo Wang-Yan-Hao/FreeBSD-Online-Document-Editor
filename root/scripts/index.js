@@ -1,3 +1,11 @@
+// Source: https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+function b64DecodeUnicode(str) {
+   // Going backwards: from bytestream, to percent-encoding, to original string.
+   return decodeURIComponent(atob(str).split('').map(function(c) {
+       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+   }).join(''));
+}
+
 // Ace editor setting
 var editor = ace.edit("editor"); // set editor to id="editor" tag in HTML
 editor.setOption("wrap", "free");
@@ -15,7 +23,7 @@ var configText_json ="";
 var configText="";
 
 // Check what link the user came from, and send actual .adoc content into ace editor
-var before_url = "https://docs.freebsd.org/en/books/faq/#introduction"; // the url user came from
+var before_url = "https://docs.freebsd.org/en/books/faq/"; // the url user came from
 var before_language = before_url.split("org/")[1].split("/")[0];
 
 // Online version
@@ -32,10 +40,10 @@ configFile.onreadystatechange = function(){
          request.send(null);
          adoc_json = JSON.parse(request.responseText);
          adoc_content_base64_encode = adoc_json["content"]; // the content return use base64 encode
-         adoc_content = window.atob(adoc_content_base64_encode); // decode
+         adoc_content = b64DecodeUnicode(adoc_content_base64_encode); // decode
          editor.session.insert(editor.getCursorPosition(), adoc_content); // insert .adoc content that github api get to left editor session
          window.origin_content = adoc_content; // use global window to store content
-         
+
          // for patch_download.js generate diff file
          window.current_link_1 = "a/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
          window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
@@ -46,7 +54,8 @@ configFile.send(null);
 
 // set file title
 var file_title = document.querySelector(".file-title");
-file_title.innerHTML = "doc/documentation/content" +  before_url.split("#")[0].substring(24,) + "_index.adoc";
+file_title.innerHTML = before_url
+
 /* 
 asciidoctor translate options
 1. "safe": Safe Modes. 
@@ -109,6 +118,7 @@ function generate_html(){
    editor_content = handle_include_syntax();
    let html_content = asciidoctor.convert(editor_content, translate_options); // conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // let any link in iframe open in a new window
+   console.log(html_content)
    output_session.contentDocument.body.innerHTML = 
    '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed_large.css">' +
    '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed.css">' +
