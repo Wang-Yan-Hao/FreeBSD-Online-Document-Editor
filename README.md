@@ -2,6 +2,10 @@
 
 It is an online website editor for FreeBSD documentation which is still developing. The purpose of FreeBSD Online Document Editor is to simplify the editing process in FreeBSD documentation.
 
+This is the workflow of this project.
+![image](./Workflow.png)
+
+
 Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/
 
 ## Directory
@@ -30,14 +34,6 @@ $ npm install
 3. Ace.js@1.11.2, using CDN to include in root/index.html
 4. Jsdiff@5.1.0, using CDN to include in root/index.html
 
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 ## Open in the local server
 
 There are three ways to open the website on the local server that can help you develop. When you change the code, you can see the change on the local server immediately.
@@ -58,7 +54,7 @@ $ http-server /root [options]
 Advanced usage of [http-server](https://www.npmjs.com/package/http-server).
 
 ### 3. FreeBSD
-We will use apache24 to open local server.
+We will use apache24 to open the local server.
 
 ```
 $ pkg install apache24 # install
@@ -75,10 +71,10 @@ $ service apache24 configtest # See is there something wrong on the httpd.conf f
 $ service apache24 start # start apache service
 ```
 
-# Debelop Note
-## target
-1. test other languages .adoc file.
-2. Http get has some problem,  == Why is my `ipfw` “fwd” rule to redirect a service to another machine not working?
-3. change ui of the left top button
-4. chagne to dynamic showing
+## Contributing
 
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

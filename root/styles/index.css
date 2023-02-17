@@ -22,7 +22,11 @@ h1.title {
    display: inline;
 }
 
-.generate-html {
+.prompttest {
+   margin-right: auto;
+}
+
+.change_adoc {
    margin-left: auto;
 }
 
