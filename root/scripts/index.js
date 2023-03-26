@@ -146,3 +146,22 @@ function generate_html(){
    '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
    html_content; // html render to output window
 }
+
+
+let debounceTimeoutId = null; // to prevent too many function calls
+
+// create a new observer instance
+const observer = new MutationObserver(function(mutationsList, observer) {
+  // Use debounce technique to ensure the function will be called at most once in one second
+  if (debounceTimeoutId) {
+    clearTimeout(debounceTimeoutId);
+  }
+  debounceTimeoutId = setTimeout(() => {
+    // trigger your function here
+    generate_html();
+    console.log('Page content has changed!');
+  }, 1000);
+});
+
+// start observing the target node for configured mutations
+observer.observe(document.getElementById('editor'), { childList: true, subtree: true });
