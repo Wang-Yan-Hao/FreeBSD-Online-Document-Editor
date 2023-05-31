@@ -1,6 +1,0 @@
-:toclevels: 1
-:handbook: test
-:faq: https://github.com/
-
-
-test extref:{faq}[FreeBSD website].

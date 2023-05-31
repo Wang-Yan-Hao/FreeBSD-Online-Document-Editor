@@ -1,4 +1,5 @@
 {
    "freebsd-doc-github-api-url": "https://api.github.com/repos/freebsd/freebsd-doc/contents",
-   "freebsd-doc-github-raw-url": "https://raw.githubusercontent.com/freebsd/freebsd-doc/main/"
+   "freebsd-doc-github-raw-url": "https://raw.githubusercontent.com/freebsd/freebsd-doc/main/",
+   "freebsd-doc-extension-ulr": "https://cgit.freebsd.org/doc/plain/shared/lib/"
 }

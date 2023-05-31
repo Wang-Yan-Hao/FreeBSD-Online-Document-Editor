@@ -1,9 +1,0 @@
-:toc-title: İçindekiler
-ifdef::book[]
-:part-signifier: Part
-:chapter-signifier: Chapter
-endif::[]
-:appendix-caption: Ek bölüm
-:table-caption: Tablo
-:figure-caption: Görsel
-:example-caption: Örnek
