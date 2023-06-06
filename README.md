@@ -4,9 +4,9 @@ It is an online website editor for FreeBSD documentation which is still developi
 This is the workflow of this project.
 ![image](./Workflow.png)
 
+Online website location: [website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/)
 
-Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/
-
+Related slide: [slide](https://drive.google.com/file/d/1rOQ_-Yzue83arFYGgiYbY9MxbMQg7SC5/view?usp=drive_link)
 ## Directory
 * root: website file.
 * root/lib: asciidoc syntax extension gets from the FreeBSD doc project (shared/lib/). The original file is written by Ruby, we use opal-compiler to translate it. You can use the lib/renew.sh to update the extension if the freebsd-doc revise or add extension.
@@ -15,7 +15,6 @@ Online website location: https://wang-yan-hao.github.io/FreeBSD-Online-Document-
 
 ## Installation
 node.js >= v16.13.1
-
 npm >= v8.18.0
 
 ```bash 
