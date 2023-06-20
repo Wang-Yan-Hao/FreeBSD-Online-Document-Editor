@@ -1,18 +1,11 @@
 #!/bin/bash
 
 # URL of the remote directory
-REMOTE_URL="https://cgit.freebsd.org/doc/plain/shared/lib/"
-
+# Read the config.json file and extract the value of the freebsd-doc-extension-url key
+REMOTE_URL=$(jq -r '.freebsd-doc-extension-url' config.json)
 # Local path for the directory
 LOCAL_PATH="./"
 LOCAL_COPY_PATH="./tmp/cgit.freebsd.org/doc/plain/shared/lib/"
-
-# mkdir -p ./tmp
-# cd ./tmp
-# wget -r --no-parent "$REMOTE_URL"
-# find . -type f -name "*.html" -exec rm {} +
-# cd ..
-# rm ./tmp/cgit.freebsd.org/robots.txt
 
 function Iterate() {
     local LOCAL_PATH="$1"
@@ -32,7 +25,6 @@ function Iterate() {
 }
 
 Iterate "$LOCAL_PATH" "$LOCAL_COPY_PATH"
-
 rm -rf ./tmp
 # Using opal-compiler to translate new *.rb files to *.js files
 node compile.js

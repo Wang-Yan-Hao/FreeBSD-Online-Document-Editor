@@ -9,7 +9,7 @@
 </head>
 <body>
    <div class="title-container">
-      <h1 class="title"> FreeBSD Online Document Editor</h1>
+      <h1 class="title">FreeBSD Online Document Editor</h1>
       <a title="Change file" class="change_adoc" href="javascript:null"> 
          <img src="./img/exchange_2.png">
       </a>
@@ -46,39 +46,21 @@
 
    <!-- include asciidoctor by js core file -->
    <script src="scripts/asciidoctor.js"></script>
-   <!-- include Ace.js by CDN -->
+   <!-- include ace.js by CDN -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js" integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-   <!-- include Diff.js by CDN -->
+   <!-- include diff.js by CDN -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js" integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 
+   <!-- our js file -->
    <script src="scripts/index.js"></script>
    <script src="scripts/patch_download.js"></script>
 
-   <!-- asciidcor syntax extension from freebsd doc project -->
+   <!-- asciidcor syntax extension from freebsd doc project (translated by opal-compiler) -->
    <script type="text/javascript" src="lib/cross-document-references-macro.js"></script>
    <script type="text/javascript" src="lib/inter-document-references-macro.js"></script>
    <script type="text/javascript" src="lib/git-macro.js"></script>
    <script type="text/javascript" src="lib/man-macro.js"></script>
    <script type="text/javascript" src="lib/packages-macro.js"></script>
    <script type="text/javascript" src="lib/sectnumoffset-treeprocessor.js"></script>
-   
-   <script type = "text/javascript">  
-      generate_html(); // refresh window while enter webiste
-      var button = document.querySelector('.change_adoc');
-      function popup3(e) {
-         var guest = window.prompt('Change the left adoc file with freebsd document url', before_url);
-         if (guest == null || "") {
-         } 
-         else {
-            before_url = guest
-            console.log(before_url)
-            github_api_get()
-            generate_html()
-         }
-         
-      }
-      button.addEventListener('click', popup3);
-   </script>  
-
 </body>
 </html>
