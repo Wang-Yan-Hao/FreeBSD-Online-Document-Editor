@@ -4,6 +4,20 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>FreeBSD Online Document Editor</title>
+
+   <script>
+      // Display confirmation message when closing the page
+      window.addEventListener('beforeunload', function(e) {
+         // Custom message to inform the user
+         var confirmationMessage = 'Your content may not be stored. Are you sure you want to leave this page?';
+         
+         // Some browsers require the confirmation message to be set
+         e.returnValue = confirmationMessage;
+         
+         return confirmationMessage;
+      });
+      </script>
+
    <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
 </head>

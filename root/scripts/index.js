@@ -162,7 +162,7 @@ const observer = new MutationObserver(function(mutationsList, observer) {
 // Start observing the target node for configured mutations
 observer.observe(document.getElementById('editor'), { childList: true, subtree: true });
 
-// Change file button
+// Change file button function
 var button = document.querySelector('.change_adoc');
 function popup3(e) {
    var guest = window.prompt('Change the left adoc file with freebsd document url', before_url);
@@ -178,3 +178,4 @@ function popup3(e) {
 button.addEventListener('click', popup3);
 
 generate_html(); // Generate HTML while first enter page
+
