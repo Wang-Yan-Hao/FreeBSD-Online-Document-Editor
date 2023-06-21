@@ -65,7 +65,7 @@ function github_api_get(){
 /* 
 Asciidoctor translation options
 1. "safe": Safe Modes. 
-2. "doctype": Document Typ, it should change according the doctype of .adoc file in editor session.
+2. "doctype": Document Type, it should change according the doctype of .adoc file in editor session.
 3. "lang": Language, it should change according the language of .adoc file in editor session.
 4. "skip-front-matter":  Asciidoctor will recognize the front matter and consume it before parsing 
    the document. Asciidoctor stores the content it removes in the front-matter attribute to make 
@@ -75,11 +75,14 @@ Asciidoctor translation options
 7. "allow-uri-read": Allows data to be read from URLs. "include:[]" syntax. Additional options that origin freebsd doc hasn't.
 */
 var doctype = "book" // Default doctype
-var translate_options = { "safe": "safe", "doctype": doctype, 
-                           "attributes": { "lang": "en", "skip-front-matter": "", 
-                                             "isoline": "1", "env-beastie": "1", 
-                                             "pdf-theme": "default-with-fallback-font", 
-                                             "allow-uri-read": "" },
+var translate_options = {  "safe": "safe", "doctype": doctype,
+                           "attributes": {   "lang": "en",
+                                             "skip-front-matter": "",
+                                             "isoline": "1",
+                                             "env-beastie": "1",
+                                             "pdf-theme": "default-with-fallback-font",
+                                             "allow-uri-read": ""
+                                          },
                            };
 function asciidoctor_set(){
    return_content = editor.getValue();
@@ -94,11 +97,14 @@ function asciidoctor_set(){
          break;
       }
    }
-   translate_options = { "safe": "safe", "doctype": doctype, 
-                           "attributes": { "lang": "en", "skip-front-matter": "", 
-                                             "isoline": "1", "env-beastie": "1", 
+   translate_options = {   "safe": "safe", "doctype": doctype, 
+                           "attributes": {   "lang": "en",
+                                             "skip-front-matter": "",
+                                             "isoline": "1",
+                                             "env-beastie": "1",
                                              "pdf-theme": "default-with-fallback-font", 
-                                             "allow-uri-read": "" },
+                                             "allow-uri-read": "" 
+                                          },
                            };
 }
 
@@ -132,19 +138,21 @@ function generate_html() {
    editor_content = handle_include_syntax();
    let html_content = asciidoctor.convert(editor_content, translate_options); // Conver editor content to HTML
    html_content = '<base target="_blank"/>\n' + html_content; // Let any link in iframe open in a new window
+      
    output_session.contentDocument.body.innerHTML = 
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed_large.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/global.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/iefixes.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/layout.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/navigation.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/table.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/text.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/docbook.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/main.min.css">' +
-   '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
-   html_content; // HTML render to output window
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed_large.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/global.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/iefixes.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/layout.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/navigation.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/table.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/text.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/docbook.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/main.min.css">' +
+      '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
+      html_content; // HTML render to output window
+   console.log(html_content)
 }
 
 let debounceTimeoutId = null; // To prevent too many function calls
