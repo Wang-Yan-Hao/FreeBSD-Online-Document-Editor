@@ -23,7 +23,7 @@ $ npm install
 ```
 ## Package
 1. Opal-compiler@1.0.13, installed by npm in root/package.json.
-2. Asciidoctor.js@2.2.6 , copy the core js file from GitHub in root/scripts/asciidoctor.js.
+2. Asciidoctor.js@2.2.6 , installed by npm in root/package.json. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
 3. Ace.js@1.11.2, using CDN to include in root/index.html.
 4. Jsdiff@5.1.0, using CDN to include in root/index.html.
 
