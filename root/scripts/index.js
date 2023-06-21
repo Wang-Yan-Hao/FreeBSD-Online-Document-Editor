@@ -62,28 +62,36 @@ function github_api_get(){
    window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
 }
 
-/* 
-Asciidoctor translation options
-1. "safe": Safe Modes. 
-2. "doctype": Document Type, it should change according the doctype of .adoc file in editor session.
-3. "lang": Language, it should change according the language of .adoc file in editor session.
-4. "skip-front-matter":  Asciidoctor will recognize the front matter and consume it before parsing 
-   the document. Asciidoctor stores the content it removes in the front-matter attribute to make 
-   it available for integrations.
-5. "isoline": 
-6. "pdf-theme": Theme of the font.
-7. "allow-uri-read": Allows data to be read from URLs. "include:[]" syntax. Additional options that origin freebsd doc hasn't.
+/*
+   When you run on `make html` in documentation/, you will see below log. We can see what attribute in content
+   INFO 2023/06/20 18:28:49 Rendering articles/mailing-list-faq/_index.adoc  using asciidoctor args [
+   -r man-macro 
+   -r inter-document-references-macro 
+   -r cross-document-references-macro 
+   -r sectnumoffset-treeprocessor 
+   -r packages-macro 
+   -r git-macro 
+   -a isonline=0 
+   -a skip-front-matter=1
+   -a sectanchors=after 
+   -a env-beastie=1 
+   --no-header-footer -] ...                
 */
 var doctype = "book" // Default doctype
 var translate_options = {  "safe": "safe", "doctype": doctype,
-                           "attributes": {   "lang": "en",
-                                             "skip-front-matter": "",
-                                             "isoline": "1",
+                           "attributes":  {   
+                                             "isonline": "0",
+                                             "skip-front-matter": "1",
+                                             "sectanchors": "after",
                                              "env-beastie": "1",
-                                             "pdf-theme": "default-with-fallback-font",
-                                             "allow-uri-read": ""
+                                             "noheader": "",
+                                             "nofooter": "",
+                                             "allow-uri-read": "",
                                           },
                            };
+// {"safe": "safe","allow-uri-read": ""} is set by this online editor, because we need allows data to be read from URLs.
+
+// Get 'doctype' attribute from file content
 function asciidoctor_set(){
    return_content = editor.getValue();
    var lines = return_content.split("\n"); // Read editor content line by line
@@ -97,15 +105,7 @@ function asciidoctor_set(){
          break;
       }
    }
-   translate_options = {   "safe": "safe", "doctype": doctype, 
-                           "attributes": {   "lang": "en",
-                                             "skip-front-matter": "",
-                                             "isoline": "1",
-                                             "env-beastie": "1",
-                                             "pdf-theme": "default-with-fallback-font", 
-                                             "allow-uri-read": "" 
-                                          },
-                           };
+   translate_options["doctype"] = doctype 
 }
 
 // Change include syntax in editor content to include url not include .adoc file
