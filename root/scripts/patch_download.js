@@ -12,3 +12,9 @@ function patch_download() {
    var diff = Diff.createTwoFilesPatch(window.current_link_1, window.current_link_2, window.origin_content, window.editor_content ); // use jsdiff create diff file string
    download("diff.patch", diff);
 }
+
+function store_content() {
+   var editor = ace.edit("editor"); // Set editor to id="editor" tag in html
+   editor_content = editor.getValue();
+   download("index.adoc", editor_content);
+}
