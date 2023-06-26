@@ -153,7 +153,6 @@ function generate_html() {
       '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/main.min.css">' +
       '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
       html_content; // HTML render to output window
-   console.log(html_content)
 }
 
 let debounceTimeoutId = null; // To prevent too many function calls
@@ -179,7 +178,6 @@ function popup3(e) {
    } 
    else {
       before_url = guest
-      console.log(before_url)
       github_api_get()
       generate_html()
    }
