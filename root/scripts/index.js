@@ -75,7 +75,8 @@ function github_api_get(){
    -a skip-front-matter=1
    -a sectanchors=after 
    -a env-beastie=1 
-   --no-header-footer -] ...                
+   --no-header-footer -] ...     
+   Reference: https://docs.asciidoctor.org/asciidoctor.js/latest/processor/convert-options/ and https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes-ref/
 */
 var doctype = "book" // Default doctype
 var translate_options = {  "safe": "safe", "doctype": doctype,
