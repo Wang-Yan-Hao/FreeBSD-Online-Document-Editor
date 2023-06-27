@@ -49,19 +49,25 @@ function github_api_get(){
    var request = new XMLHttpRequest();
    request.open("GET", github_url, false);
    request.send(null);
-   adoc_json = JSON.parse(request.responseText);
-   adoc_content_base64_encode = adoc_json["content"]; // The content return use base64 encode
-   adoc_content = b64DecodeUnicode(adoc_content_base64_encode); // Decode
-   editor.setValue("") // Clean content
-   editor.session.insert(editor.getCursorPosition(), adoc_content); // Insert .adoc content that github api get to left editor session
-   window.origin_content = adoc_content; // Use global window to store content
-   file_title.innerHTML = before_url // Set adoc file title in left section
-   
-   // For patch_download.js generate diff file
-   window.current_link_1 = "a/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
-   window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
+   if (request.status === 200) {
+      // Success - handle the response
+      adoc_json = JSON.parse(request.responseText);
+      adoc_content_base64_encode = adoc_json["content"]; // The content return use base64 encode
+      adoc_content = b64DecodeUnicode(adoc_content_base64_encode); // Decode
+      editor.setValue("") // Clean content
+      editor.session.insert(editor.getCursorPosition(), adoc_content); // Insert .adoc content that github api get to left editor session
+      window.origin_content = adoc_content; // Use global window to store content
+      file_title.innerHTML = before_url // Set adoc file title in left section
+      
+      // For patch_download.js generate diff file
+      window.current_link_1 = "a/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
+      window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
+   } 
+   else {
+      // Error - handle the error condition
+      alert("Error occurred. Status: " + request.status + "\nYou enter wrong url.");
+   }
 }
-
 /*
    When you run on `make html` in documentation/, you will see below log. We can see what attribute in content
    INFO 2023/06/20 18:28:49 Rendering articles/mailing-list-faq/_index.adoc  using asciidoctor args [
@@ -131,6 +137,38 @@ function handle_include_syntax() {
    return return_content;
 }
 
+// Change all the a tag with href "../" to 
+function crossref_handler(htmlContent) {
+   // Create a temporary element to parse the HTML
+   var tempElement = document.createElement("div");
+   tempElement.innerHTML = htmlContent;
+
+   // Find all <a> tags with href starting with "../"
+   var aTags = tempElement.querySelectorAll("a[href^='../']");
+   
+   var file_title = document.querySelector(".file-title").innerHTML;
+   baseUrl = file_title.substring(0, file_title.lastIndexOf("/"));
+   baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
+
+   // Loop through each <a> tag and replace the href attribute
+   for (var i = 0; i < aTags.length; i++) {
+      var href = aTags[i].getAttribute("href");
+      if (href.startsWith('../../')) {
+         matches = href.match(/\.\.\//g);
+         var generatedString = '../'.repeat(matches.length); // Replace all ../ str
+         var newHref = href.replace(generatedString, " https://docs.freebsd.org/");
+         aTags[i].setAttribute("href", newHref);
+      } 
+      else if (href.startsWith('../')) {
+         var newHref = href.replace("../", baseUrl+'\/');
+         aTags[i].setAttribute("href", newHref);
+      }
+   }
+   // Get the modified HTML content
+   var modifiedHtmlContent = tempElement.innerHTML
+   return modifiedHtmlContent
+}
+
 // Generate html
 function generate_html() {
    asciidoctor_set()
@@ -138,6 +176,7 @@ function generate_html() {
    window.editor_content = editor_content; // Use global window object to store current content
    editor_content = handle_include_syntax();
    let html_content = asciidoctor.convert(editor_content, translate_options); // Conver editor content to HTML
+   html_content = crossref_handler(html_content)
    html_content = '<base target="_blank"/>\n' + html_content; // Let any link in iframe open in a new window
       
    output_session.contentDocument.body.innerHTML = 
