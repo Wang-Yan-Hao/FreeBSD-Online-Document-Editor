@@ -189,6 +189,17 @@ function generate_html() {
       '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/navigation.css">' +
       '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/table.css">' +
       '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/text.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed_large.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/fixed.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/global.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/iefixes.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/layout.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/navigation.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/table.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/text.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/website_css/docbook.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/main.min.css">' +
+      // '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
       html_content; // HTML render to output window
 }
 
