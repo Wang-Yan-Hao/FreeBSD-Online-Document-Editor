@@ -9,7 +9,7 @@ function b64DecodeUnicode(str) {
          })
          .join('')
    );
- }
+}
 
 // Ace editor setting
 var editor = ace.edit("editor"); // Set editor to id="editor" tag in html

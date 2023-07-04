@@ -2,7 +2,7 @@
 It is an online website editor for FreeBSD documentation which is still developing. The purpose of FreeBSD Online Document Editor is to simplify the editing process in FreeBSD documentation.
 
 This is the workflow of this project.
-![image](./Workflow.png)
+![image](./workflow.png)
 
 Online website location: [website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/)
 

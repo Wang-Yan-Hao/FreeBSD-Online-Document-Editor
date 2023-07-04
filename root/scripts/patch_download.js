@@ -16,5 +16,5 @@ function patch_download() {
 function store_content() {
    var editor = ace.edit("editor"); // Set editor to id="editor" tag in html
    editor_content = editor.getValue();
-   download("index.adoc", editor_content);
+   download("_index.adoc", editor_content);
 }
