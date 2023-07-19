@@ -16,6 +16,55 @@
          return confirmationMessage;
       });
    </script>
+   <script>
+      let isDragging = false;
+      let containerRect, dragLine, leftDiv, rightDiv;
+
+      function startDrag(event) {
+         isDragging = true;
+         containerRect = document.querySelector('.editor-container').getBoundingClientRect();
+         dragLine = document.getElementById('dragLine');
+         leftDiv = document.getElementById('left');
+         rightDiv = document.getElementById('right');
+      }
+
+      document.addEventListener('mousemove', throttle(drag));
+      document.addEventListener('mouseup', stopDrag);
+
+      function drag(event) {
+         if (isDragging) {
+            console.log('Nice');
+            const dragX = event.clientX - containerRect.left;
+
+            if (dragX >= 0 && dragX <= containerRect.width) {
+               leftDiv.style.width = (dragX / containerRect.width) * 100 + '%';
+               rightDiv.style.width = 100 - (dragX / containerRect.width) * 100 + '%';
+               dragLine.style.left = (dragX - dragLine.clientWidth / 2) + 'px';
+            }
+         }
+      }
+
+      function stopDrag() {
+         isDragging = false;
+         var editor = ace.edit("editor")
+         editor.resize();
+      }
+
+      // Throttle function to reduce the frequency of event handling
+      function throttle(callback) {
+         let ticking = false;
+
+         return function (event) {
+            if (!ticking) {
+               ticking = true;
+               requestAnimationFrame(() => {
+               callback(event);
+               ticking = false;
+               });
+            }
+         };
+      }
+   </script>
 
    <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
@@ -48,14 +97,16 @@
       <h1 class="file-title"></h1>
    </div>
 
-   <div class="editor-container">
-      <div class="left">
-         <div id="editor"></div>
+    <div class="editor-container">
+      <div id="left" class="left">
+        <div id="editor"></div>
       </div>
-      <div class="right">
-         <iframe id="output"></iframe>
+      <div id="dragLine" onmousedown="startDrag(event)" onmousemove="drag(event)"></div>
+      <div id="right" class="right">
+        <iframe id="output" "></iframe>
       </div>
-   </div>
+    </div>
+    
 
    <div class="footer">
       <p>Made with ♥ by the FreeBSD Community</p>
