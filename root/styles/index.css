@@ -1,6 +1,6 @@
 .title-container {
    background-color: rgb(64, 62, 62);
-   padding: 12px;
+   padding: 8px 12px;
    flex-direction: row;
    display: flex;
    align-items: center;
@@ -32,10 +32,7 @@ h1.title {
 
 .file-title-container {
    background-color: #f7f6f6;
-   padding-left: 14px;
-   padding-top: 13px;
-   padding-bottom: 13px;
-
+   padding: 9px 12px;
 }
 
 h1.file-title {
@@ -133,3 +130,4 @@ h1.file-title {
    padding-top: 8px;
    padding-left: 10px;
 }
+
