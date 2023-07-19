@@ -26,6 +26,10 @@
          dragLine = document.getElementById('dragLine');
          leftDiv = document.getElementById('left');
          rightDiv = document.getElementById('right');
+         // Disable pointer events on #output to allow dragging over it
+
+         var outputElement = document.getElementById('output');
+         outputElement.style.pointerEvents = 'none';      
       }
 
       document.addEventListener('mousemove', throttle(drag));
@@ -33,7 +37,6 @@
 
       function drag(event) {
          if (isDragging) {
-            console.log('Nice');
             const dragX = event.clientX - containerRect.left;
 
             if (dragX >= 0 && dragX <= containerRect.width) {
@@ -48,6 +51,9 @@
          isDragging = false;
          var editor = ace.edit("editor")
          editor.resize();
+         // Re-enable pointer events on #output after dragging
+         var outputElement = document.getElementById('output');
+         outputElement.style.pointerEvents = '';     
       }
 
       // Throttle function to reduce the frequency of event handling
