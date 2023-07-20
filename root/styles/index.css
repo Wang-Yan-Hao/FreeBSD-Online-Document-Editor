@@ -21,7 +21,11 @@ h1.title {
 }
 
 .title-container > a {
-   margin-right: 25px;
+   margin-right: 23px;
+}
+
+a#help_button {
+   margin-right: 10px;
 }
 
 .title-container > a > img  {
