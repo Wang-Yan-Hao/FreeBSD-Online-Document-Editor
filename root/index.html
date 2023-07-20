@@ -4,74 +4,6 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>FreeBSD Online Document Editor</title>
-   <script>
-      // Display confirmation message when closing the page
-      window.addEventListener('beforeunload', function(e) {
-         // Custom message to inform the user
-         var confirmationMessage = 'Your content may not be stored. Are you sure you want to leave this page?';
-         
-         // Some browsers require the confirmation message to be set
-         e.returnValue = confirmationMessage;
-         
-         return confirmationMessage;
-      });
-   </script>
-   <script>
-      let isDragging = false;
-      let containerRect, dragLine, leftDiv, rightDiv;
-
-      function startDrag(event) {
-         isDragging = true;
-         containerRect = document.querySelector('.editor-container').getBoundingClientRect();
-         dragLine = document.getElementById('dragLine');
-         leftDiv = document.getElementById('left');
-         rightDiv = document.getElementById('right');
-         // Disable pointer events on #output to allow dragging over it
-
-         var outputElement = document.getElementById('output');
-         outputElement.style.pointerEvents = 'none';      
-      }
-
-      document.addEventListener('mousemove', throttle(drag));
-      document.addEventListener('mouseup', stopDrag);
-
-      function drag(event) {
-         if (isDragging) {
-            const dragX = event.clientX - containerRect.left;
-
-            if (dragX >= 0 && dragX <= containerRect.width) {
-               leftDiv.style.width = (dragX / containerRect.width) * 100 + '%';
-               rightDiv.style.width = 100 - (dragX / containerRect.width) * 100 + '%';
-               dragLine.style.left = (dragX - dragLine.clientWidth / 2) + 'px';
-            }
-         }
-      }
-
-      function stopDrag() {
-         isDragging = false;
-         var editor = ace.edit("editor")
-         editor.resize();
-         // Re-enable pointer events on #output after dragging
-         var outputElement = document.getElementById('output');
-         outputElement.style.pointerEvents = '';     
-      }
-
-      // Throttle function to reduce the frequency of event handling
-      function throttle(callback) {
-         let ticking = false;
-
-         return function (event) {
-            if (!ticking) {
-               ticking = true;
-               requestAnimationFrame(() => {
-               callback(event);
-               ticking = false;
-               });
-            }
-         };
-      }
-   </script>
-
    <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
 </head>
@@ -104,33 +36,36 @@
    </div>
 
     <div class="editor-container">
-      <div id="left" class="left">
+      <div id="left">
         <div id="editor"></div>
       </div>
+
       <div id="dragLine" onmousedown="startDrag(event)" onmousemove="drag(event)"></div>
-      <div id="right" class="right">
-        <iframe id="output" "></iframe>
+      
+      <div id="right">
+        <iframe id="output"></iframe>
       </div>
     </div>
     
-
    <div class="footer">
       <p>Made with ♥ by the FreeBSD Community</p>
    </div>
 
    <!-- include asciidoctor by js core file -->
    <!-- <script src="scripts/asciidoctor.js"></script> -->
+   <!-- Include asciidoctor by npm module -->
    <script src="node_modules/@asciidoctor/core/dist/browser/asciidoctor.js"></script>
-   <!-- include ace.js by CDN -->
+   <!-- Include ace.js by CDN -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js" integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-   <!-- include diff.js by CDN -->
+   <!-- Include diff.js by CDN -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js" integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 
-   <!-- our js file -->
+   <!-- Our js file -->
    <script src="scripts/index.js"></script>
+   <script src="scripts/other.js"></script>
    <script src="scripts/patch_download.js"></script>
 
-   <!-- asciidcor syntax extension from freebsd doc project (translated by opal-compiler) -->
+   <!-- Asciidcor syntax extension from freebsd doc project (opal-compiler translated ruby to js) -->
    <script type="text/javascript" src="lib/cross-document-references-macro.js"></script>
    <script type="text/javascript" src="lib/inter-document-references-macro.js"></script>
    <script type="text/javascript" src="lib/git-macro.js"></script>

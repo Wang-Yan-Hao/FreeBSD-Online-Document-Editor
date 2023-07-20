@@ -12,25 +12,26 @@ function b64DecodeUnicode(str) {
 }
 
 // Ace editor setting
-var editor = ace.edit("editor"); // Set editor to id="editor" tag in html
+var editor = ace.edit("editor"); // Set editor to id="editor"
 editor.setOption("wrap", "free"); // Long lines will automatically wrap to the next line when they reach the edge of the editor, without inserting line breaks or truncating the content.
 editor.session.setMode("ace/mode/asciidoc"); // Set editor syntax to asciidoc
 
 // Asciidoctor object
 var asciidoctor = Asciidoctor(); // Asciidoctor object in asciidcotor.js
-var output_session = document.querySelector("#output"); // output session set to id="output" tag in html
+var output_session = document.querySelector("#output"); // Output session set to id="output"
+var file_title = document.querySelector(".file-title");
 
-// Use http.get to get config.json
+// Config file
 var configFile=new XMLHttpRequest();
 configFile.open("GET", "./config.json", false);
 var configText_json ="";
 var configText="";
 
-// Check what link the user came from, and send actual adoc content into ace editor
-var before_url = "https://docs.freebsd.org/en/books/faq/"; // default url
-var before_language = before_url.split("org/")[1].split("/")[0]; // the language in before_url
-var file_title = document.querySelector(".file-title");
+// Check what link where the user came from, and send actual adoc content into ace editor
+var before_url = "https://docs.freebsd.org/en/books/faq/"; // Default url
+var before_language = before_url.split("org/")[1].split("/")[0]; // The language in before_url
 
+// Config file
 configFile.onreadystatechange = function github_api_get_adoc() {
    if (configFile.readyState === 4) { // 4 mean requeset has finished and has response
       if (configFile.status === 200 || configFile.status == 0) {
@@ -42,7 +43,7 @@ configFile.onreadystatechange = function github_api_get_adoc() {
 }
 configFile.send(null);
 
-// Use github api to get adoc file from freebsd doc github
+// Get adoc file from freebsd-doc github
 function github_api_get(){
    // Github api url to get .adoc file
    github_url = configText_json["doc_github_api_url"] + "/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc"; 
@@ -68,6 +69,7 @@ function github_api_get(){
       alert("Error occurred. Status: " + request.status + "\nYou enter wrong url.");
    }
 }
+
 /*
    When you run on `make html` in documentation/, you will see below log. We can see what attribute in content
    INFO 2023/06/20 18:28:49 Rendering articles/mailing-list-faq/_index.adoc  using asciidoctor args [
@@ -96,7 +98,7 @@ var translate_options = {  "safe": "safe", "doctype": doctype,
                                              "allow-uri-read": "",
                                           },
                            };
-// {"safe": "safe","allow-uri-read": ""} is set by this online editor, because we need allows data to be read from URLs.
+// {"safe": "safe","allow-uri-read": ""} is set by this online editor, additionally because we need allows data to be read from URLs.
 
 // Get 'doctype' attribute from file content
 function asciidoctor_set(){
@@ -123,7 +125,7 @@ function handle_include_syntax() {
    var lines_len = lines.length; // Total lines number of editor_content
    for(var i = 0; i < lines_len; i++) {
       if(lines[i].substring(0,9) == "include::" && lines[i].substring(9,13) != "http"){
-         a = lines[i]; // origin one line in editor content
+         a = lines[i]; // Origin one line in editor content
          b = a.split("::")[1];
          b = b.replaceAll("{{% lang %}}", before_language);
          b = b.replaceAll("../", "");
@@ -137,7 +139,7 @@ function handle_include_syntax() {
    return return_content;
 }
 
-// Change all the a tag with href "../" to 
+// Change all the a tag with href "../" to
 function crossref_handler(htmlContent) {
    // Create a temporary element to parse the HTML
    var tempElement = document.createElement("div");
@@ -175,9 +177,11 @@ function generate_html() {
    let editor_content = editor.getValue();  // Editor content
    window.editor_content = editor_content; // Use global window object to store current content
    editor_content = handle_include_syntax();
-   let html_content = asciidoctor.convert(editor_content, translate_options); // Conver editor content to HTML
-   html_content = crossref_handler(html_content)
-   html_content = '<base target="_blank"/>\n' + html_content; // Let any link in iframe open in a new window
+   let asc = asciidoctor.load(editor_content, translate_options);
+   let html_content = asc.convert(); // Conver editor content to HTML
+   const title = asc.getTitle();
+   html_content = crossref_handler(html_content);
+   html_content = '<h1>' + title + '</h1>' +  '<base target="_blank"/>\n' + html_content; // Let any link in iframe open in a new window
       
    output_session.contentDocument.body.innerHTML = 
       '<link rel="stylesheet" href="styles/doc_css/documentation/themes/beastie/static/css/font-awesome-min.css">' +
@@ -202,21 +206,6 @@ function generate_html() {
       // '<link rel="stylesheet" href="styles/freebsd_doc_css/documentation_css/font-awesome-min.css">' +
       html_content; // HTML render to output window
 }
-
-let debounceTimeoutId = null; // To prevent too many function calls
-// Create a new observer instance
-const observer = new MutationObserver(function(mutationsList, observer) {
-   // Use debounce technique to ensure the function will be called at most once in one second
-   if (debounceTimeoutId) {
-      clearTimeout(debounceTimeoutId);
-   }
-   debounceTimeoutId = setTimeout(() => {
-      // Trigger your function here
-      generate_html();
-   }, 1000);
-});
-// Start observing the target node for configured mutations
-observer.observe(document.getElementById('editor'), { childList: true, subtree: true });
 
 // Change file button function
 var button = document.querySelector('.change_adoc');

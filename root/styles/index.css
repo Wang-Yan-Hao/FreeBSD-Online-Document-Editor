@@ -6,24 +6,20 @@
    align-items: center;
 }
 
-.title-container > a > img  {
-   width: 25px;
+h1.title {
+   font-family: "Roboto", sans-serif;  
+   color: rgb(244, 242, 242); 
+   font-weight: 600;
+   font-size: 17px;
+   display: inline;
 }
 
 .title-container > a {
    margin-right: 25px;
 }
 
-h1.title {
-   font-family: "Roboto", sans-serif;  
-   color: rgb(244, 242, 242); 
-   font-weight: 600;
-   font-size: 18px;
-   display: inline;
-}
-
-.prompttest {
-   margin-right: auto;
+.title-container > a > img  {
+   width: 20px;
 }
 
 .change_adoc {
@@ -39,51 +35,11 @@ h1.file-title {
    font-family: "Roboto", sans-serif;  
    color: black; 
    font-weight: 600;
-   font-size: 18px;
+   font-size: 17px;
 }
-
-
-
 
 .footer {
    margin: 5px auto;
-}
-
-.button-container button {
-   margin-top: 8px;
-   margin-right: 10px;
-	box-shadow:inset 0px 0px 0px 0px #f7c5c0;
-	background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
-	background-color:#fc8d83;
-	border-radius:6px;
-	border:1px solid #d83526;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:18px;
-	font-weight:bold;
-	padding:7px 10px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
-}
-
-.button-container button:hover{
-	background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
-	background-color:#e4685d;
-}
-
-.button-container button:active {
-	position:relative;
-	top:1px;
-}
-
-.button-container button a {
-   color:#ffffff;
-}
-
-.footer {
-   padding-top: 4px;
 }
 
 .footer p,a {
@@ -94,17 +50,6 @@ h1.file-title {
    padding-left: 10px;
 }
 
-
-/* .left {
-   width: 50%;
-   height: 100%;
-}
-
-.right {
-   width: 50%;
-   height: 100%;
-} */
-
 .editor-container {
    height: 850px;
    margin: auto;
@@ -113,6 +58,10 @@ h1.file-title {
    flex-direction: row;
 }
 
+#left, #right {
+   height: 100%;
+   width: 50%;
+}
 
 #editor {
    left: 0;
@@ -132,11 +81,6 @@ h1.file-title {
    font-size: 20px;
    width: 100%;
    /* pointer-events: none; https://stackoverflow.com/questions/5261328/receive-mousemove-events-from-iframe-too */
-}
-
-.left, .right {
-   height: 100%;
-   width: 50%;
 }
 
 #dragLine {
