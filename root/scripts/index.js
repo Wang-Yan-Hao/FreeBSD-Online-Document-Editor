@@ -21,9 +21,12 @@ var asciidoctor = Asciidoctor(); // Asciidoctor object in asciidcotor.js
 var output_session = document.querySelector("#output"); // Output session set to id="output"
 var file_title = document.querySelector(".file-title");
 
+// Check what link where the user came from, and send actual adoc content into ace editor
+var before_url = "https://docs.freebsd.org/en/books/faq/"; // Default url
+var before_language = before_url.split("org/")[1].split("/")[0]; // The language in before_url
+
 // Config file
-var configFile=new XMLHttpRequest();
-configFile.open("GET", "./config.json", false);
+var configFile = new XMLHttpRequest();
 var configText_json ="";
 var configText="";
 
@@ -33,41 +36,49 @@ var before_language = before_url.split("org/")[1].split("/")[0]; // The language
 
 // Config file
 configFile.onreadystatechange = function github_api_get_adoc() {
-   if (configFile.readyState === 4) { // 4 mean requeset has finished and has response
-      if (configFile.status === 200 || configFile.status == 0) {
-         var configText = configFile.responseText; // Get text from config.json
-         configText_json = JSON.parse(configText); // Chagne configText to json object
-         github_api_get()
-      }
-   }
-}
-configFile.send(null);
+    if (configFile.readyState === 4) { // 4 means request has finished and has a response
+        if (configFile.status === 200 || configFile.status == 0) {
+            configText = configFile.responseText; // Get text from config.json
+            configText_json = JSON.parse(configText); // Change configText to a JSON object
+            github_api_get(configText_json); // Pass the JSON object to the github_api_get function
+        }
+    }
+};
+
+configFile.open("GET", "./config.json", true); // Set the third parameter to true for asynchronous
+configFile.send();
 
 // Get adoc file from freebsd-doc github
 function github_api_get(){
    // Github api url to get .adoc file
    github_url = configText_json["doc_github_api_url"] + "/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc"; 
+
    var request = new XMLHttpRequest();
-   request.open("GET", github_url, false);
-   request.send(null);
-   if (request.status === 200) {
-      // Success - handle the response
-      adoc_json = JSON.parse(request.responseText);
-      adoc_content_base64_encode = adoc_json["content"]; // The content return use base64 encode
-      adoc_content = b64DecodeUnicode(adoc_content_base64_encode); // Decode
-      editor.setValue("") // Clean content
-      editor.session.insert(editor.getCursorPosition(), adoc_content); // Insert .adoc content that github api get to left editor session
-      window.origin_content = adoc_content; // Use global window to store content
-      file_title.innerHTML = before_url // Set adoc file title in left section
-      
-      // For patch_download.js generate diff file
-      window.current_link_1 = "a/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
-      window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
-   } 
-   else {
-      // Error - handle the error condition
-      alert("Error occurred. Status: " + request.status + "\nYou enter wrong url.");
-   }
+   request.onreadystatechange = function() {
+       if (request.readyState === 4) { // 4 means request has finished and has a response
+           if (request.status === 200) {
+               // Success - handle the response
+               var adoc_json = JSON.parse(request.responseText);
+               var adoc_content_base64_encode = adoc_json["content"]; // The content returned using base64 encoding
+               var adoc_content = b64DecodeUnicode(adoc_content_base64_encode); // Decode the base64 content
+               editor.setValue(""); // Clean content
+               editor.session.insert(editor.getCursorPosition(), adoc_content); // Insert .adoc content that GitHub API returned into the left editor session
+               window.origin_content = adoc_content; // Use global window to store content
+               file_title.innerHTML = before_url; // Set adoc file title in the left section
+   
+               // For patch_download.js to generate the diff file
+               window.current_link_1 = "a/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
+               window.current_link_2 = "b/documentation/content" + before_url.split("#")[0].substring(24,) + "_index.adoc";
+           } 
+           else {
+               // Error - handle the error condition
+               alert("Error occurred. Status: " + request.status + "\nYou entered the wrong URL.");
+           }
+       }
+   };
+   
+   request.open("GET", github_url, true); // Set the third parameter to true for asynchronous
+   request.send();
 }
 
 /*

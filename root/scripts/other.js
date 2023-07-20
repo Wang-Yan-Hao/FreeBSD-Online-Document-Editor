@@ -47,7 +47,7 @@ function stopDrag() {
     outputElement.style.pointerEvents = '';     
 }
 
-// While edit content after after a delay of 1 second, right sesstion will rerender
+// While edit content after 1 second right sesstion will rerender
 let debounceTimeoutId = null; // To prevent too many function calls
 // Create a new observer instance
 const observer = new MutationObserver(function(mutationsList, observer) {

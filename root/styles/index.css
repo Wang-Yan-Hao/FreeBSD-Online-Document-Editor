@@ -1,3 +1,9 @@
+/* Apply the hover effect to all <a> links */
+a:hover {
+   cursor: pointer; /* Change the mouse cursor to a pointer */
+   /* Add any other hover styles you want */
+ }
+
 .title-container {
    background-color: rgb(64, 62, 62);
    padding: 8px 12px;
