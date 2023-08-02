@@ -21,7 +21,8 @@ h1.title {
 }
 
 .title-container > a {
-   margin-right: 23px;
+   margin-right: 28px;
+   margin-top: 5px;
 }
 
 a#help_button {
@@ -46,18 +47,6 @@ h1.file-title {
    color: black; 
    font-weight: 600;
    font-size: 17px;
-}
-
-.footer {
-   margin: 5px auto;
-}
-
-.footer p,a {
-   font-family: "Roboto", sans-serif;
-   font-weight: 600;
-   font-size: 15px;
-   padding-top: 8px;
-   padding-left: 10px;
 }
 
 .editor-container {
@@ -98,4 +87,16 @@ h1.file-title {
    height: 100%;
    background-color: #ccc;
    cursor: ew-resize;
+}
+
+.footer {
+   margin: 5px auto;
+}
+
+.footer p {
+   font-family: "Roboto", sans-serif;
+   font-weight: 600;
+   font-size: 15px;
+   padding-top: 8px;
+   padding-left: 10px;
 }
