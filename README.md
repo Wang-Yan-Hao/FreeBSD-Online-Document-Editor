@@ -1,17 +1,19 @@
 # FreeBSD Online Document Editor
 It is an online website editor for FreeBSD documentation which is still developing. The purpose of FreeBSD Online Document Editor is to simplify the editing process in FreeBSD documentation.
 
-This is the workflow of this project.
+Workflow of this project:
 ![image](./workflow.png)
 
-Online website location: [website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/)
+We use Github Page to deploy the project, it is considered a pre-release version that will deploy on the production environment (ci.freebsd.org).
 
-Related slide: [slide](https://drive.google.com/file/d/1rOQ_-Yzue83arFYGgiYbY9MxbMQg7SC5/view?usp=drive_link)
+* [Online website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/)
+* [Related slide](https://drive.google.com/file/d/1rOQ_-Yzue83arFYGgiYbY9MxbMQg7SC5/view?usp=drive_link)
+
 ## Directory
 * root: website file.
-* root/lib: asciidoc syntax extension gets from the FreeBSD doc project (shared/lib/). The original file is written by Ruby, we use opal-compiler to translate it. You can use the lib/renew.sh to update the extension if the freebsd-doc revise or add extension.
+* root/lib: asciidoc syntax extension gets from the FreeBSD doc project ([/shared/lib/](https://github.com/freebsd/freebsd-doc/tree/main/shared/lib)). It is originally written by Ruby, we use opal-compiler to translate it. You can use the lib/renew.sh to update the extension if the freebsd-doc change the extension.
 * root/scripts: JS files.
-* root/styles: CSS files from freebsd-doc repo.
+* root/styles: CSS files from freebsd-doc.
 
 ## Installation
 node.js >= v16.13.1
@@ -21,11 +23,12 @@ npm >= v8.18.0
 $ cd ./root/
 $ npm install 
 ```
+
 ## Package
-1. Opal-compiler@1.0.13, installed by npm in root/package.json.
-2. Asciidoctor.js@2.2.6 , installed by npm in root/package.json. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
-3. Ace.js@1.11.2, using CDN to include in root/index.html.
-4. Jsdiff@5.1.0, using CDN to include in root/index.html.
+1. Opal-compiler@1.0.13: installed by npm in root/package.json.
+2. Asciidoctor.js@2.2.6: installed by npm in root/package.json. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
+3. Ace.js@1.11.2: using the Cloudflare CDN to include in root/index.html.
+4. Jsdiff@5.1.0: using the Cloudflare CDN to include in root/index.html.
 
 ## Open in the local server
 There are three ways to open the website on the local server that can help you develop. When you change the code, you can see the change on the local server immediately.
