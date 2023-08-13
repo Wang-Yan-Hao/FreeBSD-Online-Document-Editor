@@ -2,6 +2,7 @@
 It is an online website editor for FreeBSD documentation which is still developing. The purpose of FreeBSD Online Document Editor is to simplify the editing process in FreeBSD documentation.
 
 Workflow of this project:
+
 ![image](./workflow.png)
 
 We use Github Page to deploy the project, it is considered a pre-release version that will deploy on the production environment (ci.freebsd.org).
