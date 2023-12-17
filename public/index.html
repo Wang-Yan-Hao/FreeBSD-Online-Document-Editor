@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +8,28 @@
    <link rel="stylesheet" href="styles/reset.css">
    <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
    <div class="title-container">
       <h1 class="title">FreeBSD Online Document Editor</h1>
 
-      <a title="Change file" class="change_adoc"> 
-         <img src="./img/exchange_2.png">
+      <a title="Change file" class="change_adoc">
+         <img src="assets/img/exchange_2.ico">
       </a>
-      <a title="Generate HTML" onclick="generate_html()"> 
-         <img src="./img/html_2.png">
+      <a title="Generate HTML" onclick="generate_html()">
+         <img src="assets/img/html_2.ico">
       </a>
-      <a title="Save Content"onclick="store_content()"> 
-         <img src="./img/save_2.ico">
+      <a title="Save Content" onclick="store_content()">
+         <img src="assets/img/save_2.ico">
       </a>
       <a title="Download patch" onclick="patch_download()">
-         <img src="./img/download_2.png" >
+         <img src="assets/img/download_2.ico">
       </a>
-      <a title="FreeBSD Bugzilla" onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')"> 
-         <img src="./img/web_2.png">
+      <a title="FreeBSD Bugzilla" onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')">
+         <img src="assets/img/web_2.ico">
       </a>
-      <a title="Help" id="help_button" href="pages/help.html" target="_blank"> 
-         <img src="./img/help_2.png">
+      <a title="Help" id="help_button" href="pages/help.html" target="_blank">
+         <img src="assets/img/help_2.ico">
       </a>
    </div>
 
@@ -41,12 +43,12 @@
       </div>
 
       <div id="dragLine" onmousedown="startDrag(event)" onmousemove="drag(event)"></div>
-      
+
       <div id="right">
          <iframe id="output"></iframe>
       </div>
    </div>
-    
+
    <div class="footer">
       <p>Made with ♥ by the FreeBSD Community</p>
    </div>
@@ -54,9 +56,13 @@
    <!-- Include asciidoctor by npm module -->
    <script src="node_modules/@asciidoctor/core/dist/browser/asciidoctor.js"></script>
    <!-- Include ace.js by CDN -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js" integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"
+      integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <!-- Include diff.js by CDN -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js" integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"
+      integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <!-- Our js file -->
    <script src="scripts/index.js"></script>
@@ -71,4 +77,5 @@
    <script type="text/javascript" src="lib/packages-macro.js"></script>
    <script type="text/javascript" src="lib/sectnumoffset-treeprocessor.js"></script>
 </body>
+
 </html>
