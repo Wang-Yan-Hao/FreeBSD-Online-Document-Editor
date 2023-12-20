@@ -47,6 +47,10 @@ function stopDrag() {
     outputElement.style.pointerEvents = '';     
 }
 
+window.drag = drag
+window.startDrag = startDrag
+window.stopDrag = stopDrag
+
 // While edit content after 1 second right sesstion will rerender
 let debounceTimeoutId = null; // To prevent too many function calls
 // Create a new observer instance

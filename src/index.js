@@ -183,7 +183,7 @@ function crossref_handler(htmlContent) {
 }
 
 // Generate html
-function generate_html() {
+window.generate_html = function generate_html() {
    asciidoctor_set()
    let editor_content = editor.getValue();  // Editor content
    window.editor_content = editor_content; // Use global window object to store current content
