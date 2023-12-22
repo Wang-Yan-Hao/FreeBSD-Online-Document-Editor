@@ -17,6 +17,7 @@ function patchDownload () {
     window.editorContent) // use jsdiff create diff file string
   download('diff.patch', diff)
 }
+window.patchDownload = patchDownload
 
 /* global ace */
 /* eslint-disable no-unused-vars */
@@ -25,3 +26,4 @@ function storeContent () {
   window.editorContent = editor.getValue()
   download('_index.adoc', window.editorContent)
 }
+window.storeContent = storeContent
