@@ -241,15 +241,15 @@ window.generateHtml =
       htmlContent // Let any link in iframe open in a new window
 
       outputSession.contentDocument.body.innerHTML =
-      '<link rel="stylesheet" href="styles/doc_css/documentation/themes/beastie/static/css/font-awesome-min.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/fixed_large.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/fixed.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/global.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/iefixes.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/layout.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/navigation.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/table.css">' +
-      '<link rel="stylesheet" href="styles/doc_css/website/themes/beastie/static/css/text.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/documentation/font-awesome-min.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/fixed_large.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/fixed.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/global.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/iefixes.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/layout.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/navigation.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/table.css">' +
+      '<link rel="stylesheet" href="styles/doc_css/website/text.css">' +
       htmlContent // HTML render to output window
     }
 
