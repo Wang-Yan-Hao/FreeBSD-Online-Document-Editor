@@ -8,14 +8,20 @@ builder.appendPaths('PackagesMacro')
 
 const result1 = builder.build('cross-document-references-macro.rb')
 fs.writeFileSync(
-  'cross-document-references-macro.js', result1.toString(), 'utf8')
+	'cross-document-references-macro.js',
+	result1.toString(),
+	'utf8'
+)
 
 const result2 = builder.build('git-macro.rb')
 fs.writeFileSync('git-macro.js', result2.toString(), 'utf8')
 
 const result3 = builder.build('inter-document-references-macro.rb')
 fs.writeFileSync(
-  'inter-document-references-macro.js', result3.toString(), 'utf8')
+	'inter-document-references-macro.js',
+	result3.toString(),
+	'utf8'
+)
 
 const result4 = builder.build('man-macro.rb')
 fs.writeFileSync('man-macro.js', result4.toString(), 'utf8')

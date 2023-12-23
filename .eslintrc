@@ -1,0 +1,25 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "standard", "plugin:prettier/recommended"],
+	"overrides": [
+		{
+			"env": {
+				"node": true
+			},
+			"files": [".eslintrc.{js,cjs}"],
+			"parserOptions": {
+				"source_type": "script"
+			}
+		}
+	],
+	"parserOptions": {
+		"ecma_version": "latest",
+		"source_type": "module"
+	},
+	"rules": {
+		"indent": [2, "tab"]
+	}
+}

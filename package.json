@@ -1,28 +1,32 @@
 {
-  "name": "asciidoctor-live",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "asciidoctor": "^2.2.6",
-    "opal-compiler": "^1.0.13"
-  },
-  "description": "",
-  "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
-    "eslint": "^8.56.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.4.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "html-webpack-plugin": "^5.5.4",
-    "terser-webpack-plugin": "^5.3.9",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
-  }
+	"name": "asciidoctor-live",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack --config webpack.config.js",
+		"lint": "eslint 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
+		"lint-fix": "eslint -- fix 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
+		"format": "prettier --write 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'",
+		"check-format": "prettier --check 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"asciidoctor": "^2.2.6",
+		"opal-compiler": "^1.0.13"
+	},
+	"description": "",
+	"devDependencies": {
+		"copy-webpack-plugin": "^11.0.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-config-standard": "^17.1.0",
+		"eslint-plugin-prettier": "^5.1.1",
+		"html-webpack-plugin": "^5.5.4",
+		"prettier": "^3.1.1",
+		"terser-webpack-plugin": "^5.3.9",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4"
+	}
 }

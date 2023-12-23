@@ -1,67 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>FreeBSD Online Document Editor</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <link rel="stylesheet" href="styles/index.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-   <div class="title-container">
-      <h1 class="title">FreeBSD Online Document Editor</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FreeBSD Online Document Editor</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+			integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="styles/index.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
 
-      <a title="Change file" class="change_adoc">
-         <i class="fa-solid fa-rotate"></i>
-      </a>
-      <a title="Generate HTML" onclick="generateHtml()">
-         <i class="fa-solid fa-code"></i>
-      </a>
-      <a title="Save Content" onclick="storeContent()">
-         <i class="fa-solid fa-floppy-disk"></i>
-      </a>
-      <a title="Download patch" onclick="patchDownload()">
-         <i class="fa-solid fa-download"></i>
-      </a>
-      <a title="FreeBSD Bugzilla" onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')">
-         <i class="fa-solid fa-globe"></i>         
-      </a>
-      <a title="Help" id="help_button" href="pages/help.html" target="_blank">
-         <i class="fa-regular fa-circle-question"></i>         
-      </a>
-   </div>
+	<body>
+		<div class="title-container">
+			<h1 class="title">FreeBSD Online Document Editor</h1>
+			<a title="Change file" class="change_adoc">
+				<i class="fa-solid fa-rotate"></i>
+			</a>
+			<a title="Generate HTML" onclick="generateHtml()">
+				<i class="fa-solid fa-code"></i>
+			</a>
+			<a title="Save Content" onclick="storeContent()">
+				<i class="fa-solid fa-floppy-disk"></i>
+			</a>
+			<a title="Download patch" onclick="patchDownload()">
+				<i class="fa-solid fa-download"></i>
+			</a>
+			<a
+				title="FreeBSD Bugzilla"
+				onclick="window.open('https://bugs.freebsd.org/bugzilla/','_blank')"
+			>
+				<i class="fa-solid fa-globe"></i>
+			</a>
+			<a title="Help" id="help_button" href="pages/help.html" target="_blank">
+				<i class="fa-regular fa-circle-question"></i>
+			</a>
+		</div>
 
-   <div class="file-title-container">
-      <h1 class="file-title"></h1>
-   </div>
+		<div class="file-title-container">
+			<h1 class="file-title"></h1>
+		</div>
 
-   <div class="editor-container">
-      <div id="left">
-         <div id="editor"></div>
-      </div>
+		<div class="editor-container">
+			<div id="left">
+				<div id="editor"></div>
+			</div>
 
-      <div id="dragLine" onmousedown="startDrag(event)" onmousemove="drag(event)"></div>
+			<div
+				id="dragLine"
+				onmousedown="startDrag(event)"
+				onmousemove="drag(event)"
+			></div>
 
-      <div id="right">
-         <iframe id="output"></iframe>
-      </div>
-   </div>
+			<div id="right">
+				<iframe id="output"></iframe>
+			</div>
+		</div>
 
-   <div class="footer">
-      <p>Made with ♥ by the FreeBSD Community</p>
-   </div>
+		<div class="footer">
+			<p>Made with ♥ by the FreeBSD Community</p>
+		</div>
 
-   <!-- Include asciidoctor by npm module -->
-   <script src="asciidoctor.js"></script>
-   <!-- Include ace.js by CDN -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"
-      integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   <!-- Include diff.js by CDN -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"
-      integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</body>
-
+		<!-- Include asciidoctor -->
+		<script src="asciidoctor.js"></script>
+		<!-- Include ace.js by CDN -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"
+			integrity="sha512-AhCq6G80Ge/e6Pl3QTNGI2Je+6ixVVDmmE4Nui8/dHRBKxMUvjJxn6CYEcMQdTSxHreC3USOxTDrvUPLtN5J7w=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<!-- Include diff.js by CDN -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"
+			integrity="sha512-vco9RAxEuv4PQ+iTQyuKElwoUOcsVdp+WgU6Lgo82ASpDfF7vI66LlWz+CZc2lMdn52tjjLOuHvy8BQJFp8a1A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</body>
 </html>
