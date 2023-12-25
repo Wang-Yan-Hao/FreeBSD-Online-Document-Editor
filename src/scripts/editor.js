@@ -25,62 +25,57 @@ let beforeUrl = 'https://docs.freebsd.org/en/books/faq/' // Default
 const beforeLanguage = beforeUrl.split('org/')[1].split('/')[0] // The language in beforeUrl
 
 // Configuration file handling
-const configFile = new XMLHttpRequest()
 let configTextJson = ''
 
-configFile.onreadystatechange = function githubApiGetAdoc() {
-	if (configFile.readyState === 4) {
-		if (configFile.status === 200 || configFile.status === 0) {
-			configTextJson = JSON.parse(configFile.responseText) // Change configText to a JSON object
-			githubApiGet(configTextJson)
-		}
-	}
-}
-
-configFile.open('GET', 'config.json', true)
-configFile.send()
+fetch('config.json')
+	.then((response) => response.json())
+	.then((data) => {
+		configTextJson = data
+		githubApiGet(configTextJson)
+	})
+	.catch((error) => {
+		console.error('Error fetching config.json:', error)
+	})
 
 // GitHub API request to get AsciiDoc content from "freebsd-doc" repo
 function githubApiGet() {
-	// Github api url to get .adoc file
+	// Github API url
 	const githubUrl = `${
 		configTextJson.doc_github_api_url
 	}/documentation/content${beforeUrl.split('#')[0].substring(24)}_index.adoc`
 
-	const request = new XMLHttpRequest()
-
-	request.onreadystatechange = function () {
-		if (request.readyState === 4) {
-			if (request.status === 200) {
-				// Success - handle the response
-				const adocJson = JSON.parse(request.responseText)
-				const adocContentBase64Encode = adocJson.content // The content returned using base64 encoding
-				const adocContent = b64DecodeUnicode(adocContentBase64Encode) // Decode the base64 content
-
-				editor.setValue('') // Clean editor content
-				editor.session.insert(editor.getCursorPosition(), adocContent) // Insert the content API return
-
-				fileTitle.innerHTML = beforeUrl // Set adoc file title
-
-				// Store to window object, for "patch_download.js" to generate the diff file
-				window.origin_content = adocContent
-				window.current_link_1 = `a/documentation/content${beforeUrl
-					.split('#')[0]
-					.substring(24)}_index.adoc`
-				window.current_link_2 = `b/documentation/content${beforeUrl
-					.split('#')[0]
-					.substring(24)}_index.adoc`
+	fetch(githubUrl)
+		.then((response) => {
+			if (response.ok) {
+				return response.json()
 			} else {
-				// Error - handle the error condition
-				alert(
-					`Error occurred. Status: ${request.status}\nYou entered the wrong URL.`
+				throw new Error(
+					`Error occurred. Status: ${response.status}\nYou entered the wrong URL.`
 				)
 			}
-		}
-	}
+		})
+		.then((adocJson) => {
+			const adocContentBase64Encode = adocJson.content // The content returned using base64 encoding
+			const adocContent = b64DecodeUnicode(adocContentBase64Encode) // Decode the base64 content
 
-	request.open('GET', githubUrl, true) // Set the third parameter to true for asynchronous
-	request.send()
+			editor.setValue('') // Clean editor content
+			editor.session.insert(editor.getCursorPosition(), adocContent) // Insert the content API return
+
+			fileTitle.innerHTML = beforeUrl // Set adoc file title
+
+			// Store to window object, for "patch_download.js" to generate the diff file
+			window.origin_content = adocContent
+			window.current_link_1 = `a/documentation/content${beforeUrl
+				.split('#')[0]
+				.substring(24)}_index.adoc`
+			window.current_link_2 = `b/documentation/content${beforeUrl
+				.split('#')[0]
+				.substring(24)}_index.adoc`
+		})
+		.catch((error) => {
+			console.error('Error fetching GitHub API:', error)
+			alert(error.message)
+		})
 }
 
 /*
