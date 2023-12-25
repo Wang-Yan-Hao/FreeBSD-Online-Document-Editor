@@ -24,7 +24,7 @@ editor.session.setMode('ace/mode/asciidoc') // Set editor syntax to asciidoc
 // Asciidoctor object
 const asciidoctor = Asciidoctor() // Asciidoctor object in asciidcotor.js
 const outputSession = document.querySelector('#output') // Output session set to id="output"
-const fileTitle = document.querySelector('.file-title')
+const fileTitle = document.querySelector('.file-title-container')
 
 // Config file
 const configFile = new XMLHttpRequest()
@@ -194,7 +194,7 @@ function crossrefHandler(htmlContent) {
 	// Find all <a> tags with href starting with "../"
 	const aTags = tempElement.querySelectorAll("a[href^='../']")
 
-	const fileTitle = document.querySelector('.file-title').innerHTML
+	const fileTitle = document.querySelector('.file-title-container').innerHTML
 	let baseUrl = fileTitle.substring(0, fileTitle.lastIndexOf('/'))
 	baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/'))
 
@@ -243,7 +243,7 @@ window.generateHtml = function generateHtml() {
 }
 
 // Change file button function
-const button = document.querySelector('.change_adoc')
+const button = document.querySelector('#change-file')
 function popup3(e) {
 	const guest = window.prompt(
 		'Change the left adoc file with freebsd document url',

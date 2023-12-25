@@ -22,9 +22,9 @@
 	</head>
 
 	<body>
-		<div class="title-container">
-			<h1 class="title">FreeBSD Online Document Editor</h1>
-			<a title="Change file" class="change_adoc">
+		<div class="header-container">
+			<h1 id="header">FreeBSD Online Document Editor</h1>
+			<a title="Change file" id="change-file">
 				<i class="fa-solid fa-rotate"></i>
 			</a>
 			<a title="Generate HTML" onclick="generateHtml()">
@@ -42,17 +42,17 @@
 			>
 				<i class="fa-solid fa-globe"></i>
 			</a>
-			<a title="Help" id="help_button" href="pages/help.html" target="_blank">
+			<a title="Help" id="help" href="pages/help.html" target="_blank">
 				<i class="fa-regular fa-circle-question"></i>
 			</a>
 		</div>
 
 		<div class="file-title-container">
-			<h1 class="file-title"></h1>
+			<h1 id="file-title"></h1>
 		</div>
 
 		<div class="editor-container">
-			<div id="left">
+			<div id="editor-container-left">
 				<div id="editor"></div>
 			</div>
 
@@ -62,13 +62,13 @@
 				onmousemove="drag(event)"
 			></div>
 
-			<div id="right">
+			<div id="editor-container-right">
 				<iframe id="output"></iframe>
 			</div>
 		</div>
 
-		<div class="footer">
-			<p>Made with ♥ by the FreeBSD Community</p>
+		<div class="footer-container">
+			<p id="author">Made with ♥ by the FreeBSD Community</p>
 		</div>
 
 		<!-- Include asciidoctor -->

@@ -18,8 +18,8 @@ function startDrag(event) {
 		.querySelector('.editor-container')
 		.getBoundingClientRect()
 	dragLine = document.getElementById('dragLine')
-	leftDiv = document.getElementById('left')
-	rightDiv = document.getElementById('right')
+	leftDiv = document.getElementById('editor-container-left')
+	rightDiv = document.getElementById('editor-container-right')
 	// Disable pointer events on #output to allow dragging over it
 
 	const outputElement = document.getElementById('output')
