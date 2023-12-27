@@ -40,6 +40,7 @@ module.exports = {
 			patterns: [
 				{ from: 'public/styles', to: 'styles' },
 				{ from: 'public/config.json', to: 'config.json' },
+				{ from: 'public/favicon.ico', to: 'favicon.ico' },
 			],
 		}),
 	],
