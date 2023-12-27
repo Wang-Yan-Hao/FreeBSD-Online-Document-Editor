@@ -38,24 +38,3 @@ export function stopDrag() {
 	const outputElement = document.getElementById('output')
 	outputElement.style.pointerEvents = ''
 }
-
-// While edit content after 1 second right sesstion will rerender. To prevent too many function calls
-let debounceTimeoutId = null
-
-// Create a new observer instance
-const observer = new MutationObserver(function (mutationsList, observer) {
-	// Use debounce technique to ensure the function will be called at most once in one second
-	if (debounceTimeoutId) {
-		clearTimeout(debounceTimeoutId)
-	}
-	debounceTimeoutId = setTimeout(() => {
-		// Trigger your function here
-		generateHtml() /* global generateHtml */
-	}, 1000)
-})
-
-// Start observing the target node for configured mutations
-observer.observe(document.getElementById('editor'), {
-	childList: true,
-	subtree: true,
-})
