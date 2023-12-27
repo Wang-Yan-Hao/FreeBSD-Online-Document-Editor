@@ -12,7 +12,7 @@ const fileTitle = document.querySelector('.file-title-container')
 
 // Check where the user came from, and send the adoc content into ace editor
 let beforeUrl = 'https://docs.freebsd.org/en/books/faq/' // Default
-const beforeLanguage = beforeUrl.split('org/')[1].split('/')[0] // The language in beforeUrl
+const beforeLanguage = beforeUrl.split('org/')[1].split('/')[0] // Extract language from the URL
 
 // Configuration file handling
 let configTextJson = ''
@@ -21,18 +21,18 @@ fetch('config.json')
 	.then((response) => response.json())
 	.then((data) => {
 		configTextJson = data
-		githubApiGet(configTextJson)
+		githubApiGet(beforeUrl)
 	})
 	.catch((error) => {
 		console.error('Error fetching config.json:', error)
 	})
 
 // GitHub API request to get AsciiDoc content from "freebsd-doc" repo
-function githubApiGet() {
+function githubApiGet(url) {
 	// Github API url
 	const githubUrl = `${
 		configTextJson.doc_github_api_url
-	}/documentation/content${beforeUrl.split('#')[0].substring(24)}_index.adoc`
+	}/documentation/content${url.split('#')[0].substring(24)}_index.adoc`
 
 	fetch(githubUrl)
 		.then((response) => {
@@ -45,20 +45,22 @@ function githubApiGet() {
 			}
 		})
 		.then((adocJson) => {
+			beforeUrl = url // Store to global variabel
+
 			const adocContentBase64Encode = adocJson.content // The content returned using base64 encoding
 			const adocContent = b64DecodeUnicode(adocContentBase64Encode) // Decode the base64 content
 
 			editor.setValue('') // Clean editor content
 			editor.session.insert(editor.getCursorPosition(), adocContent) // Insert the content API return
 
-			fileTitle.innerHTML = beforeUrl // Set adoc file title
+			fileTitle.innerHTML = url // Set adoc file title
 
 			// Store to window object, for "patch_download.js" to generate the diff file
 			window.origin_content = adocContent
-			window.current_link_1 = `a/documentation/content${beforeUrl
+			window.current_link_1 = `a/documentation/content${url
 				.split('#')[0]
 				.substring(24)}_index.adoc`
-			window.current_link_2 = `b/documentation/content${beforeUrl
+			window.current_link_2 = `b/documentation/content${url
 				.split('#')[0]
 				.substring(24)}_index.adoc`
 		})
@@ -210,20 +212,17 @@ export function generateHtml() {
 }
 
 // Change file button function
-const button = document.querySelector('#change-file')
+const changeFileButton = document.querySelector('#change-file')
 
 function popup3(e) {
-	const guest = window.prompt(
+	const url = window.prompt(
 		`Change the left adoc file with freebsd document url${beforeUrl}`
 	)
-	if (guest !== null && guest.trim() !== '') {
-		// Sanitize and update the beforeUrl variable
-		beforeUrl = guest
-
+	if (url !== null && url.trim() !== '') {
 		// Fetch and generate HTML with the updated URL
-		githubApiGet()
+		githubApiGet(url)
 		generateHtml()
 	}
 }
 
-button.addEventListener('click', popup3)
+changeFileButton.addEventListener('click', popup3)
