@@ -1,15 +1,5 @@
 import asciidoctor from 'asciidoctor'
-
-// Helper function to decode base64-encoded Unicode strings
-// Source: https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-function b64DecodeUnicode(str) {
-	return decodeURIComponent(
-		atob(str)
-			.split('')
-			.map((c) => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`)
-			.join('')
-	)
-}
+import { b64DecodeUnicode } from './utility.js'
 
 // Global constants
 const editor = ace.edit('editor') /* global ace */
@@ -226,10 +216,11 @@ function popup3(e) {
 	const guest = window.prompt(
 		`Change the left adoc file with freebsd document url${beforeUrl}`
 	)
-	if (guest == null || '') {
-		// The block is empty because nothing needs to be done in this case
-	} else {
+	if (guest !== null && guest.trim() !== '') {
+		// Sanitize and update the beforeUrl variable
 		beforeUrl = guest
+
+		// Fetch and generate HTML with the updated URL
 		githubApiGet()
 		generateHtml()
 	}
