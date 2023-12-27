@@ -41,6 +41,7 @@ module.exports = {
 				{ from: 'public/styles', to: 'styles' },
 				{ from: 'public/config.json', to: 'config.json' },
 				{ from: 'public/favicon.ico', to: 'favicon.ico' },
+				{ from: 'public/.nojekyll', to: '.nojekyll', toType: 'file'},
 			],
 		}),
 	],
