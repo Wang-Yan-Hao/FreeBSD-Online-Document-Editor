@@ -1,0 +1,33 @@
+name: Build and Deploy to build branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to build branch
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git fetch origin build:build
+          git checkout -B build origin/build
+          find . -maxdepth 1 -mindepth 1 ! -name 'build' ! -name '.git' -exec rm -rf {} \;
+          mv build/* .
+          rm -rf build
+          git add .
+          git commit -m "Auto-generated build files"
+          git push origin build
