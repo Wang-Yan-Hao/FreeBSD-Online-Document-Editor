@@ -7,29 +7,28 @@ Workflow of this project:
 
 We use Github Page to deploy the project, it is considered a pre-release version that will deploy on the production environment (ci.freebsd.org).
 
-* [Online website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/root/)
+* [Online website](https://wang-yan-hao.github.io/FreeBSD-Online-Document-Editor/)
 * [Related slide](https://drive.google.com/file/d/1rOQ_-Yzue83arFYGgiYbY9MxbMQg7SC5/view?usp=drive_link)
-
-## Directory
-* root: website file.
-* root/lib: asciidoc syntax extension gets from the FreeBSD doc project ([/shared/lib/](https://github.com/freebsd/freebsd-doc/tree/main/shared/lib)). It is originally written by Ruby, we use opal-compiler to translate it. You can use the lib/renew.sh to update the extension if the freebsd-doc change the extension.
-* root/scripts: JS files.
-* root/styles: CSS files from freebsd-doc.
 
 ## Installation
 node.js >= v16.13.1
 npm >= v8.18.0
 
 ```bash 
-$ cd ./root/
-$ npm install 
+$ npm install
 ```
 
+Related commands:
+```bash
+$ npm run build # generate production codes
+$ npm run lint # format JS with eslint
+$ npm run format # format files with prettier
+```
 ## Package
-1. Opal-compiler@1.0.13: installed by npm in root/package.json.
-2. Asciidoctor.js@2.2.6: installed by npm in root/package.json. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
-3. Ace.js@1.11.2: using the Cloudflare CDN to include in root/index.html.
-4. Jsdiff@5.1.0: using the Cloudflare CDN to include in root/index.html.
+1. Opal-compiler@1.0.13: installed by `npm`.
+2. Asciidoctor.js@2.2.6: installed by `npm`. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
+3. Ace.js@1.11.2: using the Cloudflare CDN to include.
+4. Jsdiff@5.1.0: using the Cloudflare CDN to include.
 
 ## Open in the local server
 There are three ways to open the website on the local server that can help you develop. When you change the code, you can see the change on the local server immediately.
