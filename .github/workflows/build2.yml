@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - freebsd-vm
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A job to run test in FreeBSD
+    env:
+      MYTOKEN: ${{ secrets.MYTOKEN }}
+      MYTOKEN2: "value2"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test in FreeBSD
+        id: test
+        uses: vmactions/freebsd-vm@v1
+        with:
+          release: '14.0'
+          envs: 'MYTOKEN MYTOKEN2'
+          usesh: true
+          sync: rsync
+          copyback: false
+          prepare: |
+            pkg -v
+            pkg install -y npm
+            pkg install -y git
+            cd work/FreeBSD-Online-Document-Editor/FreeBSD-Online-Document-Editor
+            npm install
+            npm run build
+          run: |
+            git config --global --add safe.directory /home/runner/work/FreeBSD-Online-Document-Editor/FreeBSD-Online-Document-Editor
+            git config user.email "action@github.com"
+            git config user.name "GitHub Action"
+            git fetch origin build:build
+            git checkout -B build origin/build
+            find . -maxdepth 1 -mindepth 1 ! -name 'build' ! -name '.git' -exec rm -rf {} \;
+            mv build/* .
+            rm -rf build
+            git add .
+            git commit -m "Auto-generated build files"
