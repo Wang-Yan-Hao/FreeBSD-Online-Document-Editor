@@ -28,6 +28,10 @@ jobs:
           find . -maxdepth 1 -mindepth 1 ! -name 'build' ! -name '.git' -exec rm -rf {} \;
           mv build/* .
           rm -rf build
-          git add .
-          git commit -m "Auto-generated build files"
-          git push origin build
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Auto-generated build files"
+            git push origin build
+          else
+            echo "No changes to commit. Skipping deployment."
+          fi
