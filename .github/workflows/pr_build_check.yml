@@ -1,0 +1,23 @@
+name: Build test
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build test
+        run: |
+          if npm run build; then
+            echo "Your PR has passed the build."
+            exit 0
+          else
+            echo "Your PR can't be built. Please fix the issue."
+            exit 1
+          fi
