@@ -1,0 +1,7 @@
+This directory contains Ruby extensions sourced from FreeBSD documentation,
+which can be found at https://github.com/freebsd/freebsd-doc/tree/main/shared/lib
+or https://cgit.freebsd.org/doc/plain/shared/lib/. These extensions are compiled
+to JavaScript using the Opal compiler and are placed in the "lib" folder.
+
+It is essential to periodically check for updates to these extensions and
+ensure that the JavaScript versions are kept up-to-date accordingly.

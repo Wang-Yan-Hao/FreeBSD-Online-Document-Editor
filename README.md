@@ -75,6 +75,10 @@ $ service apache24 configtest # Check for errors in the httpd.conf file
 $ service apache24 start # Start the Apache service
 ```
 
+## Notices
+1. The AsciiDoctor version used by FreeBSD-doc may change, so we must be vigilant and attempt to update the version accordingly here.
+2. The [Ruby extension of AsciiDoctor](https://github.com/freebsd/freebsd-doc/tree/main/shared/lib) in FreeBSD-doc may also undergo changes. We must remain attentive to such changes and endeavor to update it accordingly. For reference, please consult src/ruby/code_explanation.txt.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
