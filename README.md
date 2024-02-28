@@ -20,10 +20,13 @@ $ npm install
 
 Related commands:
 ```bash
-$ npm run build # generate production codes
-$ npm run lint # format JS with eslint
-$ npm run format # format files with prettier
+$ npm run build # Generate production code
+$ npm run eslint # Check JavaScript code formatting with ESLint
+$ npm run eslint-fix # Automatically format JavaScript code with ESLint
+$ npm run prettier # Check HTML and CSS code formatting with Prettier
+$ npm run prettier-fix # Automatically format HTML and CSS code with Prettier
 ```
+
 ## Package
 1. Opal-compiler@1.0.13: installed by `npm`.
 2. Asciidoctor.js@2.2.6: installed by `npm`. This release is based on Asciidoctor 2.0.17 and Opal 0.11.99.dev ([link](https://github.com/asciidoctor/asciidoctor.js/releases)).
@@ -49,16 +52,27 @@ Advanced usage of [http-server](https://www.npmjs.com/package/http-server).
 We will use apache24 to open the local server.
 
 ```
-$ pkg install apache24 # install
+$ pkg install apache24 # Install apache
 $ vim /usr/local/etc/apache24/httpd.conf
 ```
 Change the "ServerName" column to your ip and 80 port. The "DocumentRoot" and "Directory" tag also need to be set to the root directory.
 
+```
+ServerName www.example.com:80
+
+DocumentRoot "/path-to-project/"
+<Directory "/path-to-project/">
+  Options Indexes FollowSymLinks
+  AllowOverride None
+  Require all granted
+</Directory>
+```
+
 Please refer [Apache document](https://httpd.apache.org/docs/2.4/configuring.html)
 
 ```
-$ service apache24 configtest # See is there something wrong with the httpd.conf file
-$ service apache24 start # start apache service
+$ service apache24 configtest # Check for errors in the httpd.conf file
+$ service apache24 start # Start the Apache service
 ```
 
 ## Contributing

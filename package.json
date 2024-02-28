@@ -5,10 +5,10 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "webpack --config webpack.config.js",
-		"lint": "eslint 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
-		"lint-fix": "eslint -- fix 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
-		"format": "prettier --write 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'",
-		"check-format": "prettier --check 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'"
+		"eslint": "eslint 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
+		"eslint-fix": "eslint --fix 'src/**/*.js' --ignore-pattern 'src/lib/**/*.js'",
+		"prettier": "prettier --check 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'",
+		"prettier-fix": "prettier --write 'public/**/*.css' '!public/styles/doc_css/**/*.css' 'public/**/*.html'"
 	},
 	"author": "",
 	"license": "ISC",
