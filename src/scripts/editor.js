@@ -4,6 +4,7 @@ import { b64DecodeUnicode } from './utility.js'
 // Global constants
 const editor = ace.edit('editor') /* global ace */
 editor.setOption('wrap', 'free') // Long lines will automatically wrap to the next line
+editor.setOption('showPrintMargin', false)
 editor.session.setMode('ace/mode/asciidoc')
 
 const Asciidoctor = asciidoctor()
