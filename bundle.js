@@ -47821,11 +47821,12 @@ function b64DecodeUnicode(str) {
 // Global constants
 const editor = ace.edit('editor') /* global ace */
 editor.setOption('wrap', 'free') // Long lines will automatically wrap to the next line
+editor.setOption('showPrintMargin', false)
 editor.session.setMode('ace/mode/asciidoc')
 
 const Asciidoctor = (0,asciidoctor["default"])()
 const outputSession = document.querySelector('#output')
-const fileTitle = document.querySelector('.file-title-container')
+const fileTitle = document.querySelector('#file-title')
 
 // Check where the user came from, and send the adoc content into ace editor
 let beforeUrl = 'https://docs.freebsd.org/en/books/faq/' // Default
@@ -48016,16 +48017,30 @@ function generateHtml() {
 	htmlContent = `<h1>${title}</h1>` + '<base target="_blank"/>\n' + htmlContent
 
 	outputSession.contentDocument.body.innerHTML =
-		'<link rel="stylesheet" href="styles/doc_css/documentation/font-awesome-min.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/fixed_large.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/fixed.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/global.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/iefixes.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/layout.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/navigation.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/table.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/text.css">' +
+		'<div style="height: 15px;"></div>' + // Add an empty line at the top for better readability
 		htmlContent
+
+	// Define an array of CSS file paths
+	const cssFiles = [
+		'styles/doc_css/documentation/font-awesome-min.css',
+		'styles/doc_css/website/fixed_large.css',
+		'styles/doc_css/website/fixed.css',
+		'styles/doc_css/website/global.css',
+		'styles/doc_css/website/iefixes.css',
+		'styles/doc_css/website/layout.css',
+		'styles/doc_css/website/navigation.css',
+		'styles/doc_css/website/table.css',
+		'styles/doc_css/website/text.css',
+	]
+
+	// Loop through the array and create <link> elements for each CSS file
+	cssFiles.forEach(function (cssFile) {
+		const link = document.createElement('link')
+		link.href = cssFile
+		link.rel = 'stylesheet'
+
+		outputSession.contentDocument.head.appendChild(link)
+	})
 }
 
 // Change file button function
@@ -48043,6 +48058,17 @@ function popup3(e) {
 }
 
 changeFileButton.addEventListener('click', popup3)
+
+let typingTimer // Timer identifier
+const typingInterval = 500 // Time in milliseconds (1 second)
+
+editor.getSession().on('change', function () {
+	clearTimeout(typingTimer)
+	typingTimer = setTimeout(() => {
+		// Trigger your function here
+		generateHtml()
+	}, typingInterval)
+})
 
 ;// CONCATENATED MODULE: ./src/index.js
 
@@ -48076,25 +48102,6 @@ window.addEventListener('beforeunload', function (e) {
 	// Some browsers require the confirmation message to be set
 	e.returnValue = confirmationMessage
 	return confirmationMessage
-})
-
-// While edit content after 1 second right sesstion will rerender. To prevent too many function calls
-let debounceTimeoutId = null
-
-const observer = new MutationObserver(function (mutationsList, observer) {
-	// Use debounce technique to ensure the function will be called at most once in one second
-	if (debounceTimeoutId) {
-		clearTimeout(debounceTimeoutId)
-	}
-	debounceTimeoutId = setTimeout(() => {
-		// Trigger your function here
-		generateHtml()
-	}, 1000)
-})
-
-observer.observe(document.getElementById('editor'), {
-	childList: true,
-	subtree: true,
 })
 
 })();

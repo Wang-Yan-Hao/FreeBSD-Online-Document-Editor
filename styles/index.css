@@ -1,3 +1,10 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
 a:hover {
 	cursor: pointer;
 }
@@ -28,7 +35,7 @@ a:hover {
 	font-family: 'Roboto', sans-serif;
 }
 
-#change-file {
+#generate-html {
 	margin-left: auto;
 }
 
@@ -37,14 +44,21 @@ a:hover {
 }
 
 .file-title-container {
+	display: flex;
+	flex-direction: row;
 	background-color: #f7f6f6;
-	padding: 9px 12px;
+}
+
+#change-file > i {
+	padding: 8px 17px 9px 17px;
+	font-size: 18px;
 }
 
 #file-title {
+	padding: 9px 1px;
 	color: black;
 	font-weight: 600;
-	font-size: 17px;
+	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -53,13 +67,17 @@ a:hover {
 	position: relative;
 	flex-direction: row;
 	margin: auto;
-	height: 850px;
+	height: calc(100% - 77px); /* Adjusted height calculation */
 }
 
 #editor-container-left,
 #editor-container-right {
 	width: 50%;
 	height: 100%;
+}
+
+#editor-container-right {
+	margin-left: 10px;
 }
 
 #editor {
@@ -86,10 +104,6 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
-}
-
-.footer-container {
-	margin: 5px auto;
 }
 
 #author {
