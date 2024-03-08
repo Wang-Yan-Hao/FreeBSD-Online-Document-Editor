@@ -8,7 +8,7 @@ editor.session.setMode('ace/mode/asciidoc')
 
 const Asciidoctor = asciidoctor()
 const outputSession = document.querySelector('#output')
-const fileTitle = document.querySelector('.file-title-container')
+const fileTitle = document.querySelector('#file-title')
 
 // Check where the user came from, and send the adoc content into ace editor
 let beforeUrl = 'https://docs.freebsd.org/en/books/faq/' // Default
