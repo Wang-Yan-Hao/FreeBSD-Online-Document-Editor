@@ -1,3 +1,10 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
 a:hover {
 	cursor: pointer;
 }
@@ -53,7 +60,7 @@ a:hover {
 	position: relative;
 	flex-direction: row;
 	margin: auto;
-	height: 850px;
+	height: calc(100% - 76px); /* Adjusted height calculation */
 }
 
 #editor-container-left,
@@ -86,10 +93,6 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
-}
-
-.footer-container {
-	margin: 5px auto;
 }
 
 #author {
