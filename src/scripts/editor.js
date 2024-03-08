@@ -226,3 +226,14 @@ function popup3(e) {
 }
 
 changeFileButton.addEventListener('click', popup3)
+
+let typingTimer // Timer identifier
+const typingInterval = 500 // Time in milliseconds (1 second)
+
+editor.getSession().on('change', function () {
+	clearTimeout(typingTimer)
+	typingTimer = setTimeout(() => {
+		// Trigger your function here
+		generateHtml()
+	}, typingInterval)
+})
