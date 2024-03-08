@@ -69,6 +69,10 @@ a:hover {
 	height: 100%;
 }
 
+#editor-container-right {
+	margin-left: 10px;
+}
+
 #editor {
 	top: 0;
 	right: 0;

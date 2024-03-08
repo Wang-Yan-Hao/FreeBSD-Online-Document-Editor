@@ -199,16 +199,30 @@ export function generateHtml() {
 	htmlContent = `<h1>${title}</h1>` + '<base target="_blank"/>\n' + htmlContent
 
 	outputSession.contentDocument.body.innerHTML =
-		'<link rel="stylesheet" href="styles/doc_css/documentation/font-awesome-min.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/fixed_large.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/fixed.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/global.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/iefixes.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/layout.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/navigation.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/table.css">' +
-		'<link rel="stylesheet" href="styles/doc_css/website/text.css">' +
+		'<div style="height: 15px;"></div>' + // Add an empty line at the top for better readability
 		htmlContent
+
+	// Define an array of CSS file paths
+	const cssFiles = [
+		'styles/doc_css/documentation/font-awesome-min.css',
+		'styles/doc_css/website/fixed_large.css',
+		'styles/doc_css/website/fixed.css',
+		'styles/doc_css/website/global.css',
+		'styles/doc_css/website/iefixes.css',
+		'styles/doc_css/website/layout.css',
+		'styles/doc_css/website/navigation.css',
+		'styles/doc_css/website/table.css',
+		'styles/doc_css/website/text.css',
+	]
+
+	// Loop through the array and create <link> elements for each CSS file
+	cssFiles.forEach(function (cssFile) {
+		const link = document.createElement('link')
+		link.href = cssFile
+		link.rel = 'stylesheet'
+
+		outputSession.contentDocument.head.appendChild(link)
+	})
 }
 
 // Change file button function
