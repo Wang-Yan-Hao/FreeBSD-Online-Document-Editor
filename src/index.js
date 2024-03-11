@@ -1,6 +1,7 @@
 import { patchDownload, storeContent } from './scripts/download.js'
 import { startDrag, drag, stopDrag } from './scripts/middle_line.js'
 import { generateHtml } from './scripts/editor.js'
+import { helpToggleDropdown } from './scripts/dropdown_menu.js'
 
 // Add attribute to html
 const dragLine = document.getElementById('dragLine')
@@ -21,6 +22,9 @@ const freebsdBugzillaTag = document.getElementById('freebsd-bugzilla')
 freebsdBugzillaTag.addEventListener('click', function () {
 	window.open('https://bugs.freebsd.org/bugzilla/', '_blank')
 })
+
+const helpDropdown = document.getElementById('help-dropdown')
+helpDropdown.addEventListener('click', helpToggleDropdown)
 
 // Display confirmation message when closing the page
 window.addEventListener('beforeunload', function (e) {

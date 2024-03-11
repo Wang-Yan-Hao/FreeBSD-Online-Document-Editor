@@ -13,6 +13,7 @@
 			referrerpolicy="no-referrer"
 		/>
 		<link rel="stylesheet" href="styles/index.css" />
+		<link rel="stylesheet" href="styles/dropdown_menu.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -35,12 +36,22 @@
 			<a title="Download patch" id="download-patch">
 				<i class="fa-solid fa-download"></i>
 			</a>
-			<a title="FreeBSD Bugzilla" id="freebsd-bugzilla">
-				<i class="fa-solid fa-globe"></i>
-			</a>
-			<a title="Help" id="help" href="pages/help.html" target="_blank">
-				<i class="fa-regular fa-circle-question"></i>
-			</a>
+
+			<div class="dropdown" id="help-dropdown">
+				<a class="dropbtn" title="Help">
+					<i class="fa-regular fa-circle-question"></i>
+				</a>
+				<div class="dropdown-content" id="help-dropdown-content">
+					<a href="pages/help.html" target="_blank">
+						<i class="fa-regular fa-circle-question"></i>
+						Help Page
+					</a>
+					<a title="FreeBSD Bugzilla" id="freebsd-bugzilla">
+						<i class="fa-solid fa-globe"></i>
+						FreeBSD Bugzilla
+					</a>
+				</div>
+			</div>
 		</div>
 
 		<div class="file-title-container">
