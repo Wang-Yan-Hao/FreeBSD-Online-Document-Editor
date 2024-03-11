@@ -18,6 +18,10 @@
 	right: 0px;
 }
 
+.dropdown-content {
+	background-color: white;
+}
+
 /* Links inside the dropdown */
 .dropdown-content > a {
 	display: block;
