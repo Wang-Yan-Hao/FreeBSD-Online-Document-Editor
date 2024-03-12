@@ -48041,6 +48041,10 @@ function generateHtml() {
 
 		outputSession.contentDocument.head.appendChild(link)
 	})
+
+	const styleElement = document.createElement('style')
+	styleElement.textContent = window.outputFontSize || ''
+	outputSession.contentDocument.head.appendChild(styleElement)
 }
 
 // Change file button function
@@ -48060,17 +48064,106 @@ function popup3(e) {
 changeFileButton.addEventListener('click', popup3)
 
 let typingTimer // Timer identifier
-const typingInterval = 500 // Time in milliseconds (1 second)
+const typingInterval = 500 // Time in milliseconds
 
 editor.getSession().on('change', function () {
 	clearTimeout(typingTimer)
 	typingTimer = setTimeout(() => {
-		// Trigger your function here
 		generateHtml()
 	}, typingInterval)
 })
 
+;// CONCATENATED MODULE: ./src/scripts/dropdown_menu.js
+function helpToogleClose() {
+	const dropdown = document.getElementById('help-dropdown')
+	const dropdownContent = document.getElementById('help-dropdown-content')
+
+	if (
+		!dropdownContent.contains(event.target) &&
+		!dropdown.contains(event.target)
+	) {
+		dropdown.style.backgroundColor = ''
+		dropdownContent.style.display = 'none'
+		document.removeEventListener('click', helpToogleClose)
+	}
+}
+
+function helpToggleDropdown() {
+	const dropdown = document.getElementById('help-dropdown')
+	const dropdownContent = document.getElementById('help-dropdown-content')
+
+	if (dropdownContent.style.display === 'block') {
+		dropdown.style.backgroundColor = ''
+		dropdownContent.style.display = 'none'
+	} else {
+		dropdown.style.backgroundColor = 'black'
+		dropdownContent.style.display = 'block'
+		document.addEventListener('click', helpToogleClose)
+	}
+}
+
+;// CONCATENATED MODULE: ./src/scripts/setting.js
+
+const modal = document.getElementById('setting-modal')
+const setting_editor = ace.edit('editor') /* global ace */
+
+function openSettingModal(event) {
+	event.preventDefault()
+
+	modal.style.display = 'block'
+
+	// Close the modal when clicking outside of it
+	window.onclick = function (event) {
+		if (event.target === modal) {
+			modal.style.display = 'none'
+		}
+	}
+}
+
+function closeSetting() {
+	modal.style.display = 'none'
+}
+
+function themeSelect(event) {
+	const themeSelect = document.getElementById('theme-select')
+	const selectedValue = themeSelect.value
+
+	setting_editor.setTheme('ace/theme/' + selectedValue)
+}
+
+function editorFontSizeSelect(event) {
+	const themeSelect = document.getElementById('editor-font-size-select')
+	const selectedValue = themeSelect.value
+
+	setting_editor.setOptions({ fontSize: selectedValue })
+}
+
+function outputFontSizeSelect(event) {
+	const themeSelect = document.getElementById('output-font-size-select')
+	const selectedValue = themeSelect.value
+
+	window.outputFontSize = 'html {font-size: calc(' + selectedValue + ');}'
+
+	generateHtml()
+}
+
+function fontSizeSelect(event) {
+	const themeSelect = document.getElementById('editor-font-size-select')
+	const selectedValue = themeSelect.value
+
+	setting_editor.setOptions({ fontSize: selectedValue })
+}
+
+function editorInputSelect(event) {
+	const themeSelect = document.getElementById('editor-input-select')
+	const selectedEditorInput = themeSelect.value
+
+	setting_editor.setKeyboardHandler('ace/keyboard/' + selectedEditorInput)
+}
+
 ;// CONCATENATED MODULE: ./src/index.js
+
+
 
 
 
@@ -48089,6 +48182,31 @@ storeContentTag.addEventListener('click', storeContent)
 
 const patchDownloadTag = document.getElementById('download-patch')
 patchDownloadTag.addEventListener('click', patchDownload)
+
+const settingTag = document.getElementById('setting')
+settingTag.addEventListener('click', openSettingModal)
+
+const cloaseSettingTag = document.getElementById('close-setting')
+cloaseSettingTag.addEventListener('click', closeSetting)
+
+const themeSelectTag = document.getElementById('theme-select')
+themeSelectTag.addEventListener('change', themeSelect)
+
+const editorFontSizeSelectTag = document.getElementById(
+	'editor-font-size-select'
+)
+editorFontSizeSelectTag.addEventListener('change', editorFontSizeSelect)
+
+const outputFontSizeSelectTag = document.getElementById(
+	'output-font-size-select'
+)
+outputFontSizeSelectTag.addEventListener('change', outputFontSizeSelect)
+
+const editorInputSelectTag = document.getElementById('editor-input-select')
+editorInputSelectTag.addEventListener('change', editorInputSelect)
+
+const helpDropdownTag = document.getElementById('help-dropdown')
+helpDropdownTag.addEventListener('click', helpToggleDropdown)
 
 const freebsdBugzillaTag = document.getElementById('freebsd-bugzilla')
 freebsdBugzillaTag.addEventListener('click', function () {

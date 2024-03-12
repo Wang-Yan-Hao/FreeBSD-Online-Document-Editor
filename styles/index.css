@@ -14,15 +14,16 @@ a:hover {
 	flex-direction: row;
 	align-items: center;
 	background-color: rgb(64, 62, 62);
-	padding: 8px 12px;
+	padding-left: 12px;
 }
 
-.header-container > a {
-	margin-top: 5px;
-	margin-right: 28px;
+.header-container > a,
+.dropdown {
+	padding: 13px 14px;
 }
 
-.header-container > a > i {
+.header-container > a > i,
+.dropbtn > i {
 	color: white;
 	font-size: 18px;
 }
@@ -67,7 +68,7 @@ a:hover {
 	position: relative;
 	flex-direction: row;
 	margin: auto;
-	height: calc(100% - 77px); /* Adjusted height calculation */
+	height: calc(100% - 82px); /* Adjusted height calculation */
 }
 
 #editor-container-left,
